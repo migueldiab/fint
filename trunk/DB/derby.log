@@ -1,7 +1,7 @@
-2011-05-17 23:01:12.424 GMT : Apache Derby Network Server - 10.6.2.1 - (999685) se ha iniciado y está listo para aceptar conexiones en el puerto 1527
+2011-05-22 21:07:59.345 GMT : Apache Derby Network Server - 10.6.2.1 - (999685) se ha iniciado y está listo para aceptar conexiones en el puerto 1527
 ----------------------------------------------------------------
-2011-05-17 23:02:22.119 GMT:
- Arrancando Derby versión The Apache Software Foundation - Apache Derby - 10.6.2.1 - (999685): instancia a816c00e-0130-0031-0baf-ffff849e0514 
+2011-05-22 21:08:18.459 GMT:
+ Arrancando Derby versión The Apache Software Foundation - Apache Derby - 10.6.2.1 - (999685): instancia a816c00e-0130-1989-2fc9-ffff849e0514 
 en el directorio de base de datos D:\Users\migueldiab\Documents\NetBeansProjects\DComp\DB\Fint  con el cargador de clases sun.misc.Launcher$AppClassLoader@11b86e7
 
 java.vendor=Sun Microsystems Inc.
