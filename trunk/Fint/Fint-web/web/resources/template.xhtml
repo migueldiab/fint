@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+  <h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <meta name="Keywords" content="fint, accounting, management, personal, finance" />
+    <meta name="robots" content="index, follow, noarchive" />
+    <meta name="Description" content="An open source MINT clone." />
+    <meta name="Author" content="Miguel A. Diab" />
+    <title>Fint: Economa de Escala</title>
+    <h:outputStylesheet library="css" name="layout.css"/>
+    <h:outputStylesheet library="css" name="slider.css"/>
+    <h:outputScript library="js" name="jquery-1.2.6.min.js"/>
+    <h:outputScript library="js" name="jquery-easing-1.3.pack.js"/>
+    <h:outputScript library="js" name="jquery-easing-compatibility.1.2.pack.js"/>
+    <h:outputScript library="js" name="Ajax.lib.js"/>
+    <h:outputScript library="js" name="captcha.js"/>
+    <h:outputScript library="js" name="coda-slider.1.1.1.pack.js"/>
+    <h:outputScript library="js" name="external.js"/>
+    <h:outputScript library="js" name="quoteupload.js"/>
+    <h:outputScript library="js" name="ycodaslider-2.0.pack.js"/>
+    <h:outputScript library="js" name="startSlider.js"/>
+
+  </h:head>
+  <h:body>
+		<div id="wrap">
+			<div id="header">
+        <h1 id="sitename">FINT<span id="description">Un clon Open Source de MINT</span></h1>
+        <ui:insert name="menu">
+          <div id="topnav">
+            <ul>
+              <li id="first" class="active"><a href="/">Inicio</a></li>
+              <li><a href="#">Cuentas</a></li>
+              <li><a href="#">Servicios</a></li>
+              <li><a href="portfolio">Reportes</a></li>
+              <li><a href="#">Vencimientos</a></li>
+              <li><a href="#">Ayuda</a></li>
+            </ul>
+          </div>
+          <div class="clear"></div>
+          <div id="headercolumn1">
+            <p class="description">#{context_help}</p>
+          </div>
+          <div id="headercolumn2">
+            <div id="search_top">
+            <form action="/search/search.php" method="get">
+              <p><input type="text" name="query" id="query" class="keyword"/>	</p>
+              <p class="button"><input name="" type="image" src="#{resource['images:searchbutton.gif']}" alt="Search" /></p>
+              <p class="hide"><input type="hidden" name="search" value="1" /></p>
+            </form>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </ui:insert>
+			</div>
+      <div id="contents">
+         <ui:insert name="content"/>
+      </div>
+			<div id="footer">
+        <div class="footercontent">
+        <p>Copyright Information Goes Here</p>
+        <p>Home | Products | Services | Privacy Policy | Terms of use | Contact Us |
+
+        <!--Do not delete the credit line and link back to rambolingsoul.com
+        -->
+        Design by <a href="http://www.ramblingsoul.com">RamblingSoul</a></p>
+        </div>
+      </div>
+    </div>
+  </h:body>
+</html>
+
