@@ -1,6 +1,9 @@
 package edu.ort.dcomp.fint.modelo;
 
+import edu.ort.common.utils.EncryptUtils;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +19,8 @@ public class Usuario implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+  private String login;
+  private String contrasena;
   private String nombre;
   private String apellido;
   private Long ci;
@@ -60,20 +65,36 @@ public class Usuario implements Serializable {
     this.apellido = apellido;
   }
 
-  public long getCi() {
-    return ci;
-  }
-
-  public void setCi(long ci) {
-    this.ci = ci;
-  }
-
   public String getNombre() {
     return nombre;
   }
 
   public void setNombre(String nombre) {
     this.nombre = nombre;
+  }
+
+  public String getLogin() {
+    return login;
+  }
+
+  public void setLogin(String login) {
+    this.login = login;
+  }
+
+  public String getContrasena() {
+    return contrasena;
+  }
+
+  public void setContrasena(String contrasena) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+    this.contrasena = EncryptUtils.encodeSha256(contrasena);
+  }
+
+  public Long getCi() {
+    return ci;
+  }
+
+  public void setCi(Long ci) {
+    this.ci = ci;
   }
 
 }

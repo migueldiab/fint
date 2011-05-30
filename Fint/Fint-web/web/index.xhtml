@@ -2,51 +2,81 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
   <ui:composition template="/resources/template.xhtml">
+    <ui:define name="menu">
+      <c:if test="#{usuarioActions.loggedIn}">
+        #{usuarioActions.redirectHome()}
+      </c:if>
+      <div id="topnav">
+        <ul>
+          <li id="first"><a href="/">Acerca de...</a></li>
+        </ul>
+      </div>
+      <div class="clear"></div>
+          <div id="headercolumn1">
+            <h2>Ingrese a su cuenta para administrar sus finanzas personales</h2>
+          </div>
+          <div id="headercolumn2">
+            <form method="POST" action="j_security_check">
+              <h:panelGrid columns="2" rendered="#{!usuarioActions.loggedIn}">
+                <h:outputLabel value="Usuario" />
+                <input type="text" name="j_username"/>
+                <h:outputLabel value="Contraseña" />
+                <input type="password" name="j_password"/>
+                <h:outputLabel value="" />
+                <input type="submit" value="Acceder"/>
+              </h:panelGrid>
+            </form>
+            <h:outputLabel value="Bienvenido, #{usuarioActions.usuario}" rendered="#{usuarioActions.loggedIn}"/>
+          </div>
+          <div class="clear"></div>
+
+    </ui:define>
     <ui:param name="context_help" value="Esta es la ayuda : #{facade.welcomeMessage}"/>
     <ui:define name="content">
-      <!--
-      <div id="topbar">
-        <div class="columns">
-          <h2>First Title</h2>
-          <p>Ut ante dolor, eleifend viverra, adipiscing elementum, interdum sit  amet, felis. Donec euismod, felis non auctor tempus, ante metus  sollicitudin ante</p>
-        </div>
-        <div class="clear"></div>
-      </div>
-      -->
       <div id="homepage">
         <div class="services">
-          <h2 class="subhead">Pagos Pendientes</h2>
+          <h2 class="subhead">Noticias</h2>
           <ul>
-          <li class="idea">UTE $1.213 <br/> Vencimiento 15/5</li>
+            <li class="apps">
+              Seguinos en Facebook<br/>
+              <a href="http://www.facebook.com">http://www.facebook.com</a>
+            </li>
+            <li class="design">
+              FINT en Revista Paula<br/>
+              <a href="http://www.revistapaula.com.uy">http://www.revistapaula.com.uy</a>
+            </li>
           </ul>
-				</div>
-				<div class="portfolio_preview">
-          <h2>Cuentas</h2>
-				<div id="from_portfolio">
-          <div class="slider-wrap">
+        </div>
+        <div class="portfolio_preview">
+          <h2>Bienvenido a FINT</h2>
+          <div id="from_portfolio">
+            <div class="slider-wrap">
               <div id="main-photo-slider" class="csw">
                 <div class="panelContainer">
-
                   <div class="panel" title="Panel 1">
                     <div class="wrapper">
-                        Panel 1
+                      <h2>Diseño de Componentes</h2>
+                      <h3>Facultad de Ingeniería - Universidad ORT</h3>
                     </div>
                   </div>
                   <div class="panel" title="Panel 2">
                     <div class="wrapper">
-                      Panel 2
+                      <h2>Proyecto FINT</h2>
+                      <h3>Un clon Open Source de MINT</h3>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
           </div>
         </div>
+        <div class="clear"></div>
+        <br />
       </div>
-      <div class="clear"></div>
-      <br />
-    </div>
     </ui:define>
   </ui:composition>
 </html>

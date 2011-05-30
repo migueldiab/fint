@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <ui:composition template="/resources/template.xhtml">
+    <ui:param name="context_help" value="Esta es la ayuda : #{facade.welcomeMessage}"/>
+    <ui:define name="content">
+      
+      <!--
+      <div id="topbar">
+        <div class="columns">
+          <h2>First Title</h2>
+          <p>Ut ante dolor, eleifend viverra, adipiscing elementum, interdum sit  amet, felis. Donec euismod, felis non auctor tempus, ante metus  sollicitudin ante</p>
+        </div>
+        <div class="clear"></div>
+      </div>
+      -->
+      <div id="homepage">
+        <div class="services">
+          <h2 class="subhead">Pagos Pendientes</h2>
+          <ul>
+          <li class="idea">UTE $1.213 <br/> Vencimiento 15/5</li>
+          </ul>
+				</div>
+				<div class="portfolio_preview">
+          <h2>Cuentas</h2>
+				<div id="from_portfolio">
+          <div class="slider-wrap">
+              <div id="main-photo-slider" class="csw">
+                <div class="panelContainer">
+
+                  <div class="panel" title="Panel 1">
+                    <div class="wrapper">
+                        Panel 1
+                    </div>
+                  </div>
+                  <div class="panel" title="Panel 2">
+                    <div class="wrapper">
+                      Panel 2
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <br />
+    </div>
+    </ui:define>
+  </ui:composition>
+</html>

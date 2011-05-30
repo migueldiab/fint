@@ -15,10 +15,11 @@ import javax.persistence.PersistenceContext;
  * @author migueldiab
  */
 @Stateless
-public class EntidadFinancieraFacade extends AbstractFacade<EntidadFinanciera> implements EntidadFinancieraFacadeLocal, EntidadFinancieraFacadeRemote {
+public class EntidadFinancieraFacade extends AbstractFacade<EntidadFinanciera> implements EntidadFinancieraFacadeLocal {
   @PersistenceContext(unitName = "FintPU")
   private EntityManager em;
 
+  @Override
   protected EntityManager getEntityManager() {
     return em;
   }
