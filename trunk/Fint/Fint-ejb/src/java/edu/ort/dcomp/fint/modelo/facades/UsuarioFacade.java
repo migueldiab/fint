@@ -15,10 +15,11 @@ import javax.persistence.PersistenceContext;
  * @author migueldiab
  */
 @Stateless
-public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal, UsuarioFacadeRemote {
+public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
   @PersistenceContext(unitName = "FintPU")
   private EntityManager em;
 
+  @Override
   protected EntityManager getEntityManager() {
     return em;
   }

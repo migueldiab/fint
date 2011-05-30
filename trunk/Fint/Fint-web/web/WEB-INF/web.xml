@@ -11,7 +11,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
+        <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -19,6 +19,51 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
+    <security-constraint>
+        <display-name>sistemaUsuario</display-name>
+        <web-resource-collection>
+            <web-resource-name>Sistema Usuario</web-resource-name>
+            <description/>
+            <url-pattern>*.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>usuario</role-name>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Recursos</display-name>
+        <web-resource-collection>
+            <web-resource-name>Recursos</web-resource-name>
+            <description/>
+            <url-pattern>/javax.faces.resource/*</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Setup</display-name>
+        <web-resource-collection>
+            <web-resource-name>Setup</web-resource-name>
+            <description/>
+            <url-pattern>/setup.xhtml</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>Fint</realm-name>
+        <form-login-config>
+            <form-login-page>/index.xhtml</form-login-page>
+            <form-error-page>/index.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description/>
+        <role-name>usuario</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>admin</role-name>
+    </security-role>
 </web-app>

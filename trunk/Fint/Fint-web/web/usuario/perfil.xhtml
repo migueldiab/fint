@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <ui:composition template="/resources/template.xhtml">
+    <ui:param name="context_help" value="Desde aqui edite su perfil"/>
+   <ui:define name="content">
+      <div id="homepage">
+        <div class="services">
+          <h2 class="subhead">Datos Personales</h2>
+          <ul>
+          <li class="idea">Cuentas</li>
+          <li class="panel">Servicios</li>
+          </ul>
+				</div>
+				<div class="portfolio_preview">
+          <h2>Editar mi perfil</h2>
+				<div id="from_portfolio">
+          <div class="panelContainer">
+            <div class="panel" title="Panel 1">
+              <div class="wrapper">
+                <h:form>
+                  <h:panelGrid columns="2">
+                    <h:outputLabel value="Nombre" />
+                    <h:inputText id="nombre" value="#{usuarioActions.usuario}" />
+                    <h:outputLabel value="Apellido" />
+                    <h:inputText id="apellido" value="" />
+                    <h:outputLabel value="Contraseña" />
+                    <h:inputSecret id="password" value="" />
+                    <h:outputLabel value="Repetir Contraseña" />
+                    <h:inputSecret id="password2" value="" />
+                    <h:outputLabel value="Correo Electrónico" />
+                    <h:inputText id="email" value="" />
+                  </h:panelGrid>
+                  <h:commandButton action="#{usuarioActions.guardarUsuario}" value="Guardar" />
+                </h:form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <br />
+    </div>
+    </ui:define>
+  </ui:composition>
+</html>
