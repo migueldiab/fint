@@ -2,8 +2,8 @@ package edu.ort.dcomp.fint.engine;
 
 import edu.ort.dcomp.fint.modelo.Grupo;
 import edu.ort.dcomp.fint.modelo.Usuario;
-import edu.ort.dcomp.fint.modelo.facades.GrupoFacadeLocal;
-import edu.ort.dcomp.fint.modelo.facades.UsuarioFacadeLocal;
+import edu.ort.dcomp.fint.modelo.facades.GrupoManagerLocal;
+import edu.ort.dcomp.fint.modelo.facades.UsuarioManagerLocal;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import javax.ejb.EJB;
@@ -17,10 +17,10 @@ import javax.inject.Named;
 public class Facade {
 
   @EJB
-  UsuarioFacadeLocal usuarioFacadeLocal;
+  UsuarioManagerLocal usuarioFacadeLocal;
 
   @EJB
-  GrupoFacadeLocal grupoFacadeLocal;
+  GrupoManagerLocal grupoFacadeLocal;
 
   public String getWelcomeMessage() {
     return "Bienvenido a la página de inicio de FINT";

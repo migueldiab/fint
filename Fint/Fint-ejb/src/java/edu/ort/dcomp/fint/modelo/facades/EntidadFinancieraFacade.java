@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author migueldiab
  */
 @Stateless
-public class EntidadFinancieraFacade extends AbstractFacade<EntidadFinanciera> implements EntidadFinancieraFacadeLocal {
+public class EntidadFinancieraFacade extends AbstractManager<EntidadFinanciera> implements EntidadFinancieraFacadeLocal {
   @PersistenceContext(unitName = "FintPU")
   private EntityManager em;
 

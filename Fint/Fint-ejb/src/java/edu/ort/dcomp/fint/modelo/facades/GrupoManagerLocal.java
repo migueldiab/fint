@@ -14,7 +14,7 @@ import javax.ejb.Local;
  * @author migueldiab
  */
 @Local
-public interface GrupoFacadeLocal {
+public interface GrupoManagerLocal {
 
   void create(Grupo grupo);
 

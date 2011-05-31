@@ -1,7 +1,7 @@
 package edu.ort.dcomp.fint.engine;
 
 import edu.ort.dcomp.fint.modelo.Usuario;
-import edu.ort.dcomp.fint.modelo.facades.UsuarioFacadeLocal;
+import edu.ort.dcomp.fint.modelo.facades.UsuarioManagerLocal;
 import javax.ejb.EJB;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -14,7 +14,7 @@ import javax.faces.bean.ManagedBean;
 @ApplicationScoped
 public class Engine {
   @EJB
-  private UsuarioFacadeLocal usuarioFacade;
+  private UsuarioManagerLocal usuarioFacade;
 
   public Usuario getListaEntidades() {
     Usuario unUsuario = new Usuario();

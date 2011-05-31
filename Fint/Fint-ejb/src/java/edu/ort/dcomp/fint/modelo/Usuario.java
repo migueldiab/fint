@@ -15,7 +15,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Usuario implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 201105301000L;
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -95,6 +95,10 @@ public class Usuario implements Serializable {
 
   public void setCi(Long ci) {
     this.ci = ci;
+  }
+
+  public void setContrasenaHash(String contrasena) {
+    this.contrasena = contrasena;
   }
 
 }

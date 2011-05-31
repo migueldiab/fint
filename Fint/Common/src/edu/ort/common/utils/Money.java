@@ -1,6 +1,7 @@
 package edu.ort.common.utils;
 
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import javax.persistence.Temporal;
 import org.apache.log4j.Logger;
 import java.math.BigDecimal;
@@ -27,21 +28,21 @@ public class Money implements Serializable {
   /**
    * Creates a new Money with US$ 0.00
    */
-  public Money() {
+  public Money() throws NoSuchAlgorithmException {
     amount   = new BigDecimal("0.00");
     currency = Currency.getInstance("USD");
     moneyUpdatedAt = new Date();
     security = EncryptUtils.encodeMD5(amount.toString()+currency.toString()+moneyUpdatedAt.toString());
   }
 
-  public Money(BigDecimal newAmount, Currency newCurrency) {
+  public Money(BigDecimal newAmount, Currency newCurrency) throws NoSuchAlgorithmException {
     amount   = newAmount;
     currency = newCurrency;
     moneyUpdatedAt = new Date();
     security = EncryptUtils.encodeMD5(amount.toString()+currency.toString()+moneyUpdatedAt.toString());
   }
 
-  public Money(String newAmount, Currency newCurrency) {
+  public Money(String newAmount, Currency newCurrency) throws NoSuchAlgorithmException {
     amount   = new BigDecimal(newAmount);
     currency = newCurrency;
     moneyUpdatedAt = new Date();
@@ -79,7 +80,7 @@ public class Money implements Serializable {
   /**
    * @param amount the amount to set
    */
-  public void setAmount(BigDecimal newAmount) {
+  public void setAmount(BigDecimal newAmount) throws NoSuchAlgorithmException {
     amount = newAmount;
     setMoneyUpdatedAt(new Date());
     setSecurity(EncryptUtils.encodeMD5(amount.toString() + currency.toString() + getMoneyUpdatedAt().toString()));
@@ -88,7 +89,7 @@ public class Money implements Serializable {
   /**
    * @param amount the amount to set
    */
-  public void setAmount(String newAmount) {
+  public void setAmount(String newAmount) throws NoSuchAlgorithmException {
     amount = new BigDecimal(newAmount);
     setMoneyUpdatedAt(new Date());
     setSecurity(EncryptUtils.encodeMD5(amount.toString() + currency.toString() + getMoneyUpdatedAt().toString()));

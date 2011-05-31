@@ -14,7 +14,7 @@ import javax.ejb.Local;
  * @author migueldiab
  */
 @Local
-public interface UsuarioFacadeLocal {
+public interface UsuarioManagerLocal {
 
   void create(Usuario usuario);
 
@@ -29,5 +29,7 @@ public interface UsuarioFacadeLocal {
   List<Usuario> findRange(int[] range);
 
   int count();
+
+  public Usuario findByLogin(String user);
 
 }
