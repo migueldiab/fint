@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package edu.ort.dcomp.fint.modelo.facades;
 
 import java.util.List;
@@ -12,10 +7,10 @@ import javax.persistence.EntityManager;
  *
  * @author migueldiab
  */
-public abstract class AbstractFacade<T> {
+public abstract class AbstractManager<T> {
   private Class<T> entityClass;
 
-  public AbstractFacade(Class<T> entityClass) {
+  public AbstractManager(Class<T> entityClass) {
     this.entityClass = entityClass;
   }
 

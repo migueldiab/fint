@@ -1,44 +1,59 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <ui:composition template="/resources/template.xhtml">
+    <ui:param name="context_help" value="Desde aqui edite su perfil"/>
+   <ui:define name="content">
+      <div id="homepage">
+        <div class="services">
+          <h2 class="subhead">Datos Personales</h2>
+          <ul>
+          <li class="idea">Cuentas</li>
+          <li class="panel">Servicios</li>
+          </ul>
+				</div>
+				<div class="portfolio_preview">
+          <h2>Mi perfil</h2>
+				<div id="from_portfolio">
+          <div class="panelContainer">
+            <div class="panel" title="Panel 1">
+              <div class="wrapper">
+                <h:form id="form_usuario">
+                  <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.Login} :"/>
+                    <h:outputText value="#{usuarioActions.usuario.login}" title="#{bundle.Login}"/>
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.EditUsuarioTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditUsuarioLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{usuarioController.selected.id}" title="#{bundle.EditUsuarioTitle_id}" />
-                    <h:outputLabel value="#{bundle.EditUsuarioLabel_apellido}" for="apellido" />
-                    <h:inputText id="apellido" value="#{usuarioController.selected.apellido}" title="#{bundle.EditUsuarioTitle_apellido}" />
-                    <h:outputLabel value="#{bundle.EditUsuarioLabel_nombre}" for="nombre" />
-                    <h:inputText id="nombre" value="#{usuarioController.selected.nombre}" title="#{bundle.EditUsuarioTitle_nombre}" />
-                    <h:outputLabel value="#{bundle.EditUsuarioLabel_login}" for="login" />
-                    <h:inputText id="login" value="#{usuarioController.selected.login}" title="#{bundle.EditUsuarioTitle_login}" />
-                    <h:outputLabel value="#{bundle.EditUsuarioLabel_contrasena}" for="contrasena" />
-                    <h:inputText id="contrasena" value="#{usuarioController.selected.contrasena}" title="#{bundle.EditUsuarioTitle_contrasena}" />
-                    <h:outputLabel value="#{bundle.EditUsuarioLabel_ci}" for="ci" />
-                    <h:inputText id="ci" value="#{usuarioController.selected.ci}" title="#{bundle.EditUsuarioTitle_ci}" />
-                </h:panelGrid>
-                <h:commandLink action="#{usuarioController.update}" value="#{bundle.EditUsuarioSaveLink}"/>
-                <br />
-                <br />
-                <h:commandLink action="View" value="#{bundle.EditUsuarioViewLink}" immediate="true"/>
-                <br />
-                <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.EditUsuarioShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:commandLink value="#{bundle.EditUsuarioIndexLink}" action="/index" immediate="true" />
-            </h:form>
-        </ui:define>
-    </ui:composition>
+                    <h:outputText value="#{bundle.IdentityCard} :"/>
+                    <h:inputText id="ci" value="#{usuarioActions.usuario.ci}" title="#{bundle.IdentityCard}" />
 
+                    <h:outputText value="#{bundle.Name} :"/>
+                    <h:inputText id="nombre" value="#{usuarioActions.usuario.nombre}" title="#{bundle.Name}" />
+
+                    <h:outputText value="#{bundle.LastName} :"/>
+                    <h:inputText id="apellido" value="#{usuarioActions.usuario.apellido}" title="#{bundle.LastName}" />
+
+                    <h:outputText value="#{bundle.Password}"/>
+                    <h:inputText id="contrasena" title="#{bundle.Password}" />
+
+                    <h:outputText value="#{bundle.RepeatPassword}"/>
+                    <h:inputText id="contrasena2" title="#{bundle.RepeatPassword}" />
+                    
+                  </h:panelGrid>                  
+                  <br />
+                  <h:commandButton action="#{usuarioActions.update}" value="#{bundle.Save}"/>
+                  <h:commandButton action="perfil" value="#{bundle.Cancel}" immediate="true"/>
+                </h:form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <br />
+    </div>
+    </ui:define>
+  </ui:composition>
 </html>

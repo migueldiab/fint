@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author migueldiab
  */
 @Stateless
-public class GrupoFacade extends AbstractFacade<Grupo> implements GrupoFacadeLocal {
+public class GrupoManager extends AbstractManager<Grupo> implements GrupoManagerLocal {
   @PersistenceContext(unitName = "FintPU")
   private EntityManager em;
 
@@ -23,7 +23,7 @@ public class GrupoFacade extends AbstractFacade<Grupo> implements GrupoFacadeLoc
     return em;
   }
 
-  public GrupoFacade() {
+  public GrupoManager() {
     super(Grupo.class);
   }
 
