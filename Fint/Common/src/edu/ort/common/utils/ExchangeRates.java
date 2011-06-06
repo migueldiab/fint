@@ -1,5 +1,6 @@
 package edu.ort.common.utils;
 
+import java.security.NoSuchAlgorithmException;
 import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
@@ -45,7 +46,7 @@ public final class ExchangeRates {
    * @param aCurrency Any currency
    * @return The Money match
    */
-  public static Money getParity(final Currency aCurrency) {
+  public static Money getParity(final Currency aCurrency) throws NoSuchAlgorithmException {
     Money retMoney = parities.get(aCurrency);
 
     if (retMoney == null) {
@@ -62,7 +63,7 @@ public final class ExchangeRates {
    * @param aCurrency Any currency
    * @param parityValue The exchange rate against the default currency
    */
-  public static void addParity(final Currency aCurrency, final BigDecimal parityValue) {
+  public static void addParity(final Currency aCurrency, final BigDecimal parityValue) throws NoSuchAlgorithmException {
     final Money aRate = new Money(parityValue, aCurrency);
 
     parities.put(aCurrency, aRate);
