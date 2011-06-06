@@ -4,10 +4,12 @@ import edu.ort.common.utils.EncryptUtils;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -24,6 +26,10 @@ public class Usuario implements Serializable {
   private String nombre;
   private String apellido;
   private Long ci;
+  @ManyToOne
+  private List<Cuenta> cuentas;
+  @ManyToOne
+  private List<Servicio> servicios;
 
   public Long getId() {
     return id;
@@ -99,6 +105,22 @@ public class Usuario implements Serializable {
 
   public void setContrasenaHash(String contrasena) {
     this.contrasena = contrasena;
+  }
+
+  public List<Cuenta> getCuentas() {
+    return cuentas;
+  }
+
+  public void setCuentas(List<Cuenta> cuentas) {
+    this.cuentas = cuentas;
+  }
+
+  public List<Servicio> getServicios() {
+    return servicios;
+  }
+
+  public void setServicios(List<Servicio> servicios) {
+    this.servicios = servicios;
   }
 
 }
