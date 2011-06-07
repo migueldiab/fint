@@ -16,9 +16,9 @@ import javax.ejb.Local;
 @Local
 public interface UsuarioManagerLocal {
 
-  void create(Usuario usuario);
+  void persist(Usuario usuario);
 
-  void edit(Usuario usuario);
+  void merge(Usuario usuario);
 
   void remove(Usuario usuario);
 

@@ -1,3 +1,8 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package edu.ort.dcomp.fint.modelo.facades;
 
 import java.util.List;
@@ -16,11 +21,11 @@ public abstract class AbstractManager<T> {
 
   protected abstract EntityManager getEntityManager();
 
-  public void create(T entity) {
+  public void persist(T entity) {
     getEntityManager().persist(entity);
   }
 
-  public void edit(T entity) {
+  public void merge(T entity) {
     getEntityManager().merge(entity);
   }
 

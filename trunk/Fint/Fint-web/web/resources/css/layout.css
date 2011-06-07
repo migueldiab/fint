@@ -30,8 +30,9 @@ h3 {font-size:14px;}
 h4 {font-size:12px;}
 .subhead {display:block; background:url(../resources/images/subheadbg.jpg) repeat-x; height:25px; padding:3px 5px 0 5px;}
 .portfolio_preview h2 {display:block; padding:3px 3px 0 5px; color:#fff; height:25px;}
-.services li {display:block; padding:3px 5px 3px 40px; margin:5px 0 3px; height:46px; border-bottom:solid 1px #ccc;}
+.services li {display:block; padding:3px 5px 3px 48px; margin:5px 0 3px; height:46px; border-bottom:solid 1px #ccc;}
 .services li.idea {background:url(../resources/images/ideaicon.jpg) no-repeat; }
+.services li.account {background:url(../resources/images/87.png) no-repeat; }
 .services li.design {background: url(../resources/images/designicon.jpg) no-repeat; }
 .services li.apps {background: url(../resources/images/interneticon.jpg) no-repeat; }
 .services li.mobile {background: url(../resources/images/mobileicon.jpg) no-repeat; }
@@ -333,16 +334,20 @@ a:visited img, a:active img {border:none;}#getaquote #fcf2 .r .f {
 	display: block;
 }
 .success {
-	background: #d9e7f3 url(../resources/images/success.gif) no-repeat 3px 3px;
+	background: #DDFFDD url(../resources/images/19.png) no-repeat 0px 0px;
 	display: block;
-	padding: 5px 5px 5px 55px!important;
-	height: 60px;
+	padding: 0px 0px 0px 55px!important;
+  border: solid 1px #FF0000;
+  font-size: 14px;
+	height: 48px;
 }
 .error {
-	background: #ead2a8 url(../resources/images/error.gif) no-repeat 3px 3px;
+	background: #FFDDDD url(../resources/images/116.png) no-repeat 0px 0px;
 	display: block;
-	padding: 5px 5px 5px 55px!important;
-	height: 60px;
+	padding: 0px 0px 0px 55px!important;
+  border: solid 1px #FF0000;
+  font-size: 14px;
+	height: 48px;
 }
 .progress {
 	background: url(../resources/images/loading.gif) no-repeat 3px 3px;

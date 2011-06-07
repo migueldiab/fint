@@ -4,32 +4,48 @@ import edu.ort.common.utils.EncryptUtils;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author migueldiab
  */
 @Entity
+@Table(
+  uniqueConstraints=
+    @UniqueConstraint(columnNames={"LOGIN"})
+)
 public class Usuario implements Serializable {
   private static final long serialVersionUID = 201105301000L;
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+  @NotNull
   private String login;
+  @NotNull
   private String contrasena;
   private String nombre;
   private String apellido;
   private Long ci;
-  @ManyToOne
-  private List<Cuenta> cuentas;
-  @ManyToOne
-  private List<Servicio> servicios;
+  @OneToMany
+  @JoinColumn(name="id_usuario")
+  private Set<Cuenta> cuentas;
+  @OneToMany
+  @JoinColumn(name="id_usuario")
+  private Set<Servicio> servicios;
+  @OneToMany
+  @JoinColumn(name="id_usuario")
+  private Set<Transaccion> transacciones;
 
   public Long getId() {
     return id;
@@ -107,20 +123,27 @@ public class Usuario implements Serializable {
     this.contrasena = contrasena;
   }
 
-  public List<Cuenta> getCuentas() {
+  public Set<Cuenta> getCuentas() {
     return cuentas;
   }
 
-  public void setCuentas(List<Cuenta> cuentas) {
+  public void setCuentas(Set<Cuenta> cuentas) {
     this.cuentas = cuentas;
   }
 
-  public List<Servicio> getServicios() {
+  public Set<Servicio> getServicios() {
     return servicios;
   }
 
-  public void setServicios(List<Servicio> servicios) {
+  public void setServicios(Set<Servicio> servicios) {
     this.servicios = servicios;
+  }
+
+  public void agregarCuenta(Cuenta cuenta) {
+    if (null == cuentas) {
+      cuentas = new HashSet<Cuenta>();
+    }
+    cuentas.add(cuenta);
   }
 
 }

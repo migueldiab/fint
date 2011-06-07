@@ -35,11 +35,11 @@
           <div id="topnav">
             <ul>
               <li id="first" class="active"><h:link outcome="/inicio" value="Inicio" /></li>
-              <li><a href="#">Cuentas</a></li>
-              <li><a href="#">Servicios</a></li>
-              <li><a href="portfolio">Reportes</a></li>
-              <li><a href="#">Vencimientos</a></li>
-              <li><a href="#">Ayuda</a></li>
+              <li><h:link outcome="/cuentas/lista" value="Cuentas" /></li>
+              <li><h:link outcome="/servicios/lista" value="Servicios" /></li>
+              <li><h:link outcome="/reportes/lista" value="Reportes" /></li>
+              <li><h:link outcome="/vencimientos/lista" value="Vencimientos" /></li>
+              <li><h:link outcome="/ayuda/lista" value="Ayuda" /></li>
               <li><h:link outcome="/usuario/perfil" value="Mi Perfil" /></li>
               <li><h:link outcome="/logout" value="Salir" /></li>
             </ul>
@@ -47,6 +47,7 @@
           <div class="clear"></div>
           <div id="headercolumn1">
             <p class="description">#{context_help}</p>
+            <h:messages errorClass="error"></h:messages>
           </div>
           <div id="headercolumn2">
             <div id="search_top">

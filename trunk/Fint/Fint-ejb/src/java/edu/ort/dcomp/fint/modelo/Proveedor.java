@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
  * @author migueldiab
  */
 @Entity
-public class EntidadFinanciera implements Serializable {
+public class Proveedor implements Serializable {
   private static final long serialVersionUID = 1L;
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,10 +43,10 @@ public class EntidadFinanciera implements Serializable {
   @Override
   public boolean equals(Object object) {
     // TODO: Warning - this method won't work in the case the id fields are not set
-    if (!(object instanceof EntidadFinanciera)) {
+    if (!(object instanceof Proveedor)) {
       return false;
     }
-    EntidadFinanciera other = (EntidadFinanciera) object;
+    Proveedor other = (Proveedor) object;
     if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
       return false;
     }
@@ -55,7 +55,7 @@ public class EntidadFinanciera implements Serializable {
 
   @Override
   public String toString() {
-    return "edu.ort.dcomp.fint.modelo.TipoCuenta[id=" + id + "]";
+    return "edu.ort.dcomp.fint.modelo.TipoServicio[id=" + id + "]";
   }
 
   public String getNombre() {
@@ -66,4 +66,5 @@ public class EntidadFinanciera implements Serializable {
     this.nombre = nombre;
   }
 
+  
 }

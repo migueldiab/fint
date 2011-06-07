@@ -4,8 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
-import sun.misc.BASE64Encoder;
 
 /**
  *
@@ -30,9 +30,8 @@ public class EncryptUtils {
     * @return String
     * @throws IOException
     */
-   public static String byteToBase64(byte[] data){
-       BASE64Encoder endecoder = new BASE64Encoder();
-       return endecoder.encode(data);
+   public static String byteToBase64(byte[] data){       
+       return Base64.encodeBase64String(data);
    }
 
   public static String encodeMD5(String s) throws NoSuchAlgorithmException {
