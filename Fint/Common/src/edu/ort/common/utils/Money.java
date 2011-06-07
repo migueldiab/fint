@@ -61,7 +61,7 @@ public class Money implements Serializable {
    * @param aCurrency The currency money should be converted into.
    * @return the amount
    */
-  public final BigDecimal getAmount(final Currency aCurrency) {
+  public final BigDecimal getAmount(final Currency aCurrency) throws NoSuchAlgorithmException {
     final Money destRate = ExchangeRates.getParity(aCurrency);
     final Money srcRate  = ExchangeRates.getParity(this.getCurrency());
     BigDecimal  convertedAmount;

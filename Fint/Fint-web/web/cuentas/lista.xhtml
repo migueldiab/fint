@@ -15,18 +15,20 @@
           </ul>
         </div>
         <div class="portfolio_preview">
-          <h2>Crear nueva cuenta</h2>
+          <h2>Mis Cuentas</h2>
           <div id="from_portfolio">
-            <div class="panelContainer">
-              <div class="panel" title="Panel 1">
-                <div class="wrapper">
-                  <h:form id="cuenta">
-                    <h:outputLabel for="nombre" value="Nombre" />
-                    <h:inputText id="nombre" value="#{cuentaActions.cuenta.nombre}" />
-                    <h:commandButton action="#{cuentaActions.guardar}" value="Guardar" />
-                  </h:form>
+            <div class="slider-wrap">
+                <div id="main-photo-slider" class="csw">
+                  <div class="panelContainer">
+                    <c:forEach items="#{usuarioActions.cuentas}" var="cuenta">
+                      <div class="panel" title="Panel 1">
+                        <div class="wrapper">
+                            Cuenta : #{cuenta.nombre}
+                        </div>
+                      </div>
+                    </c:forEach>
+                  </div>
                 </div>
-              </div>
             </div>
           </div>
         </div>

@@ -16,9 +16,9 @@ import javax.ejb.Local;
 @Local
 public interface GrupoManagerLocal {
 
-  void create(Grupo grupo);
+  void persist(Grupo grupo);
 
-  void edit(Grupo grupo);
+  void merge(Grupo grupo);
 
   void remove(Grupo grupo);
 

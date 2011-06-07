@@ -1,26 +1,22 @@
 package edu.ort.dcomp.fint.modelo;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 /**
  *
  * @author migueldiab
  */
 @Entity
-public class Transaccion {
+public class Transaccion implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  @OneToMany
-  private Usuario usuario;
-  @OneToMany
-  private Cuenta cuenta;
-  @OneToMany
-  private Servicio servicio;
+  private BigDecimal importe;
 
   public Long getId() {
     return id;
@@ -30,29 +26,12 @@ public class Transaccion {
     this.id = id;
   }
 
-  public Cuenta getCuenta() {
-    return cuenta;
+  public BigDecimal getImporte() {
+    return importe;
   }
 
-  public void setCuenta(Cuenta cuenta) {
-    this.cuenta = cuenta;
+  public void setImporte(BigDecimal importe) {
+    this.importe = importe;
   }
-
-  public Servicio getServicio() {
-    return servicio;
-  }
-
-  public void setServicio(Servicio servicio) {
-    this.servicio = servicio;
-  }
-
-  public Usuario getUsuario() {
-    return usuario;
-  }
-
-  public void setUsuario(Usuario usuario) {
-    this.usuario = usuario;
-  }
-
 
 }

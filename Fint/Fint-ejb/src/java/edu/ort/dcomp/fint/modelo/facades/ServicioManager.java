@@ -3,9 +3,9 @@
  * and open the template in the editor.
  */
 
-package edu.ort.dcomp.fint.jsf;
+package edu.ort.dcomp.fint.modelo.facades;
 
-import edu.ort.dcomp.fint.modelo.Grupo;
+import edu.ort.dcomp.fint.modelo.Servicio;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author migueldiab
  */
 @Stateless
-public class GrupoFacade extends AbstractFacade<Grupo> {
+public class ServicioManager extends AbstractManager<Servicio> implements ServicioManagerLocal {
   @PersistenceContext(unitName = "FintPU")
   private EntityManager em;
 
@@ -23,8 +23,8 @@ public class GrupoFacade extends AbstractFacade<Grupo> {
     return em;
   }
 
-  public GrupoFacade() {
-    super(Grupo.class);
+  public ServicioManager() {
+    super(Servicio.class);
   }
 
 }

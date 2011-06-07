@@ -2,12 +2,14 @@ package edu.ort.dcomp.fint.actions;
 
 import edu.ort.dcomp.fint.controller.UsuarioController;
 import edu.ort.dcomp.fint.jsf.JsfUtil;
+import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.Usuario;
 import java.io.IOException;
-import javax.faces.bean.SessionScoped;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -31,9 +33,21 @@ public class UsuarioActions {
 
   public Usuario getUsuario() {
     if (null == usuario) {
-      usuario = obtenerUsuarioLogueado();
+      usuario = usuarioController.obtenerUsuarioLogueado();
     }
     return usuario;
+  }
+
+  public Set<Cuenta> getCuentas() {
+    if (null == usuario) {
+      usuario = usuarioController.obtenerUsuarioLogueado();
+    }
+    Set<Cuenta> lista = usuario.getCuentas();
+    System.out.println("Cuentas " + lista.size());
+    for (Cuenta cuenta : lista) {
+      System.out.println("cuenta" + cuenta.getNombre());
+    }
+    return lista;
   }
 
   public Boolean isUserInRole(final String role) {
@@ -66,7 +80,7 @@ public class UsuarioActions {
   }
 
   public String update() {
-    final Usuario usuarioActual = obtenerUsuarioLogueado();
+    final Usuario usuarioActual = usuarioController.obtenerUsuarioLogueado();
     System.out.println("Actual " + usuarioActual);
     System.out.println("Logueado " + usuario);
     final String pass1 = JsfUtil.getRequestParameter("form_usuario:contrasena");
@@ -95,10 +109,4 @@ public class UsuarioActions {
     return result;
   }
 
-  private Usuario obtenerUsuarioLogueado() {
-    final ExternalContext external = FacesContext.getCurrentInstance().getExternalContext();
-    final HttpServletRequest request = (HttpServletRequest) external.getRequest();
-    final String user = request.getRemoteUser();
-    return usuarioController.findByLogin(user);    
-  }
 }

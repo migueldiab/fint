@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package edu.ort.dcomp.fint.jsf;
+package edu.ort.dcomp.fint.modelo.facades;
 
 import java.util.List;
 import javax.persistence.EntityManager;
