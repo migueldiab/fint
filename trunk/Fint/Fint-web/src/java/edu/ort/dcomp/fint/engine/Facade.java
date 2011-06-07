@@ -3,6 +3,7 @@ package edu.ort.dcomp.fint.engine;
 import edu.ort.dcomp.fint.controller.UsuarioController;
 import edu.ort.dcomp.fint.modelo.Grupo;
 import edu.ort.dcomp.fint.modelo.EntidadFinanciera;
+import edu.ort.dcomp.fint.modelo.Proveedor;
 import edu.ort.dcomp.fint.modelo.Usuario;
 import edu.ort.dcomp.fint.modelo.facades.GrupoManagerLocal;
 import edu.ort.dcomp.fint.modelo.facades.EntidadFinancieraManagerLocal;
@@ -29,10 +30,10 @@ public class Facade {
   GrupoManagerLocal grupoFacadeLocal;
 
   @EJB
-  EntidadFinancieraManagerLocal tipoCuentaManagerLocal;
+  EntidadFinancieraManagerLocal entidadFinancieraManagerLocal;
 
   @EJB
-  ProveedorManagerLocal tipoServicioManagerLocal;
+  ProveedorManagerLocal proveedorManagerLocal;
 
   @EJB
   UsuarioController usuarioController;
@@ -50,7 +51,24 @@ public class Facade {
     unUsuario.setLogin("admin");
     unUsuario.setContrasena("admin");
     usuarioFacadeLocal.persist(unUsuario);
-    
+
+    EntidadFinanciera brou = new EntidadFinanciera();
+    brou.setNombre("BROU");
+    EntidadFinanciera nbc = new EntidadFinanciera();
+    nbc.setNombre("Nuevo Banco Comercial");
+    entidadFinancieraManagerLocal.create(brou);
+    entidadFinancieraManagerLocal.create(nbc);
+
+    Proveedor ute = new Proveedor();
+    ute.setNombre("UTE");
+    Proveedor ose = new Proveedor();
+    ose.setNombre("OSE");
+    Proveedor antel = new Proveedor();
+    antel.setNombre("Antel");
+    proveedorManagerLocal.create(ose);
+    proveedorManagerLocal.create(antel);
+    proveedorManagerLocal.create(ute);
+
 
   }
 
