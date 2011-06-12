@@ -47,7 +47,7 @@ public class UsuarioController {
   public void guardarCuenta(Cuenta cuenta) {
     Usuario unUsuario = obtenerUsuarioLogueado();
     unUsuario.agregarCuenta(cuenta);
-    usuarioManager.persist(unUsuario);
+    usuarioManager.merge(unUsuario);
   }
 
 }

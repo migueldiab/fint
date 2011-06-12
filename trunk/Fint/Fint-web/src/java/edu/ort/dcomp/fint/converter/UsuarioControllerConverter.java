@@ -1,4 +1,4 @@
-package edu.ort.dcomp.fint.actions;
+package edu.ort.dcomp.fint.converter;
 
 import edu.ort.dcomp.fint.controller.UsuarioController;
 import edu.ort.dcomp.fint.modelo.Usuario;
@@ -17,12 +17,14 @@ public class UsuarioControllerConverter implements Converter {
 
   @Override
   public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
-    if (value == null || value.length() == 0) {
-      return null;
+    Usuario unUsuario = null;
+    if (value != null && value.length() > 0) {
+      UsuarioController controller = (UsuarioController)facesContext.getApplication().getELResolver().
+          getValue(facesContext.getELContext(), null, "usuarioController");
+      unUsuario = controller.find(getKey(value));
     }
-    UsuarioController controller = (UsuarioController)facesContext.getApplication().getELResolver().
-        getValue(facesContext.getELContext(), null, "usuarioController");
-    return controller.find(getKey(value));
+    return unUsuario;
+    
   }
 
   java.lang.Long getKey(String value) {
