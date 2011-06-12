@@ -9,7 +9,7 @@
 
 	<web>
 		<link target="/">
-			<dir name="${fint_home}/Fint/Fint-web/web"/>
+			<dir name="/${fint_home}/Fint/Fint-web/web"/>
 		</link>
 	</web>
 </application>

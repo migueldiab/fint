@@ -45,11 +45,11 @@ public class Cuenta implements Serializable {
     this.nombre = nombre;
   }
 
-  public EntidadFinanciera getTipoCuenta() {
+  public EntidadFinanciera getEntidadFinanciera() {
     return entidadFinanciera;
   }
 
-  public void setTipoCuenta(EntidadFinanciera tipoCuenta) {
+  public void setEntidadFinanciera(EntidadFinanciera tipoCuenta) {
     this.entidadFinanciera = tipoCuenta;
   }
 

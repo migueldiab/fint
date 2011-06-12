@@ -11,6 +11,7 @@ import edu.ort.dcomp.fint.modelo.facades.ProveedorManagerLocal;
 import edu.ort.dcomp.fint.modelo.facades.UsuarioManagerLocal;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Named;
@@ -22,6 +23,11 @@ import javax.inject.Named;
 @Named
 @Stateless
 public class Facade {
+
+  public static Facade getFacade() {
+    Facade managedFacade = null;
+    return managedFacade;
+  }
 
   @EJB
   UsuarioManagerLocal usuarioFacadeLocal;
@@ -74,5 +80,13 @@ public class Facade {
 
   public Usuario obtenerUsuarioLogueado() {
     return usuarioController.obtenerUsuarioLogueado();
+  }
+
+  public List<EntidadFinanciera> getEntidadesFinancieras() {
+    return entidadFinancieraManagerLocal.findAll();
+  }
+
+  public EntidadFinanciera getEntidadFinancieraById(Integer idEF) {
+    return entidadFinancieraManagerLocal.find(idEF);
   }
 }

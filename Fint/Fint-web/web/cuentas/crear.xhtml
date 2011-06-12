@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
   <ui:composition template="/resources/template.xhtml">
     <ui:param name="context_help" value="Acceda a toda la información de sus cuentas"/>
     <ui:define name="content">
@@ -21,9 +22,20 @@
               <div class="panel" title="Panel 1">
                 <div class="wrapper">
                   <h:form id="cuenta">
-                    <h:outputLabel for="nombre" value="Nombre" />
-                    <h:inputText id="nombre" value="#{cuentaActions.cuenta.nombre}" />
-                    <h:commandButton action="#{cuentaActions.guardar}" value="Guardar" />
+                    <h:panelGrid columns="2">
+                      <h:outputLabel for="nombre" value="Nombre" />
+                      <h:inputText id="nombre" value="#{cuentaActions.cuenta.nombre}" />
+                      <h:outputLabel for="entidadFinanciera" value="Entidad Financiera" />
+                      <h:selectOneMenu id="entidadFinanciera" value="#{cuentaActions.cuenta.entidadFinanciera}" >
+                        <f:selectItems 
+                          value="#{facade.entidadesFinancieras}"
+                          var="ef"
+                          itemLabel="#{ef.nombre}"
+                          itemValue="#{ef.id}"
+                        />
+                      </h:selectOneMenu>
+                      <h:commandButton action="#{cuentaActions.guardar}" value="Guardar" />
+                    </h:panelGrid>
                   </h:form>
                 </div>
               </div>
