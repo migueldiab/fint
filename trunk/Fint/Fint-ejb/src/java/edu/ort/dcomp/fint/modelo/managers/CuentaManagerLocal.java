@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package edu.ort.dcomp.fint.modelo.facades;
+package edu.ort.dcomp.fint.modelo.managers;
 
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import java.util.List;
@@ -18,7 +18,7 @@ public interface CuentaManagerLocal {
 
   void persist(Cuenta cuenta);
 
-  void merge(Cuenta cuenta);
+  Cuenta merge(Cuenta cuenta);
 
   void remove(Cuenta cuenta);
 

@@ -23,8 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 @SessionScoped
 public class UsuarioActions {
 
-  private Usuario usuario;
-
   public UsuarioActions() {
   }
 
@@ -32,17 +30,11 @@ public class UsuarioActions {
   private UsuarioController usuarioController;
 
   public Usuario getUsuario() {
-    if (null == usuario) {
-      usuario = usuarioController.obtenerUsuarioLogueado();
-    }
-    return usuario;
+    return usuarioController.obtenerUsuarioLogueado();
   }
 
   public Set<Cuenta> getCuentas() {
-    if (null == usuario) {
-      usuario = usuarioController.obtenerUsuarioLogueado();
-    }
-    Set<Cuenta> lista = usuario.getCuentas();
+    Set<Cuenta> lista = getUsuario().getCuentas();
     System.out.println("Cuentas " + lista.size());
     for (Cuenta cuenta : lista) {
       System.out.println("cuenta" + cuenta.getNombre());
@@ -71,7 +63,7 @@ public class UsuarioActions {
  		final ExternalContext ec = context.getExternalContext();
  		final HttpServletRequest request = (HttpServletRequest)ec.getRequest();
  	  request.getSession(false).invalidate();
-    usuario = null;
+    usuarioController.logout();
     JsfUtil.redirect("index.xhtml");
   }
   
@@ -82,22 +74,22 @@ public class UsuarioActions {
   public String update() {
     final Usuario usuarioActual = usuarioController.obtenerUsuarioLogueado();
     System.out.println("Actual " + usuarioActual);
-    System.out.println("Logueado " + usuario);
+    System.out.println("Logueado " + getUsuario());
     final String pass1 = JsfUtil.getRequestParameter("form_usuario:contrasena");
     final String pass2 = JsfUtil.getRequestParameter("form_usuario:contrasena2");
     String result = null;
     if (pass1.equals(pass2)) {
       if (pass1.isEmpty() && pass2.isEmpty()) {
-        usuario.setContrasenaHash(usuarioActual.getContrasena());
+        getUsuario().setContrasenaHash(usuarioActual.getContrasena());
       } else {
         try {
-          usuario.setContrasena(pass1);
+          getUsuario().setContrasena(pass1);
         } catch (Exception ex) {
           JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
       }
       try {
-        getController().edit(usuario);
+        getController().edit(getUsuario());
         JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsuarioUpdated"));
         result = "perfil";
       } catch (Exception e) {

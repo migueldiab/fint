@@ -6,7 +6,9 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,13 +39,13 @@ public class Usuario implements Serializable {
   private String nombre;
   private String apellido;
   private Long ci;
-  @OneToMany
+  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
   @JoinColumn(name="id_usuario")
   private Set<Cuenta> cuentas;
-  @OneToMany
+  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
   @JoinColumn(name="id_usuario")
   private Set<Servicio> servicios;
-  @OneToMany
+  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
   @JoinColumn(name="id_usuario")
   private Set<Transaccion> transacciones;
 

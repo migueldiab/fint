@@ -5,10 +5,10 @@ import edu.ort.dcomp.fint.modelo.Grupo;
 import edu.ort.dcomp.fint.modelo.EntidadFinanciera;
 import edu.ort.dcomp.fint.modelo.Proveedor;
 import edu.ort.dcomp.fint.modelo.Usuario;
-import edu.ort.dcomp.fint.modelo.facades.GrupoManagerLocal;
-import edu.ort.dcomp.fint.modelo.facades.EntidadFinancieraManagerLocal;
-import edu.ort.dcomp.fint.modelo.facades.ProveedorManagerLocal;
-import edu.ort.dcomp.fint.modelo.facades.UsuarioManagerLocal;
+import edu.ort.dcomp.fint.modelo.managers.GrupoManagerLocal;
+import edu.ort.dcomp.fint.modelo.managers.EntidadFinancieraManagerLocal;
+import edu.ort.dcomp.fint.modelo.managers.ProveedorManagerLocal;
+import edu.ort.dcomp.fint.modelo.managers.UsuarioManagerLocal;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -62,8 +62,8 @@ public class Facade {
     brou.setNombre("BROU");
     EntidadFinanciera nbc = new EntidadFinanciera();
     nbc.setNombre("Nuevo Banco Comercial");
-    entidadFinancieraManagerLocal.create(brou);
-    entidadFinancieraManagerLocal.create(nbc);
+    entidadFinancieraManagerLocal.persist(brou);
+    entidadFinancieraManagerLocal.persist(nbc);
 
     Proveedor ute = new Proveedor();
     ute.setNombre("UTE");
@@ -71,9 +71,9 @@ public class Facade {
     ose.setNombre("OSE");
     Proveedor antel = new Proveedor();
     antel.setNombre("Antel");
-    proveedorManagerLocal.create(ose);
-    proveedorManagerLocal.create(antel);
-    proveedorManagerLocal.create(ute);
+    proveedorManagerLocal.persist(ose);
+    proveedorManagerLocal.persist(antel);
+    proveedorManagerLocal.persist(ute);
 
 
   }

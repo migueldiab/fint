@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package edu.ort.dcomp.fint.modelo.facades;
+package edu.ort.dcomp.fint.modelo.managers;
 
 import edu.ort.dcomp.fint.modelo.Servicio;
 import java.util.List;
@@ -18,7 +18,7 @@ public interface ServicioManagerLocal {
 
   void persist(Servicio servicio);
 
-  void merge(Servicio servicio);
+  Servicio merge(Servicio servicio);
 
   void remove(Servicio servicio);
 

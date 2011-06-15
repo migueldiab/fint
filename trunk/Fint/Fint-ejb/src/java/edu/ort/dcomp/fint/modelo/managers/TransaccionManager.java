@@ -3,12 +3,10 @@
  * and open the template in the editor.
  */
 
-package edu.ort.dcomp.fint.modelo.facades;
+package edu.ort.dcomp.fint.modelo.managers;
 
 import edu.ort.dcomp.fint.modelo.Transaccion;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -16,12 +14,6 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class TransaccionManager extends AbstractManager<Transaccion> implements TransaccionManagerLocal {
-  @PersistenceContext(unitName = "FintPU")
-  private EntityManager em;
-
-  protected EntityManager getEntityManager() {
-    return em;
-  }
 
   public TransaccionManager() {
     super(Transaccion.class);

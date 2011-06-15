@@ -1,10 +1,8 @@
-package edu.ort.dcomp.fint.modelo.facades;
+package edu.ort.dcomp.fint.modelo.managers;
 
 import edu.ort.dcomp.fint.modelo.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
@@ -13,13 +11,6 @@ import javax.persistence.Query;
  */
 @Stateless
 public class UsuarioManager extends AbstractManager<Usuario> implements UsuarioManagerLocal {
-  @PersistenceContext(unitName = "FintPU")
-  private EntityManager em;
-
-  @Override
-  protected EntityManager getEntityManager() {
-    return em;
-  }
 
   public UsuarioManager() {
     super(Usuario.class);

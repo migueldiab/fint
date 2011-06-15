@@ -3,12 +3,10 @@
  * and open the template in the editor.
  */
 
-package edu.ort.dcomp.fint.modelo.facades;
+package edu.ort.dcomp.fint.modelo.managers;
 
 import edu.ort.dcomp.fint.modelo.Grupo;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -16,13 +14,6 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class GrupoManager extends AbstractManager<Grupo> implements GrupoManagerLocal {
-  @PersistenceContext(unitName = "FintPU")
-  private EntityManager em;
-
-  protected EntityManager getEntityManager() {
-    return em;
-  }
-
   public GrupoManager() {
     super(Grupo.class);
   }

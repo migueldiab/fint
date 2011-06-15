@@ -27,11 +27,12 @@
                       <h:inputText id="nombre" value="#{cuentaActions.cuenta.nombre}" />
                       <h:outputLabel for="entidadFinanciera" value="Entidad Financiera" />
                       <h:selectOneMenu id="entidadFinanciera" value="#{cuentaActions.cuenta.entidadFinanciera}" >
+                        <f:converter converterId="entidadFinancieraConverter" />
                         <f:selectItems 
                           value="#{facade.entidadesFinancieras}"
                           var="ef"
                           itemLabel="#{ef.nombre}"
-                          itemValue="#{ef.id}"
+                          itemValue="#{ef}"
                         />
                       </h:selectOneMenu>
                       <h:commandButton action="#{cuentaActions.guardar}" value="Guardar" />
