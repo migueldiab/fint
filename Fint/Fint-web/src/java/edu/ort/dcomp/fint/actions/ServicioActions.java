@@ -2,7 +2,7 @@ package edu.ort.dcomp.fint.actions;
 
 import edu.ort.dcomp.fint.controller.UsuarioController;
 import edu.ort.dcomp.fint.jsf.JsfUtil;
-import edu.ort.dcomp.fint.modelo.Cuenta;
+import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.managers.EntidadFinancieraManagerLocal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,41 +17,41 @@ import javax.faces.bean.ManagedBean;
  */
 @ManagedBean
 @SessionScoped
-public class CuentaActions {
+public class ServicioActions {
 
-  private Cuenta cuenta;
-  private static String PATH = "/cuentas/";
+  private Servicio servicio;
+  private static String PATH = "/servicios/";
 
-  public CuentaActions() {
+  public ServicioActions() {
   }
 
   @EJB
   private UsuarioController usuarioController;
   
-  public Cuenta getCuenta() {
-    if (null == cuenta) {
-      cuenta = new Cuenta();
+  public Servicio getServicio() {
+    if (null == servicio) {
+      servicio = new Servicio();
     }
-    return cuenta;
+    return servicio;
   }
 
   public String guardar() {
     String response;
     try {
-      usuarioController.guardarCuenta(cuenta);
+      usuarioController.guardarServicio(servicio);
       response = PATH + "lista";
     } catch (Exception e) {
-      Logger.getLogger("CuentaActions").log(Level.WARNING, "No se pudo crear la cuenta");
-      JsfUtil.addErrorMessage("No se pudo crear la cuenta");
+      Logger.getLogger("ServicioActions").log(Level.WARNING, "No se pudo crear el servicio");
+      JsfUtil.addErrorMessage("No se pudo crear la servicio");
       response = PATH + "crear";
     }
     return response;
     
   }
 
-  public String borrarCuenta(Cuenta unaCuenta) {
+  public String borrarServicio(Servicio unServicio) {
     System.out.println("Borrando");
-    usuarioController.borrarCuenta(unaCuenta);
+    usuarioController.borrarServicio(unServicio);
     return PATH + "borrada";
   }
 

@@ -39,13 +39,13 @@ public class Usuario implements Serializable {
   private String nombre;
   private String apellido;
   private Long ci;
-  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval=true)
   @JoinColumn(name="id_usuario")
   private Set<Cuenta> cuentas;
-  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval=true)
   @JoinColumn(name="id_usuario")
   private Set<Servicio> servicios;
-  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval=true)
   @JoinColumn(name="id_usuario")
   private Set<Transaccion> transacciones;
 
@@ -146,6 +146,13 @@ public class Usuario implements Serializable {
       cuentas = new HashSet<Cuenta>();
     }
     cuentas.add(cuenta);
+  }
+
+  public void agregarServicio(Servicio servicio) {
+    if (null == servicios) {
+      servicios = new HashSet<Servicio>();
+    }
+    servicios.add(servicio);
   }
 
 }

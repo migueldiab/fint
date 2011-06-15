@@ -1,17 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>TODO supply a title</title>
-    </head>
-    <body>
-        <p>
-            TODO write content
-        </p>
-    </body>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <ui:composition template="/resources/template.xhtml">
+    <ui:param name="context_help" value="Acceda a toda la información de sus cuentas"/>
+    <ui:define name="content">
+      <div id="homepage">
+        <div class="services">
+          <h2 class="subhead">Acciones Rápidas</h2>
+          <ul>
+            <li class="account"><h:link outcome="/servicios/crear" value="Crear Servicio"/></li>
+          </ul>
+        </div>
+        <div class="portfolio_preview">
+          <h2>Mis Servicios</h2>
+          <div id="from_portfolio">
+            <div class="slider-wrap">
+                <div id="main-photo-slider" class="csw">
+                  <div class="panelContainer">
+                    <c:forEach items="#{usuarioActions.servicios}" var="cuenta">
+                      <div class="panel" title="Panel 1">
+                        <div class="wrapper">
+                          <h:panelGrid columns="2">
+                            <h:outputLabel value="Cuenta :" />
+                            <h:outputLabel value="#{cuenta.nombre}" />
+                            <h:outputLabel value="Entidad :" />
+                            <h:outputLabel value="#{cuenta.entidadFinanciera}" />
+                            <h:commandButton value="Borrar" action="#{cuentaActions.borrarCuenta(cuenta)}"/>
+                          </h:panelGrid>
+                        </div>
+                      </div>
+                    </c:forEach>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <br />
+      </div>
+    </ui:define>
+  </ui:composition>
 </html>

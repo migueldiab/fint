@@ -79,7 +79,7 @@ public class Facade {
   }
 
   public Usuario obtenerUsuarioLogueado() {
-    return usuarioController.obtenerUsuarioLogueado();
+    return usuarioController.getUsuario();
   }
 
   public List<EntidadFinanciera> getEntidadesFinancieras() {
@@ -88,5 +88,12 @@ public class Facade {
 
   public EntidadFinanciera getEntidadFinancieraById(Integer idEF) {
     return entidadFinancieraManagerLocal.find(idEF);
+  }
+  public List<Proveedor> getProveedores() {
+    return proveedorManagerLocal.findAll();
+  }
+
+  public Proveedor getProveedorById(Integer idProveedor) {
+    return proveedorManagerLocal.find(idProveedor);
   }
 }

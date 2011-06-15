@@ -23,7 +23,13 @@
                     <c:forEach items="#{usuarioActions.cuentas}" var="cuenta">
                       <div class="panel" title="Panel 1">
                         <div class="wrapper">
-                            Cuenta : #{cuenta.nombre}
+                          <h:panelGrid columns="2">
+                            <h:outputLabel value="Cuenta :" />
+                            <h:outputLabel value="#{cuenta.nombre}" />
+                            <h:outputLabel value="Entidad :" />
+                            <h:outputLabel value="#{cuenta.entidadFinanciera}" />
+                            <h:commandButton value="Borrar" action="#{cuentaActions.borrarCuenta(cuenta)}"/>
+                          </h:panelGrid>
                         </div>
                       </div>
                     </c:forEach>
