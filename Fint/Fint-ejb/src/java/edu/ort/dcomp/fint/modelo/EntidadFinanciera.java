@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package edu.ort.dcomp.fint.modelo;
 
 import java.io.Serializable;
@@ -27,15 +22,15 @@ public class EntidadFinanciera implements Serializable {
   private static final long serialVersionUID = 1L;
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
+  private Integer id;
   @NotNull
   private String nombre;
 
-  public Long getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -61,7 +56,7 @@ public class EntidadFinanciera implements Serializable {
 
   @Override
   public String toString() {
-    return "edu.ort.dcomp.fint.modelo.TipoCuenta[id=" + id + "]";
+    return getNombre();
   }
 
   public String getNombre() {

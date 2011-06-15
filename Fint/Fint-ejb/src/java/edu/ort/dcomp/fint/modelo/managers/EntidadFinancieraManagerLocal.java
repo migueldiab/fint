@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package edu.ort.dcomp.fint.modelo.facades;
+package edu.ort.dcomp.fint.modelo.managers;
 
 import edu.ort.dcomp.fint.modelo.EntidadFinanciera;
 import java.util.List;
@@ -16,9 +16,9 @@ import javax.ejb.Local;
 @Local
 public interface EntidadFinancieraManagerLocal {
 
-  void create(EntidadFinanciera tipoCuenta);
+  void persist(EntidadFinanciera tipoCuenta);
 
-  void edit(EntidadFinanciera tipoCuenta);
+  EntidadFinanciera merge(EntidadFinanciera tipoCuenta);
 
   void remove(EntidadFinanciera tipoCuenta);
 

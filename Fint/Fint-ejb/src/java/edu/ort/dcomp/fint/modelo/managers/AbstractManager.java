@@ -3,30 +3,36 @@
  * and open the template in the editor.
  */
 
-package edu.ort.dcomp.fint.modelo.facades;
+package edu.ort.dcomp.fint.modelo.managers;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author migueldiab
  */
-public abstract class AbstractFacade<T> {
+public abstract class AbstractManager<T> {
   private Class<T> entityClass;
 
-  public AbstractFacade(Class<T> entityClass) {
+  @PersistenceContext(unitName = "FintPU")
+  private EntityManager em;
+
+  protected EntityManager getEntityManager() {
+    return em;
+  }
+  
+  public AbstractManager(Class<T> entityClass) {
     this.entityClass = entityClass;
   }
 
-  protected abstract EntityManager getEntityManager();
-
-  public void create(T entity) {
+  public void persist(T entity) {
     getEntityManager().persist(entity);
   }
 
-  public void edit(T entity) {
-    getEntityManager().merge(entity);
+  public T merge(T entity) {
+    return getEntityManager().merge(entity);
   }
 
   public void remove(T entity) {

@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package edu.ort.dcomp.fint.modelo.facades;
+package edu.ort.dcomp.fint.modelo.managers;
 
 import edu.ort.dcomp.fint.modelo.Proveedor;
 import java.util.List;
@@ -16,9 +16,9 @@ import javax.ejb.Local;
 @Local
 public interface ProveedorManagerLocal {
 
-  void create(Proveedor tipoServicio);
+  void persist(Proveedor tipoServicio);
 
-  void edit(Proveedor tipoServicio);
+  Proveedor merge(Proveedor tipoServicio);
 
   void remove(Proveedor tipoServicio);
 

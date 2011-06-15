@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author migueldiab
  */
+
 @Entity
 public class Cuenta implements Serializable {
   @Id

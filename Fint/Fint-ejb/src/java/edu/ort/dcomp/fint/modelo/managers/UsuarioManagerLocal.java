@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package edu.ort.dcomp.fint.modelo.facades;
+package edu.ort.dcomp.fint.modelo.managers;
 
 import edu.ort.dcomp.fint.modelo.Usuario;
 import java.util.List;
@@ -18,7 +18,7 @@ public interface UsuarioManagerLocal {
 
   void persist(Usuario usuario);
 
-  void merge(Usuario usuario);
+  Usuario merge(Usuario usuario);
 
   void remove(Usuario usuario);
 

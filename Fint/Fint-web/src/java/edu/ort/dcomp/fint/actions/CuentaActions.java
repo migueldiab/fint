@@ -3,7 +3,7 @@ package edu.ort.dcomp.fint.actions;
 import edu.ort.dcomp.fint.controller.UsuarioController;
 import edu.ort.dcomp.fint.jsf.JsfUtil;
 import edu.ort.dcomp.fint.modelo.Cuenta;
-import edu.ort.dcomp.fint.modelo.facades.EntidadFinancieraManagerLocal;
+import edu.ort.dcomp.fint.modelo.managers.EntidadFinancieraManagerLocal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.SessionScoped;
@@ -30,7 +30,7 @@ public class CuentaActions {
 
   @EJB
   private EntidadFinancieraManagerLocal entidadFinancieraManagerLocal;
-
+  
   public Cuenta getCuenta() {
     if (null == cuenta) {
       cuenta = new Cuenta();

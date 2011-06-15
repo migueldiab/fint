@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package edu.ort.dcomp.fint.modelo.facades;
+package edu.ort.dcomp.fint.modelo.managers;
 
 import edu.ort.dcomp.fint.modelo.Transaccion;
 import java.util.List;
@@ -18,7 +18,7 @@ public interface TransaccionManagerLocal {
 
   void persist(Transaccion transaccion);
 
-  void merge(Transaccion transaccion);
+  Transaccion merge(Transaccion transaccion);
 
   void remove(Transaccion transaccion);
 
