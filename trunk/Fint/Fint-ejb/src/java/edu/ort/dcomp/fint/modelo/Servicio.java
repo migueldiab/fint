@@ -45,12 +45,12 @@ public class Servicio implements Serializable {
     this.nombre = nombre;
   }
 
-  public Proveedor getTipoServicio() {
+  public Proveedor getProveedor() {
     return proveedor;
   }
 
-  public void setTipoServicio(Proveedor tipoServicio) {
-    this.proveedor = tipoServicio;
+  public void setProveedor(Proveedor proveedor) {
+    this.proveedor = proveedor;
   }
 
   public Set<Transaccion> getTransacciones() {

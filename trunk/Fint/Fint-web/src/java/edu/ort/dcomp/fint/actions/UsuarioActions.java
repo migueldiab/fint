@@ -3,13 +3,14 @@ package edu.ort.dcomp.fint.actions;
 import edu.ort.dcomp.fint.controller.UsuarioController;
 import edu.ort.dcomp.fint.jsf.JsfUtil;
 import edu.ort.dcomp.fint.modelo.Cuenta;
+import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.Usuario;
 import java.io.IOException;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author migueldiab
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class UsuarioActions {
 
   public UsuarioActions() {
@@ -30,15 +31,16 @@ public class UsuarioActions {
   private UsuarioController usuarioController;
 
   public Usuario getUsuario() {
-    return usuarioController.obtenerUsuarioLogueado();
+    return usuarioController.getUsuario();
   }
 
   public Set<Cuenta> getCuentas() {
     Set<Cuenta> lista = getUsuario().getCuentas();
-    System.out.println("Cuentas " + lista.size());
-    for (Cuenta cuenta : lista) {
-      System.out.println("cuenta" + cuenta.getNombre());
-    }
+    return lista;
+  }
+
+  public Set<Servicio> getServicios() {
+    Set<Servicio> lista = getUsuario().getServicios();
     return lista;
   }
 
@@ -54,6 +56,7 @@ public class UsuarioActions {
   public void redirectLogin() throws IOException {
     JsfUtil.redirect("index.xhtml");
   }
+  
   public Boolean getLoggedIn() {
     return null != getUsuario();
   }
@@ -72,7 +75,7 @@ public class UsuarioActions {
   }
 
   public String update() {
-    final Usuario usuarioActual = usuarioController.obtenerUsuarioLogueado();
+    final Usuario usuarioActual = usuarioController.getUsuario();
     System.out.println("Actual " + usuarioActual);
     System.out.println("Logueado " + getUsuario());
     final String pass1 = JsfUtil.getRequestParameter("form_usuario:contrasena");
