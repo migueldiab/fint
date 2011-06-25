@@ -1,13 +1,14 @@
 package edu.ort.dcomp.fint.actions;
 
+import edu.ort.dcomp.fint.controller.CuentaController;
 import edu.ort.dcomp.fint.controller.UsuarioController;
 import edu.ort.dcomp.fint.jsf.JsfUtil;
 import edu.ort.dcomp.fint.modelo.Cuenta;
-import edu.ort.dcomp.fint.modelo.managers.EntidadFinancieraManagerLocal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.SessionScoped;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 
 
@@ -16,7 +17,7 @@ import javax.faces.bean.ManagedBean;
  * @author migueldiab
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class CuentaActions {
 
   private Cuenta cuenta;
@@ -27,7 +28,10 @@ public class CuentaActions {
 
   @EJB
   private UsuarioController usuarioController;
-  
+
+  @EJB
+  private CuentaController cuentaController;
+
   public Cuenta getCuenta() {
     if (null == cuenta) {
       cuenta = new Cuenta();
@@ -54,6 +58,19 @@ public class CuentaActions {
     usuarioController.borrarCuenta(unaCuenta);
     return PATH + "borrada";
   }
+
+  public String estadoRealCuenta(Cuenta unaCuenta) {
+    System.out.println("Estado Real");
+    cuentaController.estadoRealCuenta(unaCuenta);
+    return PATH + "estado";
+  }
+
+  public String estadoProyectadoCuenta(Cuenta unaCuenta) {
+    System.out.println("Estado Proyectado");
+    cuentaController.estadoProyectadoCuenta(unaCuenta);
+    return PATH + "estado";
+  }
+
 
   
 }

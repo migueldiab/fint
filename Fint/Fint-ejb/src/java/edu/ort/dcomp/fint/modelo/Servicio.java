@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 public class Servicio implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  private Long id;
   @NotNull
   private String nombre;
   @OneToMany
@@ -29,20 +29,12 @@ public class Servicio implements Serializable {
   @NotNull
   private Proveedor proveedor;
 
-  public int getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Long id) {
     this.id = id;
-  }
-
-  public String getNombre() {
-    return nombre;
-  }
-
-  public void setNombre(String nombre) {
-    this.nombre = nombre;
   }
 
   public Proveedor getProveedor() {
@@ -60,5 +52,41 @@ public class Servicio implements Serializable {
   public void setTransacciones(Set<Transaccion> transacciones) {
     this.transacciones = transacciones;
   }
+
+  public String getNombre() {
+    return nombre;
+  }
+
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final Servicio other = (Servicio) obj;
+    if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+      return false;
+    }
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 7;
+    hash = 67 * hash + (this.id != null ? this.id.hashCode() : 0);
+    return hash;
+  }
+
+  @Override
+  public String toString() {
+    return getNombre();
+  }
+
 
 }

@@ -3,11 +3,10 @@ package edu.ort.dcomp.fint.actions;
 import edu.ort.dcomp.fint.controller.UsuarioController;
 import edu.ort.dcomp.fint.jsf.JsfUtil;
 import edu.ort.dcomp.fint.modelo.Servicio;
-import edu.ort.dcomp.fint.modelo.managers.EntidadFinancieraManagerLocal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.bean.SessionScoped;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 
 
@@ -16,7 +15,7 @@ import javax.faces.bean.ManagedBean;
  * @author migueldiab
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class ServicioActions {
 
   private Servicio servicio;

@@ -15,12 +15,11 @@ import javax.validation.constraints.NotNull;
  *
  * @author migueldiab
  */
-
 @Entity
 public class Cuenta implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  private Long id;
   @NotNull
   private String nombre;
   @OneToMany
@@ -30,11 +29,11 @@ public class Cuenta implements Serializable {
   @NotNull
   private EntidadFinanciera entidadFinanciera;
 
-  public int getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -79,8 +78,8 @@ public class Cuenta implements Serializable {
 
   @Override
   public int hashCode() {
-    int hash = 7;
-    hash = 97 * hash + this.id;
+    int hash = 9;
+    hash += (id != null ? id.hashCode() : 0);
     return hash;
   }
 
