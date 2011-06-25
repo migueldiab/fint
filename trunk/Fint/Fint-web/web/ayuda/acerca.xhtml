@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+  <ui:composition template="/resources/template.xhtml">
+    <ui:define name="menu">
+      <c:if test="#{usuarioActions.loggedIn}">
+        #{usuarioActions.redirectHome()}
+      </c:if>
+      <div id="topnav">
+        <ul>
+          <li id="first"><h:link value="Crear Cuenta" outcome="/usuario/crear" /></li>
+          <li ><h:link value="Acerca de..." outcome="/ayuda/acerca" /> </li>
+        </ul>
+      </div>
+      <div class="clear"></div>
+          <div id="headercolumn1">
+            <h1>Somos FINT...</h1>
+            <h2>Y esta es nuestra ayuda :D</h2>
+          </div>
+          <div class="clear"></div>
+
+    </ui:define>
+    <ui:param name="context_help" value="Esta es la ayuda : #{facade.welcomeMessage}"/>
+    <ui:define name="content">
+    </ui:define>
+  </ui:composition>
+</html>

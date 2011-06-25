@@ -24,6 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 @RequestScoped
 public class UsuarioActions {
 
+  private Usuario nuevoUsuario = new Usuario();
+  
   public UsuarioActions() {
   }
 
@@ -69,7 +71,11 @@ public class UsuarioActions {
     usuarioController.logout();
     JsfUtil.redirect("index.xhtml");
   }
-  
+
+  public String crear() {
+    usuarioController.crearNuevoUsuario(nuevoUsuario);
+    return "/index";
+  }
   private UsuarioController getController() {
     return usuarioController;
   }
@@ -102,6 +108,14 @@ public class UsuarioActions {
       JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("PasswordsNoMatch"));
     }
     return result;
+  }
+
+  public Usuario getNuevoUsuario() {
+    return nuevoUsuario;
+  }
+
+  public void setNuevoUsuario(Usuario nuevoUsuario) {
+    this.nuevoUsuario = nuevoUsuario;
   }
 
 }
