@@ -40,7 +40,6 @@ public class UsuarioController {
 
   public Usuario getUsuario() {
     if (null == unUsuario) {
-      System.out.println("Loading");
       final ExternalContext external = FacesContext.getCurrentInstance().getExternalContext();
       final HttpServletRequest request = (HttpServletRequest) external.getRequest();
       final String user = request.getRemoteUser();

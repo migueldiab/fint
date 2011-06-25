@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
   <ui:composition template="/resources/template.xhtml">
     <ui:param name="context_help" value="Acceda a toda la información de sus cuentas"/>
     <ui:define name="content">
@@ -21,13 +22,16 @@
                 <div id="main-photo-slider" class="csw">
                   <div class="panelContainer">
                     <c:forEach items="#{usuarioActions.cuentas}" var="cuenta">
-                      <div class="panel" title="Panel 1">
+                      <div class="panel" title="#{cuenta.nombre}">
                         <div class="wrapper">
                           <h:panelGrid columns="2">
                             <h:outputLabel value="Cuenta :" />
                             <h:outputLabel value="#{cuenta.nombre}" />
                             <h:outputLabel value="Entidad :" />
                             <h:outputLabel value="#{cuenta.entidadFinanciera}" />
+                            <h:commandButton value="Estado Real" action="#{cuentaActions.estadoRealCuenta(cuenta)}" />
+                            <h:commandButton value="Estado Proyectado" action="#{cuentaActions.estadoProyectadoCuenta(cuenta)}"/>
+                            <h:button value="Volver" outcome="/inicio" />
                             <h:commandButton value="Borrar" action="#{cuentaActions.borrarCuenta(cuenta)}"/>
                           </h:panelGrid>
                         </div>

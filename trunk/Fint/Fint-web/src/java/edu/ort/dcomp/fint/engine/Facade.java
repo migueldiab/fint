@@ -4,10 +4,12 @@ import edu.ort.dcomp.fint.controller.UsuarioController;
 import edu.ort.dcomp.fint.modelo.Grupo;
 import edu.ort.dcomp.fint.modelo.EntidadFinanciera;
 import edu.ort.dcomp.fint.modelo.Proveedor;
+import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.Usuario;
 import edu.ort.dcomp.fint.modelo.managers.GrupoManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.EntidadFinancieraManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.ProveedorManagerLocal;
+import edu.ort.dcomp.fint.modelo.managers.ServicioManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.UsuarioManagerLocal;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -40,6 +42,9 @@ public class Facade {
 
   @EJB
   ProveedorManagerLocal proveedorManagerLocal;
+
+  @EJB
+  ServicioManagerLocal servicioManagerLocal;
 
   @EJB
   UsuarioController usuarioController;
@@ -89,6 +94,7 @@ public class Facade {
   public EntidadFinanciera getEntidadFinancieraById(Integer idEF) {
     return entidadFinancieraManagerLocal.find(idEF);
   }
+
   public List<Proveedor> getProveedores() {
     return proveedorManagerLocal.findAll();
   }
@@ -96,4 +102,5 @@ public class Facade {
   public Proveedor getProveedorById(Integer idProveedor) {
     return proveedorManagerLocal.find(idProveedor);
   }
+
 }

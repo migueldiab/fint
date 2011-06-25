@@ -1,24 +1,21 @@
-* { padding:0; margin:0;
-}
-a {
-	color: #194896;
-	text-decoration: none;
-}
+* { padding:0; margin:0; }
+a { color: #194896; text-decoration: none; }
 
 ul {list-style:none;}
 body {background:url(../resources/images/bg.jpg) repeat; font:11px Verdana, Arial, Helvetica, sans-serif; color:#333;}
+input[type="submit"] { border: solid 1px #003333; padding: 1px 5px 1px 5px; width: 120px; background: #ccccff ;}
+input[type="button"] { border: solid 1px #003333; padding: 1px 5px 1px 5px; width: 120px; background: #ffffff ;}
+
 #wrap { width:894px; margin:auto;}
-.hide {
-	display: none;
-}
+.hide { display: none; }
+.clear {clear:both;}
 
 #header {background:url(../resources/images/header.jpg) no-repeat; height:273px; }
 #contents {background:url(../resources/images/contentbg.jpg) repeat-y; padding:1px 5px 0 5px;}
-.clear {clear:both;}
+
 #bottom {background:url(../resources/images/bottombg.jpg) repeat-x; height:126px;}
 #footer {background:url(../resources/images/footer.jpg) no-repeat; height:81px;}
-#topbar {background:url(../resources/images/topbarbg.jpg) left bottom no-repeat; height:129px;
-}
+#topbar {background:url(../resources/images/topbarbg.jpg) left bottom no-repeat; height:129px; }
 #homepage {padding:15px 0;}
 #homepage .services {width:300px; padding:0 5px; float:right;}
 #homepage .portfolio_preview { width:565px; height:260px; float:left; background:url(../resources/images/featuredprojectbg.jpg) repeat-x;}
@@ -28,14 +25,17 @@ h1 {font-size:18px;}
 h2 {font-size:16px;}
 h3 {font-size:14px;}
 h4 {font-size:12px;}
+
 .subhead {display:block; background:url(../resources/images/subheadbg.jpg) repeat-x; height:25px; padding:3px 5px 0 5px;}
 .portfolio_preview h2 {display:block; padding:3px 3px 0 5px; color:#fff; height:25px;}
+
 .services li {display:block; padding:3px 5px 3px 48px; margin:5px 0 3px; height:46px; border-bottom:solid 1px #ccc;}
 .services li.idea {background:url(../resources/images/ideaicon.jpg) no-repeat; }
 .services li.account {background:url(../resources/images/87.png) no-repeat; }
 .services li.design {background: url(../resources/images/designicon.jpg) no-repeat; }
 .services li.apps {background: url(../resources/images/interneticon.jpg) no-repeat; }
 .services li.mobile {background: url(../resources/images/mobileicon.jpg) no-repeat; }
+
 #sitename {
 	display: block;
 	padding-top: 35px;
@@ -43,7 +43,9 @@ h4 {font-size:12px;}
 	padding-left: 10px;
 	font:bold italic 30px "Trebuchet MS", Arial, Helvetica, sans-serif; color:#fff; text-shadow:#000 1px 1px 1px;
 }
+
 #sitename #description {display:block; font:normal 12px "Trebuchet MS", Arial, Helvetica, sans-serif!important;}
+
 #topnav{height:56px;}
 #topnav ul {padding:14px 15px 0; font: bold 14px "Trebuchet MS", halvetica, Verdana, sans-serif; text-transform:uppercase;}
 #topnav li {
