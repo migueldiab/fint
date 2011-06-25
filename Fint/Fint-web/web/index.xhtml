@@ -12,12 +12,16 @@
       </c:if>
       <div id="topnav">
         <ul>
-          <li id="first"><a href="/">Acerca de...</a></li>
+          <li id="first"><h:link value="Crear Cuenta" outcome="/usuario/crear" /></li>
+          <li ><h:link value="Acerca de..." outcome="/ayuda/acerca" /> </li>
         </ul>
       </div>
       <div class="clear"></div>
           <div id="headercolumn1">
             <h2>Ingrese a su cuenta para administrar sus finanzas personales</h2>
+            <br/>
+            Si no posee una cuenta, cree una ahora de forma totalmente gratuita
+            <h:link outcome="usuario/crear" value="haciendo click aqui!" />
           </div>
           <div id="headercolumn2">
             <form method="POST" action="j_security_check">

@@ -30,7 +30,9 @@
   <h:body>
 		<div id="wrap">
 			<div id="header">
-        <h1 id="sitename">FINT<span id="description">Un clon Open Source de MINT</span></h1>
+        <h:link outcome="/index">
+          <h1 id="sitename">FINT<span id="description">Un clon Open Source de MINT</span></h1>
+        </h:link>
         <ui:insert name="menu">
           <div id="topnav">
             <ul>
@@ -51,7 +53,7 @@
           </div>
           <div id="headercolumn2">
             <div id="search_top">
-            <form action="/search/search.php" method="get">
+            <form action="/search/search.xhtml" method="get">
               <p><input type="text" name="query" id="query" class="keyword"/>	</p>
               <p class="button"><input name="" type="image" src="#{resource['images:searchbutton.gif']}" alt="Search" /></p>
               <p class="hide"><input type="hidden" name="search" value="1" /></p>
@@ -62,9 +64,7 @@
         </ui:insert>
 			</div>
       <div id="contents">
-        <h:form id="mainForm">
-          <ui:insert name="content"/>
-        </h:form>
+        <ui:insert name="content"/>
       </div>
 			<div id="footer">
         <div class="footercontent">

@@ -26,7 +26,7 @@ public class ProveedorConverter implements Converter {
       ProveedorManagerLocal controller = null;
       try {
         InitialContext ic = new InitialContext();
-        controller = (ProveedorManagerLocal) ic.lookup("java:global/Fint/Fint-ejb/ProveedorManager");
+        controller = (ProveedorManagerLocal) ic.lookup("java:global/Fint/DataAccess-ejb/ProveedorManagerLocal");
       } catch (NamingException ex) {
         Logger.getLogger(ProveedorConverter.class.getName()).log(Level.SEVERE, null, ex);
       }      

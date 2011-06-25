@@ -72,4 +72,10 @@ public class UsuarioController {
     unUsuario = usuarioManager.merge(getUsuario());
   }
 
+  public void crearNuevoUsuario(Usuario nuevoUsuario) {
+    usuarioManager.persist(nuevoUsuario);
+    unUsuario = nuevoUsuario;
+
+  }
+
 }

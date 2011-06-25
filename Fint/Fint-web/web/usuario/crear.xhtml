@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <ui:composition template="/resources/template.xhtml">
+      <ui:param name="context_help" value="Enhorabuena! Usted a decidido crear una nueva cuenta!"/>
+        <ui:define name="content">
+          <div id="homepage">
+            <div class="services">
+              <h2 class="subhead">Datos Personales</h2>
+              <ul>
+              
+              </ul>
+            </div>
+            <div class="portfolio_preview">
+              <h2>Crear nueva cuenta</h2>
+              <div id="from_portfolio">
+                <h:form id="crearNuevaCuenta">
+                  <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.IdentityCard} : " for="ci" />
+                    <h:inputText id="ci" value="#{usuarioActions.nuevoUsuario.ci}">
+                      <f:validateLongRange maximum="999999999" minimum="1000000"/>
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.Login} : " for="login" />
+                    <h:inputText id="login" value="#{usuarioActions.nuevoUsuario.login}" />
+                    <h:outputLabel value="#{bundle.Email} : " for="correo" />
+                    <h:inputText id="correo" value="#{usuarioActions.nuevoUsuario.email}">
+                      <f:validator validatorId="emailValidator" />
+                    </h:inputText>                    <h:outputLabel value="#{bundle.Name} : " for="nombre" />
+                    <h:inputText id="nombre" value="#{usuarioActions.nuevoUsuario.nombre}" />
+                    <h:outputLabel value="#{bundle.LastName} : " for="apellido" />
+                    <h:inputText id="apellido" value="#{usuarioActions.nuevoUsuario.apellido}" />
+                    <h:outputLabel value="#{bundle.Password} : " for="contrasena" />
+                    <h:inputSecret id="contrasena" value="#{usuarioActions.nuevoUsuario.contrasena}" />
+                    <h:outputLabel value="#{bundle.Password} : " for="repetir_contrasena" />
+                    <h:inputSecret id="repetir_contrasena">
+                      <f:validator validatorId="passwordValidator"/>
+                    </h:inputSecret>
+                  </h:panelGrid>
+                  <br />
+                  <h:commandButton action="#{usuarioActions.crear}" value="#{bundle.Create}" />
+                </h:form>
+              </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <br/>
+        </ui:define>
+      <ui:define name="menu">
+        <c:if test="#{usuarioActions.loggedIn}">
+          #{usuarioActions.redirectHome()}
+        </c:if>
+        <div id="topnav">
+          <ul>
+            <li id="first"><h:link value="Crear Cuenta" outcome="/usuario/crear" /></li>
+            <li ><h:link value="Acerca de..." outcome="/ayuda/acerca" /> </li>
+          </ul>
+        </div>
+        <div class="clear"></div>
+        <div id="headercolumn1">
+          <h2>Usted est&aacute; a punto de ingresar al maravilloso mundo de las finanzas personales</h2>
+          <h:messages errorClass="error"></h:messages>
+        </div>
+        <div class="clear"></div>
+
+      </ui:define>
+    </ui:composition>
+
+</html>
