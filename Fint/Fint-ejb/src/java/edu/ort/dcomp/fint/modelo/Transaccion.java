@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
@@ -28,10 +29,13 @@ public class Transaccion implements Serializable {
   @Temporal(javax.persistence.TemporalType.DATE)
   private Date fecha;
   private String destinatario;
+  @ManyToOne
   private Categoria categoria;
   @ManyToOne
+  @JoinColumn(name="id_cuenta")
   private Cuenta cuenta;
   @ManyToOne
+  @JoinColumn(name="id_servicio")
   private Servicio servicio;
   @Enumerated(EnumType.STRING)
   private Tipo tipo;
