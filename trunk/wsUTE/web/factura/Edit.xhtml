@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/resources/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.EditFacturaTitle}"></h:outputText>
         </ui:define>
@@ -33,6 +33,14 @@
                     <h:selectOneMenu id="cliente" value="#{facturaController.selected.cliente}" title="#{bundle.EditFacturaTitle_cliente}" >
                         <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_estado}" for="estado" />
+                    <h:selectOneMenu id="estado" value="#{facturaController.selected.estado}" title="#{bundle.CreateFacturaTitle_estado}">
+                      <f:selectItems value="#{facturaController.selected.listEstados()}" />
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFacturaLabel_fechaPago}" for="fechaPago" />
+                    <h:inputText id="fechaPago" value="#{facturaController.selected.fechaPago}" title="#{bundle.EditFacturaTitle_fechaPago}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
                 </h:panelGrid>
                 <h:commandLink action="#{facturaController.update}" value="#{bundle.EditFacturaSaveLink}"/>
                 <br />

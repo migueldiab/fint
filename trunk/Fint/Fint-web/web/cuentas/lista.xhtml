@@ -29,12 +29,14 @@
                             <h:outputLabel value="Cuenta :" />
                             <h:outputLabel value="#{cuenta.nombre}" />
                             <h:outputLabel value="Entidad :" />
-                            <h:outputLabel value="#{cuenta.entidadFinanciera}" />
-                            <h:commandButton value="Estado Real" action="#{cuentaActions.estadoRealCuenta(cuenta)}" />
-                            <h:commandButton value="Estado Proyectado" action="#{cuentaActions.estadoProyectadoCuenta(cuenta)}"/>
-                            <h:button value="Volver" outcome="/inicio" />
-                            <h:commandButton value="Borrar" action="#{cuentaActions.borrarCuenta(cuenta)}"/>
+                            <h:outputLabel value="#{cuenta.entidadFinanciera}" />                            
                           </h:panelGrid>
+                          <br/><br/>
+                          <h:commandButton value="Ver Movimientos" action="#{cuentaActions.estadoRealCuenta(cuenta)}" />
+                          <h:commandButton value="Estado Proyectado" action="#{cuentaActions.estadoProyectadoCuenta(cuenta)}"/>
+                          <br/><br/>
+                          <h:button value="Volver" outcome="/inicio" />
+                          <h:commandButton value="Borrar" action="#{cuentaActions.borrarCuenta(cuenta)}"/>
                         </div>
                       </div>
                     </c:forEach>

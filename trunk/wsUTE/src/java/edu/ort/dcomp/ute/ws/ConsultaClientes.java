@@ -1,6 +1,5 @@
 package edu.ort.dcomp.ute.ws;
 
-import edu.ort.dcomp.ute.controller.ClienteController;
 import edu.ort.dcomp.ute.controller.FacturaController;
 import edu.ort.dcomp.ute.modelo.Factura;
 import java.util.List;

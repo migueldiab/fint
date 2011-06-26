@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/resources/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ListFacturaTitle}"></h:outputText>
         </ui:define>
@@ -59,6 +59,20 @@
                             <h:outputText value="#{bundle.ListFacturaTitle_cliente}"/>
                         </f:facet>
                         <h:outputText value="#{item.cliente}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListFacturaTitle_estado}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.estado}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListFacturaTitle_fechaPago}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaPago}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
                     </h:column>
                     <h:column>
                         <f:facet name="header">

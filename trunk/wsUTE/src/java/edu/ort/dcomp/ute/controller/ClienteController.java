@@ -3,7 +3,7 @@ package edu.ort.dcomp.ute.controller;
 import edu.ort.dcomp.ute.modelo.Cliente;
 import edu.ort.dcomp.ute.controller.util.JsfUtil;
 import edu.ort.dcomp.ute.controller.util.PaginationHelper;
-import edu.ort.dcomp.ute.ejb.ClienteFacade;
+import edu.ort.dcomp.ute.modelo.ClienteFacade;
 
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -23,7 +23,7 @@ public class ClienteController {
 
     private Cliente current;
     private DataModel items = null;
-    @EJB private edu.ort.dcomp.ute.ejb.ClienteFacade ejbFacade;
+    @EJB private edu.ort.dcomp.ute.modelo.ClienteFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -180,10 +180,6 @@ public class ClienteController {
     public SelectItem[] getItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
-
-  public Cliente obtenerPorCi(long ciCliente) {
-    return ejbFacade.findByCi(ciCliente);
-  }
 
     @FacesConverter(forClass=Cliente.class)
     public static class ClienteControllerConverter implements Converter {
