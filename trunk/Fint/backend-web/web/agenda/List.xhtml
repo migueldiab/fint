@@ -10,9 +10,6 @@
             <h:outputText value="#{bundle.ListAgendaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="content">
-                    <fieldset>
-            <legend>#{bundle.ListAgendaTitle}</legend>
-
         <h:form styleClass="jsfcrud_list_form">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
@@ -91,7 +88,6 @@
             <br />
             <h:commandLink value="#{bundle.ListAgendaIndexLink}" action="/index" immediate="true" />
         </h:form>
-            </fieldset>
         </ui:define>
     </ui:composition>
 

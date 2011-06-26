@@ -27,7 +27,7 @@ public class EntidadFinancieraConverter implements Converter {
       EntidadFinancieraManagerLocal controller = null;
       try {
         InitialContext ic = new InitialContext();
-        controller = (EntidadFinancieraManagerLocal) ic.lookup("java:global/Fint/Fint-ejb/EntidadFinancieraManagerLocal");
+        controller = (EntidadFinancieraManagerLocal) ic.lookup("java:global/Fint/Fint-ejb/EntidadFinancieraManager");
       } catch (NamingException ex) {
         Logger.getLogger(EntidadFinancieraConverter.class.getName()).log(Level.SEVERE, null, ex);
       }      

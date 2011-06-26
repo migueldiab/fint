@@ -18,7 +18,9 @@
                     <h:outputLabel value="#{bundle.EditAgendaLabel_id}" for="id" />
                     <h:inputText id="id" value="#{agendaController.selected.id}" title="#{bundle.EditAgendaTitle_id}" />
                     <h:outputLabel value="#{bundle.EditAgendaLabel_categoria}" for="categoria" />
-                    <h:inputText id="categoria" value="#{agendaController.selected.categoria}" title="#{bundle.EditAgendaTitle_categoria}" />
+                    <h:selectOneMenu id="categoria" value="#{agendaController.selected.categoria}" title="#{bundle.EditAgendaTitle_categoria}" >
+                        <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditAgendaLabel_destinatario}" for="destinatario" />
                     <h:inputText id="destinatario" value="#{agendaController.selected.destinatario}" title="#{bundle.EditAgendaTitle_destinatario}" />
                     <h:outputLabel value="#{bundle.EditAgendaLabel_fecha}" for="fecha" />

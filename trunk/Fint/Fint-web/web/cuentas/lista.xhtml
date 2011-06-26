@@ -21,6 +21,7 @@
             <div class="slider-wrap">
                 <div id="main-photo-slider" class="csw">
                   <div class="panelContainer">
+                    <h:form id="cuentas">
                     <c:forEach items="#{usuarioActions.cuentas}" var="cuenta">
                       <div class="panel" title="#{cuenta.nombre}">
                         <div class="wrapper">
@@ -37,6 +38,7 @@
                         </div>
                       </div>
                     </c:forEach>
+                      </h:form>
                   </div>
                 </div>
             </div>

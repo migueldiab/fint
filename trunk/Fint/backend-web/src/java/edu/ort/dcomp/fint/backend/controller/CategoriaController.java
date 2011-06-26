@@ -23,7 +23,7 @@ public class CategoriaController {
 
     private Categoria current;
     private DataModel items = null;
-    @EJB private edu.ort.dcomp.fint.modelo.managers.CategoriaManager ejbFacade;
+    @EJB private CategoriaManager ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
