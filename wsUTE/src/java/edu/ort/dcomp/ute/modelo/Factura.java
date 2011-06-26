@@ -134,4 +134,8 @@ public class Factura implements Serializable {
     this.fechaPago = fechaPago;
   }
 
+  public Estado[] listEstados() {
+    return Estado.values();
+  }
+
 }
