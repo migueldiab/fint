@@ -21,7 +21,8 @@
             <h2>Ingrese a su cuenta para administrar sus finanzas personales</h2>
             <br/>
             Si no posee una cuenta, cree una ahora de forma totalmente gratuita
-            <h:link outcome="usuario/crear" value="haciendo click aqui!" />
+            <h:link outcome="/usuario/crear" value="haciendo click aqui!" />
+            <h:messages errorClass="error"></h:messages>
           </div>
           <div id="headercolumn2">
             <form method="POST" action="j_security_check">

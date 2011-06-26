@@ -39,7 +39,7 @@ public class Facade {
   EntidadFinancieraManagerLocal entidadFinancieraManagerLocal;
 
   @EJB
-  ProveedorManagerLocal proveedorManagerLocal;
+  ProveedorManagerLocal proveedorManagerproveedorManager;
 
   @EJB
   UsuarioController usuarioController;
@@ -57,6 +57,7 @@ public class Facade {
     unUsuario.setLogin("admin");
     unUsuario.setContrasena("admin");
     unUsuario.setCi(99999999L);
+    unUsuario.setEmail("admin@fint.com");
     usuarioFacadeLocal.persist(unUsuario);
 
     EntidadFinanciera brou = new EntidadFinanciera();
@@ -72,9 +73,9 @@ public class Facade {
     ose.setNombre("OSE");
     Proveedor antel = new Proveedor();
     antel.setNombre("Antel");
-    proveedorManagerLocal.persist(ose);
-    proveedorManagerLocal.persist(antel);
-    proveedorManagerLocal.persist(ute);
+    proveedorManagerproveedorManager.persist(ose);
+    proveedorManagerproveedorManager.persist(antel);
+    proveedorManagerproveedorManager.persist(ute);
 
 
   }
@@ -92,11 +93,11 @@ public class Facade {
   }
 
   public List<Proveedor> getProveedores() {
-    return proveedorManagerLocal.findAll();
+    return proveedorManagerproveedorManager.findAll();
   }
 
   public Proveedor getProveedorById(Integer idProveedor) {
-    return proveedorManagerLocal.find(idProveedor);
+    return proveedorManagerproveedorManager.find(idProveedor);
   }
 
 }

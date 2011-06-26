@@ -20,7 +20,7 @@ public class EmailValidator implements Validator{
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
     String enteredEmail = (String) value;
     //Set the email pattern string
-    Pattern p = Pattern.compile(".+@.+\\\\.[a-z]+");
+    Pattern p = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$");
     //Match the given string with the pattern
     Matcher m = p.matcher(enteredEmail);
     //Check whether match is found

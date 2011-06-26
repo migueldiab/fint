@@ -53,10 +53,10 @@ public class UsuarioActions {
   }
 
   public void redirectHome() throws IOException {
-    JsfUtil.redirect("inicio.xhtml");
+    JsfUtil.redirectPartial("inicio.xhtml");
   }
   public void redirectLogin() throws IOException {
-    JsfUtil.redirect("index.xhtml");
+    JsfUtil.redirectPartial("index.xhtml");
   }
   
   public Boolean getLoggedIn() {
