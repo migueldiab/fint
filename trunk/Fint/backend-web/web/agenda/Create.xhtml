@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/resources/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAgendaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+          <fieldset>
+            <legend>#{bundle.CreateAgendaTitle}</legend>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAgendaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{agendaController.selected.id}" title="#{bundle.CreateAgendaTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateAgendaLabel_categoria}" for="categoria" />
+                    <h:inputText id="categoria" value="#{agendaController.selected.categoria}" title="#{bundle.CreateAgendaTitle_categoria}" />
+                    <h:outputLabel value="#{bundle.CreateAgendaLabel_destinatario}" for="destinatario" />
+                    <h:inputText id="destinatario" value="#{agendaController.selected.destinatario}" title="#{bundle.CreateAgendaTitle_destinatario}" />
+                    <h:outputLabel value="#{bundle.CreateAgendaLabel_fecha}" for="fecha" />
+                    <h:inputText id="fecha" value="#{agendaController.selected.fecha}" title="#{bundle.CreateAgendaTitle_fecha}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateAgendaLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{agendaController.selected.numero}" title="#{bundle.CreateAgendaTitle_numero}" />
+                    <h:outputLabel value="#{bundle.CreateAgendaLabel_recurrencia}" for="recurrencia" />
+                    <h:inputText id="recurrencia" value="#{agendaController.selected.recurrencia}" title="#{bundle.CreateAgendaTitle_recurrencia}" />
+                    <h:outputLabel value="#{bundle.CreateAgendaLabel_tipo}" for="tipo" />
+                    <h:inputText id="tipo" value="#{agendaController.selected.tipo}" title="#{bundle.CreateAgendaTitle_tipo}" />
+                    <h:outputLabel value="#{bundle.CreateAgendaLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{agendaController.selected.usuario}" title="#{bundle.CreateAgendaTitle_usuario}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{agendaController.create}" value="#{bundle.CreateAgendaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{agendaController.prepareList}" value="#{bundle.CreateAgendaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateAgendaIndexLink}" action="/index" immediate="true" />
+            </h:form>
+          </fieldset>
+            
+        </ui:define>
+    </ui:composition>
+
+</html>
