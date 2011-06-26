@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/resources/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTransaccionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{transaccionController.selected.id}" title="#{bundle.EditTransaccionTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_importe}" for="importe" />
+                    <h:inputText id="importe" value="#{transaccionController.selected.importe}" title="#{bundle.EditTransaccionTitle_importe}" />
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_categoria}" for="categoria" />
+                    <h:inputText id="categoria" value="#{transaccionController.selected.categoria}" title="#{bundle.EditTransaccionTitle_categoria}" />
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_destinatario}" for="destinatario" />
+                    <h:inputText id="destinatario" value="#{transaccionController.selected.destinatario}" title="#{bundle.EditTransaccionTitle_destinatario}" />
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_fecha}" for="fecha" />
+                    <h:inputText id="fecha" value="#{transaccionController.selected.fecha}" title="#{bundle.EditTransaccionTitle_fecha}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{transaccionController.selected.numero}" title="#{bundle.EditTransaccionTitle_numero}" />
+                </h:panelGrid>
+                <h:commandLink action="#{transaccionController.update}" value="#{bundle.EditTransaccionSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditTransaccionViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{transaccionController.prepareList}" value="#{bundle.EditTransaccionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditTransaccionIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/resources/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCuentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCuentaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{cuentaController.selected.id}" title="#{bundle.CreateCuentaTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateCuentaLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{cuentaController.selected.nombre}" title="#{bundle.CreateCuentaTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.CreateCuentaLabel_entidadFinanciera}" for="entidadFinanciera" />
+                    <h:selectOneMenu id="entidadFinanciera" value="#{cuentaController.selected.entidadFinanciera}" title="#{bundle.CreateCuentaTitle_entidadFinanciera}" >
+                        <f:selectItems value="#{entidadFinancieraController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateCuentaLabel_tipo}" for="tipo" />
+                    <h:inputText id="tipo" value="#{cuentaController.selected.tipo}" title="#{bundle.CreateCuentaTitle_tipo}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{cuentaController.create}" value="#{bundle.CreateCuentaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{cuentaController.prepareList}" value="#{bundle.CreateCuentaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateCuentaIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
