@@ -1,6 +1,6 @@
 package edu.ort.dcomp.fint.controller;
 
-import edu.ort.common.mail.Mailer;
+import edu.ort.common.mail.MailerLocal;
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.Grupo;
 import edu.ort.dcomp.fint.modelo.Servicio;
@@ -29,7 +29,7 @@ public class UsuarioController {
   private GrupoManagerLocal grupoManager;
 
   @EJB
-  private Mailer  mailer;
+  private MailerLocal  mailer;
   
   private String GRUPO_USUARIO = "usuario";
   

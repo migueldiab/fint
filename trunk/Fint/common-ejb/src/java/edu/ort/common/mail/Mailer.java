@@ -16,9 +16,10 @@ import javax.mail.internet.MimeMessage;
  * @author migueldiab
  */
 @Stateless
-public class Mailer {
+public class Mailer implements MailerLocal {
 
   @Asynchronous
+  @Override
   public void sendMail(final String toMail, final String subject, final String textMessage) {
     String host = "adinet.com.uy";
 		String username = "basura@adinet.com.uy";

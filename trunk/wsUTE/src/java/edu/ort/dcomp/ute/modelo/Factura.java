@@ -39,7 +39,7 @@ public class Factura implements Serializable {
   private Date fechaVencimiento;
   @Temporal(javax.persistence.TemporalType.DATE)
   private Date fechaPago;
-  @Enumerated(EnumType.ORDINAL)
+  @Enumerated(EnumType.STRING)
   private Estado estado;
   @ManyToOne
   @NotNull
