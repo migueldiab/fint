@@ -3,10 +3,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Web Service Proveedor</title>
+<h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
-        Hello from Facelets
-    </h:body>
+        Web Service Proveedor
+                    <h:form>
+                    <h:commandLink action="/cliente/List" value="Show All Cliente Items"/>
+                </h:form>
+                <h:form>
+                    <h:commandLink action="/factura/List" value="Show All Factura Items"/>
+                </h:form>
+</h:body>
+
+
 </html>
 
