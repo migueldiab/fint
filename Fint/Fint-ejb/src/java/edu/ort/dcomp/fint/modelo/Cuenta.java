@@ -17,6 +17,10 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 public class Cuenta implements Serializable {
+  public enum Tipo {
+    CAJA_DE_AHORRO, CUENTA_CORRIENTE, TARJETA_DE_CREDITO, PRESTAMO, LINEA_DE_CREDITO
+  }
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -28,6 +32,7 @@ public class Cuenta implements Serializable {
   @ManyToOne
   @NotNull
   private EntidadFinanciera entidadFinanciera;
+  private Tipo tipo;
 
   public Long getId() {
     return id;
@@ -86,6 +91,14 @@ public class Cuenta implements Serializable {
   @Override
   public String toString() {
     return getNombre();
+  }
+
+  public Tipo getTipo() {
+    return tipo;
+  }
+
+  public void setTipo(Tipo tipo) {
+    this.tipo = tipo;
   }
 
   
