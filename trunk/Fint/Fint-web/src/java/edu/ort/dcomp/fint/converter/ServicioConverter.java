@@ -26,7 +26,7 @@ public class ServicioConverter implements Converter {
       ServicioManagerLocal controller = null;
       try {
         InitialContext ic = new InitialContext();
-        controller = (ServicioManagerLocal) ic.lookup("java:global/Fint/DataAccess-ejb/ServicioManagerLocal");
+        controller = (ServicioManagerLocal) ic.lookup("java:global/Fint/Fint-ejb/ServicioManagerLocal");
       } catch (NamingException ex) {
         Logger.getLogger(ServicioConverter.class.getName()).log(Level.SEVERE, null, ex);
       }      

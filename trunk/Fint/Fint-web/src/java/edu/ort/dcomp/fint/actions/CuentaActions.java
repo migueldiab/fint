@@ -6,7 +6,6 @@ import edu.ort.dcomp.fint.jsf.JsfUtil;
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.bean.SessionScoped;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;

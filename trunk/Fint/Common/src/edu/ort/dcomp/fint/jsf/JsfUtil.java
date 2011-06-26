@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.model.SelectItem;
@@ -55,22 +56,22 @@ public class JsfUtil {
   }
 
   public static void addErrorMessage(String msg) {
-    FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg);
+    final FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg);
     FacesContext.getCurrentInstance().addMessage(null, facesMsg);
   }
 
   public static void addSuccessMessage(String msg) {
-    FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg);
+    final FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg);
     FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
   }
 
   public static void addWarningMessage(String msg) {
-    FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_WARN, msg, msg);
+    final FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_WARN, msg, msg);
     FacesContext.getCurrentInstance().addMessage(null, facesMsg);
   }
 
   public static void addFatalMessage(String msg) {
-    FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg);
+    final FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg);
     FacesContext.getCurrentInstance().addMessage(null, facesMsg);
   }
 
@@ -150,19 +151,18 @@ public class JsfUtil {
   }
 
   public static void addFlash(String key, Object value) {
-  FacesContext context = FacesContext.getCurrentInstance();
-  context.getExternalContext().getFlash().put(key, value);
+    final FacesContext context = FacesContext.getCurrentInstance();
+    context.getExternalContext().getFlash().put(key, value);
   }
 
   public static Integer getIntegerParameter(String string) throws NumberFormatException {
-    String idAsString = JsfUtil.getRequestParameter("roomId");
+    final String idAsString = JsfUtil.getRequestParameter("roomId");
     return Integer.parseInt(idAsString);
   }
 
   public static Date getDateParameter(String string) throws ParseException {
     final String strDate = JsfUtil.getRequestParameter(string);
-    Date returnDate = null;
-    returnDate = DateTime.parse(strDate);
+    final Date returnDate = DateTime.parse(strDate);
     return returnDate;
   }
 
@@ -170,18 +170,18 @@ public class JsfUtil {
     addCookie(key, value, 3600);
   }
 
-  private static void addCookie(String key, String value, int age) {
-    FacesContext facesContext = FacesContext.getCurrentInstance();
-    Cookie aCookie = new Cookie(key, value);
+  private static void addCookie(final String key, final String value, int age) {
+    final FacesContext facesContext = FacesContext.getCurrentInstance();
+    final Cookie aCookie = new Cookie(key, value);
     aCookie.setMaxAge(age);
     ((HttpServletResponse)facesContext.getExternalContext().getResponse()).addCookie(aCookie);
   }
 
-  public static String getCookie(String key) {
-    FacesContext facesContext = FacesContext.getCurrentInstance();
+  public static String getCookie(final String key) {
+    final FacesContext facesContext = FacesContext.getCurrentInstance();
     String cookieName = null;
     String result = null;
-    Cookie cookie[] = ((HttpServletRequest)facesContext.getExternalContext().getRequest()).getCookies();    
+    final Cookie cookie[] = ((HttpServletRequest)facesContext.getExternalContext().getRequest()).getCookies();
     if(cookie != null && cookie.length > 0) {
       for(int i = 0; i<cookie.length; i++) {
         cookieName = cookie[i].getName();
@@ -193,22 +193,31 @@ public class JsfUtil {
     return result;
   }
 
-  public static void removeCookie(String key) {
+  public static void removeCookie(final String key) {
     System.out.println("Borrando cookie " + key);
-    FacesContext facesContext = FacesContext.getCurrentInstance();
-    Cookie aCookie = new Cookie(key, null);
+    final FacesContext facesContext = FacesContext.getCurrentInstance();
+    final Cookie aCookie = new Cookie(key, null);
     aCookie.setMaxAge(0);
     ((HttpServletResponse)facesContext.getExternalContext().getResponse()).addCookie(aCookie);
   }
 
-  public static void redirect(String url) throws IOException {
+  public static void redirect(final String url) throws IOException {
     System.out.println("Redirigiendo a " + url);
-    FacesContext facesContext = FacesContext.getCurrentInstance();
+    final FacesContext facesContext = FacesContext.getCurrentInstance();
     facesContext.getExternalContext().redirect(url);
+
   }
 
-  public static void dispatch(String string) throws IOException {
-    FacesContext facesContext = FacesContext.getCurrentInstance();
+  public static void dispatch(final String string) throws IOException {
+    final FacesContext facesContext = FacesContext.getCurrentInstance();
     facesContext.getExternalContext().dispatch(string);
+  }
+
+  public static void redirectPartial(final String url) throws IOException {
+    System.out.println("Redirigiendo a parcial " + url);
+    final FacesContext facesContext = FacesContext.getCurrentInstance();
+    final ExternalContext ec = facesContext.getExternalContext();
+    facesContext.getExternalContext().redirect(ec.getRequestContextPath() + "/" + url);
+
   }
 }

@@ -16,7 +16,7 @@
                     <path-in-war>/</path-in-war>
                 </library>
                 <library>
-                    <file>${reference.DataAccess-ejb.dist-ear}</file>
+                    <file>${reference.common-ejb.dist-ear}</file>
                     <path-in-war>/</path-in-war>
                 </library>
             </web-module-additional-libraries>
@@ -25,14 +25,6 @@
             <definitions>.\lib\nblibraries.properties</definitions>
         </libraries>
         <references xmlns="http://www.netbeans.org/ns/ant-project-references/1">
-            <reference>
-                <foreign-project>DataAccess-ejb</foreign-project>
-                <artifact-type>j2ee_ear_archive</artifact-type>
-                <script>build.xml</script>
-                <target>dist-ear</target>
-                <clean-target>clean-ear</clean-target>
-                <id>dist-ear</id>
-            </reference>
             <reference>
                 <foreign-project>Fint-ejb</foreign-project>
                 <artifact-type>j2ee_ear_archive</artifact-type>
@@ -43,6 +35,14 @@
             </reference>
             <reference>
                 <foreign-project>Fint-web</foreign-project>
+                <artifact-type>j2ee_ear_archive</artifact-type>
+                <script>build.xml</script>
+                <target>dist-ear</target>
+                <clean-target>clean-ear</clean-target>
+                <id>dist-ear</id>
+            </reference>
+            <reference>
+                <foreign-project>common-ejb</foreign-project>
                 <artifact-type>j2ee_ear_archive</artifact-type>
                 <script>build.xml</script>
                 <target>dist-ear</target>
