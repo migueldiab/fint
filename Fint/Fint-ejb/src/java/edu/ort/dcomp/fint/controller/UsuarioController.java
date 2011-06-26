@@ -1,8 +1,11 @@
 package edu.ort.dcomp.fint.controller;
 
+import edu.ort.common.mail.Mailer;
 import edu.ort.dcomp.fint.modelo.Cuenta;
+import edu.ort.dcomp.fint.modelo.Grupo;
 import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.Usuario;
+import edu.ort.dcomp.fint.modelo.managers.GrupoManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.UsuarioManagerLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
@@ -21,6 +24,14 @@ public class UsuarioController {
   
   @EJB 
   private UsuarioManagerLocal usuarioManager;
+
+  @EJB
+  private GrupoManagerLocal grupoManager;
+
+  @EJB
+  private Mailer  mailer;
+  
+  private String GRUPO_USUARIO = "usuario";
   
   public UsuarioController() {
     
@@ -74,8 +85,17 @@ public class UsuarioController {
 
   public void crearNuevoUsuario(Usuario nuevoUsuario) {
     usuarioManager.persist(nuevoUsuario);
-    unUsuario = nuevoUsuario;
-
+    Grupo unGrupo = new Grupo();
+    unGrupo.setLogin(nuevoUsuario.getLogin());
+    unGrupo.setPermisos(GRUPO_USUARIO);
+    grupoManager.persist(unGrupo);
+    try {
+      usuarioManager.flush();
+      unUsuario = usuarioManager.merge(nuevoUsuario);
+      mailer.sendMail(nuevoUsuario.getEmail(), "Bienvenido a FINT", "Bienvenido " + nuevoUsuario.getNombre());
+    } catch (Exception e) {
+      System.out.println("Error !");
+    }
   }
 
 }

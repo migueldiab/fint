@@ -6,7 +6,7 @@
             <name>Fint-ejb</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <included-library dirs="200">reference.Common.jar</included-library>
-            <included-library dirs="100">reference.DataAccess-ejb.dist</included-library>
+            <included-library dirs="100">reference.common-ejb.dist</included-library>
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>
@@ -27,7 +27,7 @@
                 <id>jar</id>
             </reference>
             <reference>
-                <foreign-project>DataAccess-ejb</foreign-project>
+                <foreign-project>common-ejb</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>dist</target>
