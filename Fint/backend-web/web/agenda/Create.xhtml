@@ -10,17 +10,18 @@
             <h:outputText value="#{bundle.CreateAgendaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="content">
+          <legend>#{bundle.CreateAgendaTitle}</legend>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-          <fieldset>
-            <legend>#{bundle.CreateAgendaTitle}</legend>
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateAgendaLabel_id}" for="id" />
                     <h:inputText id="id" value="#{agendaController.selected.id}" title="#{bundle.CreateAgendaTitle_id}" />
                     <h:outputLabel value="#{bundle.CreateAgendaLabel_categoria}" for="categoria" />
-                    <h:inputText id="categoria" value="#{agendaController.selected.categoria}" title="#{bundle.CreateAgendaTitle_categoria}" />
+                    <h:selectOneMenu id="categoria" value="#{agendaController.selected.categoria}" title="#{bundle.CreateAgendaTitle_categoria}" >
+                        <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreateAgendaLabel_destinatario}" for="destinatario" />
                     <h:inputText id="destinatario" value="#{agendaController.selected.destinatario}" title="#{bundle.CreateAgendaTitle_destinatario}" />
                     <h:outputLabel value="#{bundle.CreateAgendaLabel_fecha}" for="fecha" />
@@ -37,16 +38,14 @@
                     <h:inputText id="usuario" value="#{agendaController.selected.usuario}" title="#{bundle.CreateAgendaTitle_usuario}" />
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{agendaController.create}" value="#{bundle.CreateAgendaSaveLink}" />
+                <h:commandButton action="#{agendaController.create}" value="#{bundle.CreateAgendaSaveLink}" />
                 <br />
                 <br />
-                <h:commandLink action="#{agendaController.prepareList}" value="#{bundle.CreateAgendaShowAllLink}" immediate="true"/>
+                <h:commandButton action="#{agendaController.prepareList}" value="#{bundle.CreateAgendaShowAllLink}" immediate="true"/>
                 <br />
                 <br />
-                <h:commandLink value="#{bundle.CreateAgendaIndexLink}" action="/index" immediate="true" />
+                <h:commandButton value="#{bundle.CreateAgendaIndexLink}" action="/index" immediate="true" />
             </h:form>
-          </fieldset>
-            
         </ui:define>
     </ui:composition>
 

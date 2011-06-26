@@ -23,7 +23,7 @@ public class AgendaController {
 
     private Agenda current;
     private DataModel items = null;
-    @EJB private edu.ort.dcomp.fint.modelo.managers.AgendaManager ejbFacade;
+    @EJB private AgendaManager ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

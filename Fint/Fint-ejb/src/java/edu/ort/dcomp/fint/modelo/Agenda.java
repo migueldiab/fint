@@ -11,10 +11,13 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -33,6 +36,8 @@ public class Agenda implements Serializable {
   @Temporal(javax.persistence.TemporalType.DATE)
   private Date fecha;
   private String destinatario;
+  @ManyToOne
+  @NotNull
   private Categoria categoria;
   private Usuario usuario;
   @Enumerated(EnumType.STRING)

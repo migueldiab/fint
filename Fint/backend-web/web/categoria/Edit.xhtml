@@ -17,8 +17,8 @@
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditCategoriaLabel_id}" for="id" />
                     <h:inputText id="id" value="#{categoriaController.selected.id}" title="#{bundle.EditCategoriaTitle_id}" />
-                    <h:outputLabel value="Nombre" for="categoria" />
-                    <h:inputText id="categoria" value="#{categoriaController.selected.nombre}" title="Nombre" />
+                    <h:outputLabel value="#{bundle.EditCategoriaLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{categoriaController.selected.nombre}" title="#{bundle.EditCategoriaTitle_nombre}" />
                 </h:panelGrid>
                 <h:commandLink action="#{categoriaController.update}" value="#{bundle.EditCategoriaSaveLink}"/>
                 <br />
