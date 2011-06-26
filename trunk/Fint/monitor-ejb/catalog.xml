@@ -2,4 +2,5 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://lorien:8080/ConsultasWSService/ConsultasWS?wsdl" uri="src/conf/xml-resources/web-service-references/ConsultasWS/wsdl/lorien_8080/ConsultasWSService/ConsultasWS.wsdl"/>
     <system systemId="http://lorien:8080/ConsultasWSService/ConsultasWS?xsd=1" uri="src/conf/xml-resources/web-service-references/ConsultasWS/wsdl/lorien_8080/ConsultasWSService/ConsultasWS.xsd_1.xsd"/>
+    <nextCatalog catalog="nbproject/private/retriever/catalog.xml"/>
 </catalog>

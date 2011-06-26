@@ -1,13 +1,18 @@
 package edu.ort.dcomp.fint.monitor;
 
-import java.util.Date;
+import java.net.MalformedURLException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.LocalBean;
-import javax.ejb.Schedule;
+import javax.ejb.ScheduleExpression;
+import javax.ejb.Startup;
 import javax.ejb.Timeout;
 import javax.ejb.Timer;
+import javax.ejb.TimerConfig;
 import javax.ejb.TimerService;
 
 /**
@@ -16,59 +21,47 @@ import javax.ejb.TimerService;
  */
 @Singleton
 @LocalBean
+@Startup
 public class ProveedorMon {
   @Resource
   TimerService timerService;
 
-  private Date lastProgrammaticTimeout;
-  private Date lastAutomaticTimeout;
+  @EJB
+  FacturaParser facturaParser;
 
+  private Boolean run = Boolean.FALSE;
+  
   private Logger logger = Logger.getLogger(
           "com.sun.tutorial.javaee.ejb.timersession.TimerSessionBean");
 
-  public void setTimer(long intervalDuration) {
-      logger.info("Setting a programmatic timeout for "
-              + intervalDuration + " milliseconds from now.");
-      Timer timer = timerService.createTimer(intervalDuration,
-              "Created new programmatic timer");
+  @PostConstruct
+  public void startUpTimers() {
+    System.out.println("Construyendo Timers");
+     TimerConfig timerConfig = new TimerConfig();
+     timerConfig.setPersistent(true);
+     timerConfig.setInfo("Test1");
+     ScheduleExpression sched = new ScheduleExpression();
+     sched.second("*/30");
+     sched.minute("*");
+     sched.hour("*");
+     Timer timer = timerService.createCalendarTimer(sched, timerConfig);
   }
 
   @Timeout
   public void programmaticTimeout(Timer timer) {
-      this.setLastProgrammaticTimeout(new Date());
-      logger.info("Programmatic timeout occurred.");
+    System.out.println("Conetando con WS Proveedores");
+    try {
+      facturaParser.leerFacturasPendientes();
+    } catch (MalformedURLException ex) {
+      System.out.println("Error!");
+    }
   }
 
-  @Schedule(minute="*/3", hour="*")
-  public void automaticTimeout() {
-      this.setLastAutomaticTimeout(new Date());
-      logger.info("Automatic timeout occured");
-  }
+//  @Schedule(second="*/5", minute="*", hour="*")
+//  public void automaticTimeout() {
+//    System.out.println("");
+//  }
 
-  public String getLastProgrammaticTimeout() {
-      if (lastProgrammaticTimeout != null) {
-          return lastProgrammaticTimeout.toString();
-      } else {
-          return "never";
-      }
-
-  }
-
-  public void setLastProgrammaticTimeout(Date lastTimeout) {
-      this.lastProgrammaticTimeout = lastTimeout;
-  }
-
-  public String getLastAutomaticTimeout() {
-      if (lastAutomaticTimeout != null) {
-          return lastAutomaticTimeout.toString();
-      } else {
-          return "never";
-      }
-  }
-
-  public void setLastAutomaticTimeout(Date lastAutomaticTimeout) {
-      this.lastAutomaticTimeout = lastAutomaticTimeout;
-  }
 
  
 }

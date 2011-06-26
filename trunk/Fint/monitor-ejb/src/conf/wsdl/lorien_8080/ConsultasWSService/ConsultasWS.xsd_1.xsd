@@ -4,6 +4,48 @@
 
 <xs:element name="obtenerFacturasPendientesResponse" type="tns:obtenerFacturasPendientesResponse" />
 
+<xs:element name="obtenerFacturasPorClienteEstado" type="tns:obtenerFacturasPorClienteEstado" />
+
+<xs:element name="obtenerFacturasPorClienteEstadoResponse" type="tns:obtenerFacturasPorClienteEstadoResponse" />
+
+<xs:complexType name="obtenerFacturasPorClienteEstado">
+<xs:sequence>
+<xs:element name="usuario" type="xs:string" minOccurs="0" />
+<xs:element name="password" type="xs:string" minOccurs="0" />
+<xs:element name="ciUsuario" type="xs:long" minOccurs="0" />
+<xs:element name="estadoFactura" type="tns:estado" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obtenerFacturasPorClienteEstadoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:factura" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="factura">
+<xs:sequence>
+<xs:element name="cliente" type="tns:cliente" minOccurs="0" />
+<xs:element name="concepto" type="xs:string" minOccurs="0" />
+<xs:element name="estado" type="tns:estado" minOccurs="0" />
+<xs:element name="fechaEmision" type="xs:dateTime" minOccurs="0" />
+<xs:element name="fechaPago" type="xs:dateTime" minOccurs="0" />
+<xs:element name="fechaVencimiento" type="xs:dateTime" minOccurs="0" />
+<xs:element name="id" type="xs:long" minOccurs="0" />
+<xs:element name="importe" type="xs:decimal" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cliente">
+<xs:sequence>
+<xs:element name="apellido" type="xs:string" minOccurs="0" />
+<xs:element name="ci" type="xs:long" minOccurs="0" />
+<xs:element name="facturas" type="tns:factura" nillable="true" minOccurs="0" maxOccurs="unbounded" />
+<xs:element name="id" type="xs:long" minOccurs="0" />
+<xs:element name="nombre" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="obtenerFacturasPendientes">
 <xs:sequence>
 <xs:element name="ciUsuario" type="xs:long" />
@@ -14,7 +56,16 @@
 
 <xs:complexType name="obtenerFacturasPendientesResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0" />
+<xs:element name="return" type="tns:factura" minOccurs="0" maxOccurs="unbounded" />
 </xs:sequence>
 </xs:complexType>
+
+<xs:simpleType name="estado">
+<xs:restriction base="xs:string">
+<xs:enumeration value="PENDIENTE" />
+<xs:enumeration value="PAGA" />
+<xs:enumeration value="VENCIDA" />
+<xs:enumeration value="ANULADA" />
+</xs:restriction>
+</xs:simpleType>
 </xs:schema>
