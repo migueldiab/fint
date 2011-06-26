@@ -5,9 +5,12 @@
 
 package edu.ort.dcomp.ute.modelo;
 
+import edu.ort.dcomp.ute.modelo.Factura.Estado;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -24,6 +27,14 @@ public class FacturaFacade extends AbstractFacade<Factura> {
 
   public FacturaFacade() {
     super(Factura.class);
+  }
+
+  public List<Factura> buscarPorClienteEstado(Cliente unCliente, Estado estado) {
+    Query q = getEntityManager().createQuery("SELECT f FROM Factura f WHERE f.cliente = :cliente AND f.estado = :estado");
+    q.setParameter("cliente", unCliente);
+    q.setParameter("estado", estado);
+    final List<Factura> lista = q.getResultList();
+    return lista;
   }
 
 }

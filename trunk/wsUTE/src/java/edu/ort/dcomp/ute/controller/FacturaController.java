@@ -3,7 +3,7 @@ package edu.ort.dcomp.ute.controller;
 import edu.ort.dcomp.ute.modelo.Factura;
 import edu.ort.dcomp.ute.controller.util.JsfUtil;
 import edu.ort.dcomp.ute.controller.util.PaginationHelper;
-import edu.ort.dcomp.ute.modelo.Factura.Estado;
+import edu.ort.dcomp.ute.modelo.Cliente;
 import edu.ort.dcomp.ute.modelo.FacturaFacade;
 import java.util.List;
 
@@ -26,6 +26,7 @@ public class FacturaController {
     private Factura current;
     private DataModel items = null;
     @EJB private edu.ort.dcomp.ute.modelo.FacturaFacade ejbFacade;
+    @EJB private edu.ort.dcomp.ute.modelo.ClienteFacade clienteFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -183,8 +184,9 @@ public class FacturaController {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-  public List<Factura> obtenerFacturasPorCliente(long ciCliente, Estado estado) {
-    throw new UnsupportedOperationException("Not yet implemented");
+  public List<Factura> obtenerFacturasPorCliente(long ciCliente, Factura.Estado estado) {
+    Cliente unCliente = clienteFacade.buscarPorCI(ciCliente);
+    return ejbFacade.buscarPorClienteEstado(unCliente, estado);
   }
 
     @FacesConverter(forClass=Factura.class)

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.1 (branches/2.1-6728; 2011-02-03T14:14:58+0000) JAXWS-RI/2.2.3 JAXWS/2.2. --><xs:schema xmlns:tns="http://ws.ute.dcomp.ort.edu/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.ute.dcomp.ort.edu/">
+
+<xs:element name="obtenerFacturasPendientes" type="tns:obtenerFacturasPendientes" />
+
+<xs:element name="obtenerFacturasPendientesResponse" type="tns:obtenerFacturasPendientesResponse" />
+
+<xs:complexType name="obtenerFacturasPendientes">
+<xs:sequence>
+<xs:element name="ciUsuario" type="xs:long" />
+<xs:element name="usuario" type="xs:string" minOccurs="0" />
+<xs:element name="password" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obtenerFacturasPendientesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
