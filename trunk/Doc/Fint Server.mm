@@ -1,6 +1,6 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
-<node CREATED="1305070417421" ID="ID_1904056498" MODIFIED="1305070927486" STYLE="bubble" TEXT="Fint Server">
+<node CREATED="1305070417421" ID="ID_1904056498" MODIFIED="1309138576532" STYLE="bubble" TEXT="Fint EJB">
 <node CREATED="1305070928590" HGAP="39" ID="ID_459599716" MODIFIED="1305071318531" POSITION="right" TEXT="Cliente Web" VSHIFT="-37">
 <icon BUILTIN="gohome"/>
 </node>
