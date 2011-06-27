@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.1 (branches/2.1-6728; 2011-02-03T14:14:58+0000) JAXWS-RI/2.2.3 JAXWS/2.2. --><xs:schema xmlns:tns="http://ws.ute.dcomp.ort.edu/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.ute.dcomp.ort.edu/">
 
+<xs:element name="obtenerFacturasPasadas" type="tns:obtenerFacturasPasadas" />
+
+<xs:element name="obtenerFacturasPasadasResponse" type="tns:obtenerFacturasPasadasResponse" />
+
 <xs:element name="obtenerFacturasPendientes" type="tns:obtenerFacturasPendientes" />
 
 <xs:element name="obtenerFacturasPendientesResponse" type="tns:obtenerFacturasPendientesResponse" />
@@ -43,6 +47,21 @@
 <xs:element name="facturas" type="tns:factura" nillable="true" minOccurs="0" maxOccurs="unbounded" />
 <xs:element name="id" type="xs:long" minOccurs="0" />
 <xs:element name="nombre" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obtenerFacturasPasadas">
+<xs:sequence>
+<xs:element name="ciUsuario" type="xs:long" />
+<xs:element name="dias" type="xs:int" />
+<xs:element name="usuario" type="xs:string" minOccurs="0" />
+<xs:element name="password" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obtenerFacturasPasadasResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:factura" minOccurs="0" maxOccurs="unbounded" />
 </xs:sequence>
 </xs:complexType>
 
