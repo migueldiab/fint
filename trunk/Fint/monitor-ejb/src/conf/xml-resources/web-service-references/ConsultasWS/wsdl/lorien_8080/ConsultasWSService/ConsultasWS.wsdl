@@ -4,31 +4,41 @@
 <xsd:import namespace="http://ws.ute.dcomp.ort.edu/" schemaLocation="http://lorien:8080/ConsultasWSService/ConsultasWS?xsd=1" />
 </xsd:schema>
 </types>
-<message name="obtenerFacturasPendientes">
-<part name="parameters" element="tns:obtenerFacturasPendientes" />
-</message>
-<message name="obtenerFacturasPendientesResponse">
-<part name="parameters" element="tns:obtenerFacturasPendientesResponse" />
-</message>
 <message name="obtenerFacturasPorClienteEstado">
 <part name="parameters" element="tns:obtenerFacturasPorClienteEstado" />
 </message>
 <message name="obtenerFacturasPorClienteEstadoResponse">
 <part name="parameters" element="tns:obtenerFacturasPorClienteEstadoResponse" />
 </message>
+<message name="obtenerFacturasPasadas">
+<part name="parameters" element="tns:obtenerFacturasPasadas" />
+</message>
+<message name="obtenerFacturasPasadasResponse">
+<part name="parameters" element="tns:obtenerFacturasPasadasResponse" />
+</message>
+<message name="obtenerFacturasPendientes">
+<part name="parameters" element="tns:obtenerFacturasPendientes" />
+</message>
+<message name="obtenerFacturasPendientesResponse">
+<part name="parameters" element="tns:obtenerFacturasPendientesResponse" />
+</message>
 <portType name="ConsultasWS">
-<operation name="obtenerFacturasPendientes">
-<input wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPendientesRequest" message="tns:obtenerFacturasPendientes" />
-<output wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPendientesResponse" message="tns:obtenerFacturasPendientesResponse" />
-</operation>
 <operation name="obtenerFacturasPorClienteEstado">
 <input wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPorClienteEstadoRequest" message="tns:obtenerFacturasPorClienteEstado" />
 <output wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPorClienteEstadoResponse" message="tns:obtenerFacturasPorClienteEstadoResponse" />
 </operation>
+<operation name="obtenerFacturasPasadas">
+<input wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPasadasRequest" message="tns:obtenerFacturasPasadas" />
+<output wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPasadasResponse" message="tns:obtenerFacturasPasadasResponse" />
+</operation>
+<operation name="obtenerFacturasPendientes">
+<input wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPendientesRequest" message="tns:obtenerFacturasPendientes" />
+<output wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPendientesResponse" message="tns:obtenerFacturasPendientesResponse" />
+</operation>
 </portType>
 <binding name="ConsultasWSPortBinding" type="tns:ConsultasWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
-<operation name="obtenerFacturasPendientes">
+<operation name="obtenerFacturasPorClienteEstado">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />
@@ -37,7 +47,16 @@
 <soap:body use="literal" />
 </output>
 </operation>
-<operation name="obtenerFacturasPorClienteEstado">
+<operation name="obtenerFacturasPasadas">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="obtenerFacturasPendientes">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />

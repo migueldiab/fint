@@ -27,7 +27,7 @@ public class ProveedorMon {
   TimerService timerService;
 
   @EJB
-  FacturaParser facturaParser;
+  UTEParser uteParser;
 
   private Boolean run = Boolean.FALSE;
   
@@ -39,7 +39,7 @@ public class ProveedorMon {
     System.out.println("Construyendo Timers");
      TimerConfig timerConfig = new TimerConfig();
      timerConfig.setPersistent(true);
-     timerConfig.setInfo("Test1");
+     timerConfig.setInfo("parserProveedorAgendado");
      ScheduleExpression sched = new ScheduleExpression();
      sched.second("*/30");
      sched.minute("*");
@@ -48,13 +48,9 @@ public class ProveedorMon {
   }
 
   @Timeout
-  public void programmaticTimeout(Timer timer) {
-    System.out.println("Conetando con WS Proveedores");
-    try {
-      facturaParser.leerFacturasPendientes();
-    } catch (MalformedURLException ex) {
-      System.out.println("Error!");
-    }
+  public void programmaticTimeout(Timer timer) throws MalformedURLException {
+    uteParser.leerFacturasPendientes();
+    uteParser.leerFacturasPasadas();
   }
 
 //  @Schedule(second="*/5", minute="*", hour="*")
