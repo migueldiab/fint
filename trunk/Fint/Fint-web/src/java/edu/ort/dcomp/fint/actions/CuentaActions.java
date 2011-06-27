@@ -5,10 +5,10 @@ import edu.ort.dcomp.fint.controller.UsuarioController;
 import edu.ort.dcomp.fint.jsf.JsfUtil;
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import edu.ort.common.log.Logger;
 
 
 /**
@@ -31,6 +31,9 @@ public class CuentaActions {
   @EJB
   private CuentaController cuentaController;
 
+  @EJB
+  private Logger logger;
+
   public Cuenta getCuenta() {
     if (null == cuenta) {
       cuenta = new Cuenta();
@@ -39,12 +42,13 @@ public class CuentaActions {
   }
 
   public String guardar() {
+    logger.info("CuentaActions - guardar");
     String response;
     try {
       usuarioController.guardarCuenta(cuenta);
       response = PATH + "lista";
     } catch (Exception e) {
-      Logger.getLogger("CuentaActions").log(Level.WARNING, "No se pudo crear la cuenta");
+      logger.error("CuentaActions - No se pudo crear la cuenta", e.getLocalizedMessage());
       JsfUtil.addErrorMessage("No se pudo crear la cuenta");
       response = PATH + "crear";
     }

@@ -1,5 +1,6 @@
 package edu.ort.dcomp.fint.actions;
 
+import edu.ort.common.log.Logger;
 import edu.ort.dcomp.fint.controller.UsuarioController;
 import edu.ort.dcomp.fint.jsf.JsfUtil;
 import edu.ort.dcomp.fint.modelo.Cuenta;
@@ -32,7 +33,11 @@ public class UsuarioActions {
   @EJB
   private UsuarioController usuarioController;
 
+  @EJB
+  private Logger logger;
+
   public Usuario getUsuario() {
+    logger.info("UsuarioActions - getUsuario");
     return usuarioController.getUsuario();
   }
 
@@ -47,6 +52,7 @@ public class UsuarioActions {
   }
 
   public Boolean isUserInRole(final String role) {
+    logger.info("UsuarioActions - isUserInRole" + role);
     final ExternalContext external = FacesContext.getCurrentInstance().getExternalContext();
     final HttpServletRequest request = (HttpServletRequest) external.getRequest();
     return request.isUserInRole(role);
@@ -60,10 +66,12 @@ public class UsuarioActions {
   }
   
   public Boolean getLoggedIn() {
+    logger.info("UsuarioActions - getLoggedIn" + getUsuario());
     return null != getUsuario();
   }
   
   public void logout() throws IOException {
+    logger.info("UsuarioActions - logout" + getUsuario());
     final FacesContext context = FacesContext.getCurrentInstance();
  		final ExternalContext ec = context.getExternalContext();
  		final HttpServletRequest request = (HttpServletRequest)ec.getRequest();
