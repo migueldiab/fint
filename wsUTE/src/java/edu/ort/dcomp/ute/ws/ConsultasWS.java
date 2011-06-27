@@ -24,6 +24,7 @@ public class ConsultasWS {
   private FacturaFacade facturaFacade;
   @EJB
   private ClienteFacade clienteFacade;
+
   /**
    * Web service operation
    */
@@ -34,6 +35,19 @@ public class ConsultasWS {
           @WebParam(name = "password") final String password) {
     Cliente unCliente = clienteFacade.buscarPorCI(ciUsuario);
     return facturaFacade.buscarPorClienteEstado(unCliente, Factura.Estado.PENDIENTE);
+  }
+
+  /**
+   * Web service operation
+   */
+  @WebMethod(operationName = "obtenerFacturasPasadas")
+  public List<Factura> obtenerFacturasPasadas(
+          @WebParam(name = "ciUsuario") final long ciUsuario,
+          @WebParam(name = "dias") final int dias,
+          @WebParam(name = "usuario") final String usuario,
+          @WebParam(name = "password") final String password) {
+    Cliente unCliente = clienteFacade.buscarPorCI(ciUsuario);
+    return facturaFacade.buscarPorClienteDiasPasados(unCliente, dias);
   }
 
   /**
