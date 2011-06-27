@@ -28,6 +28,7 @@ public class Servicio implements Serializable {
   @ManyToOne
   @NotNull
   private Proveedor proveedor;
+  private Categoria categoria;
 
   public Long getId() {
     return id;
@@ -86,6 +87,14 @@ public class Servicio implements Serializable {
   @Override
   public String toString() {
     return getNombre();
+  }
+
+  public Categoria getCategoria() {
+    return categoria;
+  }
+
+  public void setCategoria(Categoria categoria) {
+    this.categoria = categoria;
   }
 
 
