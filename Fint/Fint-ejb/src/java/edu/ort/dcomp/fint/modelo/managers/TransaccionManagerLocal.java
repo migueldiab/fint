@@ -28,6 +28,6 @@ public interface TransaccionManagerLocal {
 
   public boolean existe(Servicio servicioAsociado, String toString);
 
-  public Transaccion buscarPorServicioNumero(Servicio servicioAsociado, String toString);
+  public Transaccion buscarPorServicioNumero(Servicio servicioAsociado, String numero);
 
 }

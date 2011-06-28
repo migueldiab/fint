@@ -6,7 +6,10 @@
 package edu.ort.dcomp.fint.modelo.managers;
 
 import edu.ort.dcomp.fint.modelo.Servicio;
+import edu.ort.dcomp.fint.modelo.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 /**
  *
@@ -20,8 +23,16 @@ public class ServicioManager extends AbstractManager<Servicio> implements Servic
   }
 
   @Override
-  public Servicio buscarPorNombre(String SERVICIO_ASOCIADO) {
-    throw new UnsupportedOperationException("Not supported yet.");
+  public Servicio buscarPorNombre(String nombre) {
+    Query q = getEntityManager().createQuery("SELECT s FROM Servicio s WHERE s.nombre = :nombre");
+    q.setParameter("nombre", nombre);
+    q.setMaxResults(1);
+    final List<Servicio> lista = q.getResultList();
+    Servicio result = null;
+    if (1 == lista.size()) {
+      result = lista.get(0);
+    }
+    return result;
   }
 
 }
