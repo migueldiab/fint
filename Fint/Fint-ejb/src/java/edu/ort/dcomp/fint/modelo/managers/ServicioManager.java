@@ -19,4 +19,9 @@ public class ServicioManager extends AbstractManager<Servicio> implements Servic
     super(Servicio.class);
   }
 
+  @Override
+  public Servicio buscarPorNombre(String SERVICIO_ASOCIADO) {
+    throw new UnsupportedOperationException("Not supported yet.");
+  }
+
 }

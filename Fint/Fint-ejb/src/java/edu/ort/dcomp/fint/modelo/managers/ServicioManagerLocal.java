@@ -30,4 +30,6 @@ public interface ServicioManagerLocal {
 
   int count();
 
+  public Servicio buscarPorNombre(String SERVICIO_ASOCIADO);
+
 }

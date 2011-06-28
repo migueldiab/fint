@@ -1,10 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package edu.ort.dcomp.fint.modelo.managers;
 
+import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.Transaccion;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,5 +25,9 @@ public interface TransaccionManagerLocal {
   List<Transaccion> findRange(int[] range);
 
   int count();
+
+  public boolean existe(Servicio servicioAsociado, String toString);
+
+  public Transaccion buscarPorServicioNumero(Servicio servicioAsociado, String toString);
 
 }
