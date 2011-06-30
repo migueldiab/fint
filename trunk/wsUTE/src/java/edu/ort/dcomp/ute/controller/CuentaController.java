@@ -30,8 +30,8 @@ public class CuentaController {
     public CuentaController() {
     }
 
-    public Cuenta.Estado[] getEstados() {
-      return Cuenta.Estado.values();
+    public Cuenta.EstadoCuenta[] getEstados() {
+      return Cuenta.EstadoCuenta.values();
     }
     
     public Cuenta getSelected() {

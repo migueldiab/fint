@@ -24,7 +24,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 public class Cuenta implements Serializable {
-  public enum Estado {
+  public enum EstadoCuenta {
     ACTIVA, INACTIVA, CANCELADA
   }
   private static final long serialVersionUID = 1L;
@@ -34,7 +34,7 @@ public class Cuenta implements Serializable {
   @Temporal(javax.persistence.TemporalType.DATE)
   private Date fechaApertura;
   @Enumerated(EnumType.STRING)
-  private Estado estado;
+  private EstadoCuenta estado;
   private BigDecimal balance;
   @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval=true)
   @JoinColumn(name="id_cuenta")
@@ -84,11 +84,11 @@ public class Cuenta implements Serializable {
     this.balance = balance;
   }
 
-  public Estado getEstado() {
+  public EstadoCuenta getEstado() {
     return estado;
   }
 
-  public void setEstado(Estado estado) {
+  public void setEstado(EstadoCuenta estado) {
     this.estado = estado;
   }
 
