@@ -19,14 +19,8 @@
                     <h:inputText id="id" value="#{transaccionController.selected.id}" title="#{bundle.EditTransaccionTitle_id}" />
                     <h:outputLabel value="#{bundle.EditTransaccionLabel_importe}" for="importe" />
                     <h:inputText id="importe" value="#{transaccionController.selected.importe}" title="#{bundle.EditTransaccionTitle_importe}" />
-                    <h:outputLabel value="#{bundle.EditTransaccionLabel_categoria}" for="categoria" />
-                    <h:inputText id="categoria" value="#{transaccionController.selected.categoria}" title="#{bundle.EditTransaccionTitle_categoria}" />
                     <h:outputLabel value="#{bundle.EditTransaccionLabel_destinatario}" for="destinatario" />
                     <h:inputText id="destinatario" value="#{transaccionController.selected.destinatario}" title="#{bundle.EditTransaccionTitle_destinatario}" />
-                    <h:outputLabel value="#{bundle.EditTransaccionLabel_fecha}" for="fecha" />
-                    <h:inputText id="fecha" value="#{transaccionController.selected.fecha}" title="#{bundle.EditTransaccionTitle_fecha}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
                     <h:outputLabel value="#{bundle.EditTransaccionLabel_numero}" for="numero" />
                     <h:inputText id="numero" value="#{transaccionController.selected.numero}" title="#{bundle.EditTransaccionTitle_numero}" />
                 </h:panelGrid>

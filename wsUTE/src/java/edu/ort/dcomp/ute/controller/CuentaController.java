@@ -1,9 +1,9 @@
 package edu.ort.dcomp.ute.controller;
 
-import edu.ort.dcomp.ute.modelo.Cliente;
+import edu.ort.dcomp.ute.modelo.Cuenta;
 import edu.ort.dcomp.ute.controller.util.JsfUtil;
 import edu.ort.dcomp.ute.controller.util.PaginationHelper;
-import edu.ort.dcomp.ute.managers.ClienteFacade;
+import edu.ort.dcomp.ute.managers.CuentaFacade;
 
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -17,29 +17,33 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@ManagedBean (name="clienteController")
+@ManagedBean (name="cuentaController")
 @SessionScoped
-public class ClienteController {
+public class CuentaController {
 
-    private Cliente current;
+    private Cuenta current;
     private DataModel items = null;
-    @EJB private edu.ort.dcomp.ute.managers.ClienteFacade ejbCliente;
+    @EJB private edu.ort.dcomp.ute.managers.CuentaFacade ejbCuenta;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public ClienteController() {
+    public CuentaController() {
     }
 
-    public Cliente getSelected() {
+    public Cuenta.Estado[] getEstados() {
+      return Cuenta.Estado.values();
+    }
+    
+    public Cuenta getSelected() {
         if (current == null) {
-            current = new Cliente();
+            current = new Cuenta();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private ClienteFacade getFacade() {
-        return ejbCliente;
+    private CuentaFacade getFacade() {
+        return ejbCuenta;
     }
 
     public PaginationHelper getPagination() {
@@ -66,13 +70,13 @@ public class ClienteController {
     }
 
     public String prepareView() {
-        current = (Cliente)getItems().getRowData();
+        current = (Cuenta)getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Cliente();
+        current = new Cuenta();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -80,7 +84,7 @@ public class ClienteController {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ClienteCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CuentaCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -89,7 +93,7 @@ public class ClienteController {
     }
 
     public String prepareEdit() {
-        current = (Cliente)getItems().getRowData();
+        current = (Cuenta)getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -97,7 +101,7 @@ public class ClienteController {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ClienteUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CuentaUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -106,7 +110,7 @@ public class ClienteController {
     }
 
     public String destroy() {
-        current = (Cliente)getItems().getRowData();
+        current = (Cuenta)getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreateModel();
@@ -129,7 +133,7 @@ public class ClienteController {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ClienteDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CuentaDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -174,23 +178,23 @@ public class ClienteController {
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {
-        return JsfUtil.getSelectItems(ejbCliente.findAll(), false);
+        return JsfUtil.getSelectItems(ejbCuenta.findAll(), false);
     }
 
     public SelectItem[] getItemsAvailableSelectOne() {
-        return JsfUtil.getSelectItems(ejbCliente.findAll(), true);
+        return JsfUtil.getSelectItems(ejbCuenta.findAll(), true);
     }
 
-    @FacesConverter(forClass=Cliente.class)
-    public static class ClienteControllerConverter implements Converter {
+    @FacesConverter(forClass=Cuenta.class)
+    public static class CuentaControllerConverter implements Converter {
 
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ClienteController controller = (ClienteController)facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "clienteController");
-            return controller.ejbCliente.find(getKey(value));
+            CuentaController controller = (CuentaController)facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "cuentaController");
+            return controller.ejbCuenta.find(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -209,11 +213,11 @@ public class ClienteController {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Cliente) {
-                Cliente o = (Cliente) object;
+            if (object instanceof Cuenta) {
+                Cuenta o = (Cuenta) object;
                 return getStringKey(o.getId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: "+ClienteController.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: "+CuentaController.class.getName());
             }
         }
 

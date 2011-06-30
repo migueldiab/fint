@@ -56,12 +56,6 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="#{bundle.ListFacturaTitle_cliente}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.cliente}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
                             <h:outputText value="#{bundle.ListFacturaTitle_estado}"/>
                         </f:facet>
                         <h:outputText value="#{item.estado}"/>
@@ -73,6 +67,12 @@
                         <h:outputText value="#{item.fechaPago}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListFacturaTitle_cuenta}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cuenta}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">

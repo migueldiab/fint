@@ -1,12 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package edu.ort.dcomp.fint.modelo.managers;
 
 import edu.ort.dcomp.fint.modelo.Servicio;
-import edu.ort.dcomp.fint.modelo.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;

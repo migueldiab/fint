@@ -1,10 +1,10 @@
 package edu.ort.dcomp.ute.ws;
 
+import edu.ort.dcomp.ute.managers.ClienteFacade;
+import edu.ort.dcomp.ute.managers.FacturaFacade;
 import edu.ort.dcomp.ute.modelo.Cliente;
-import edu.ort.dcomp.ute.modelo.ClienteFacade;
 import edu.ort.dcomp.ute.modelo.Factura;
 import edu.ort.dcomp.ute.modelo.Factura.Estado;
-import edu.ort.dcomp.ute.modelo.FacturaFacade;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.jws.WebMethod;

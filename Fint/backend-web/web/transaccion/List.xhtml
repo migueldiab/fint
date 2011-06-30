@@ -34,23 +34,9 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="#{bundle.ListTransaccionTitle_categoria}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.categoria}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
                             <h:outputText value="#{bundle.ListTransaccionTitle_destinatario}"/>
                         </f:facet>
                         <h:outputText value="#{item.destinatario}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListTransaccionTitle_fecha}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.fecha}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
                     </h:column>
                     <h:column>
                         <f:facet name="header">

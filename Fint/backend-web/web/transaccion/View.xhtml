@@ -19,14 +19,8 @@
                     <h:outputText value="#{transaccionController.selected.id}" title="#{bundle.ViewTransaccionTitle_id}"/>
                     <h:outputText value="#{bundle.ViewTransaccionLabel_importe}"/>
                     <h:outputText value="#{transaccionController.selected.importe}" title="#{bundle.ViewTransaccionTitle_importe}"/>
-                    <h:outputText value="#{bundle.ViewTransaccionLabel_categoria}"/>
-                    <h:outputText value="#{transaccionController.selected.categoria}" title="#{bundle.ViewTransaccionTitle_categoria}"/>
                     <h:outputText value="#{bundle.ViewTransaccionLabel_destinatario}"/>
                     <h:outputText value="#{transaccionController.selected.destinatario}" title="#{bundle.ViewTransaccionTitle_destinatario}"/>
-                    <h:outputText value="#{bundle.ViewTransaccionLabel_fecha}"/>
-                    <h:outputText value="#{transaccionController.selected.fecha}" title="#{bundle.ViewTransaccionTitle_fecha}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
                     <h:outputText value="#{bundle.ViewTransaccionLabel_numero}"/>
                     <h:outputText value="#{transaccionController.selected.numero}" title="#{bundle.ViewTransaccionTitle_numero}"/>
                 </h:panelGrid>

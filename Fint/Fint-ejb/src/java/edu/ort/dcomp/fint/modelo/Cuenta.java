@@ -26,6 +26,8 @@ public class Cuenta implements Serializable {
   private Long id;
   @NotNull
   private String nombre;
+  @NotNull
+  private Long numero;
   @OneToMany
   @JoinColumn(name="id_cuenta")
   private Set<Transaccion> transacciones;
@@ -99,6 +101,14 @@ public class Cuenta implements Serializable {
 
   public void setTipo(Tipo tipo) {
     this.tipo = tipo;
+  }
+
+  public Long getNumero() {
+    return numero;
+  }
+
+  public void setNumero(Long numero) {
+    this.numero = numero;
   }
 
   
