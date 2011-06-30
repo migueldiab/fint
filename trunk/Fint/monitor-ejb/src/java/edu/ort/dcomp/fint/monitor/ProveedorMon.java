@@ -1,7 +1,6 @@
 package edu.ort.dcomp.fint.monitor;
 
 import java.net.MalformedURLException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -38,7 +37,7 @@ public class ProveedorMon {
   public void startUpTimers() {
     System.out.println("Construyendo Timers");
      TimerConfig timerConfig = new TimerConfig();
-     timerConfig.setPersistent(true);
+     timerConfig.setPersistent(false);
      timerConfig.setInfo("parserProveedorAgendado");
      ScheduleExpression sched = new ScheduleExpression();
      sched.second("*/30");
@@ -53,7 +52,7 @@ public class ProveedorMon {
     uteParser.leerFacturasPasadas();
   }
 
-//  @Schedule(second="*/5", minute="*", hour="*")
+//  @Schedule(hour="*", minute="*", second="*/5")
 //  public void automaticTimeout() {
 //    System.out.println("");
 //  }

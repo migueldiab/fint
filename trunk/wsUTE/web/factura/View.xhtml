@@ -29,14 +29,14 @@
                     </h:outputText>
                     <h:outputText value="#{bundle.ViewFacturaLabel_importe}"/>
                     <h:outputText value="#{facturaController.selected.importe}" title="#{bundle.ViewFacturaTitle_importe}"/>
-                    <h:outputText value="#{bundle.ViewFacturaLabel_cliente}"/>
-                    <h:outputText value="#{facturaController.selected.cliente}" title="#{bundle.ViewFacturaTitle_cliente}"/>
                     <h:outputText value="#{bundle.ViewFacturaLabel_estado}"/>
                     <h:outputText value="#{facturaController.selected.estado}" title="#{bundle.ViewFacturaTitle_estado}"/>
                     <h:outputText value="#{bundle.ViewFacturaLabel_fechaPago}"/>
                     <h:outputText value="#{facturaController.selected.fechaPago}" title="#{bundle.ViewFacturaTitle_fechaPago}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
+                    <h:outputText value="#{bundle.ViewFacturaLabel_cuenta}"/>
+                    <h:outputText value="#{facturaController.selected.cuenta}" title="#{bundle.ViewFacturaTitle_cuenta}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{facturaController.destroyAndView}" value="#{bundle.ViewFacturaDestroyLink}"/>

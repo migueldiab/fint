@@ -3,13 +3,18 @@ package edu.ort.dcomp.ute.modelo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 
@@ -18,27 +23,25 @@ import javax.validation.constraints.NotNull;
  * @author migueldiab
  */
 @Entity
-public class Factura implements Serializable {
+public class Cuenta implements Serializable {
   public enum Estado {
-    PENDIENTE, PAGA, VENCIDA, ANULADA
+    ACTIVA, INACTIVA, CANCELADA
   }
   private static final long serialVersionUID = 1L;
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
-  private BigDecimal importe;
-  private String concepto;
   @Temporal(javax.persistence.TemporalType.DATE)
-  private Date fechaEmision;
-  @Temporal(javax.persistence.TemporalType.DATE)
-  private Date fechaVencimiento;
-  @Temporal(javax.persistence.TemporalType.DATE)
-  private Date fechaPago;
+  private Date fechaApertura;
   @Enumerated(EnumType.STRING)
   private Estado estado;
+  private BigDecimal balance;
+  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval=true)
+  @JoinColumn(name="id_cuenta")
+  private Set<Factura> factura;
   @NotNull
   @ManyToOne
-  private Cuenta cuenta;
+  private Cliente cliente;
 
   public Long getId() {
     return id;
@@ -58,10 +61,10 @@ public class Factura implements Serializable {
   @Override
   public boolean equals(Object object) {
     // TODO: Warning - this method won't work in the case the id fields are not set
-    if (!(object instanceof Factura)) {
+    if (!(object instanceof Cuenta)) {
       return false;
     }
-    Factura other = (Factura) object;
+    Cuenta other = (Cuenta) object;
     if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
       return false;
     }
@@ -70,39 +73,15 @@ public class Factura implements Serializable {
 
   @Override
   public String toString() {
-    return "edu.ort.dcomp.ute.modelo.Factura[id=" + id + "]";
+    return getId() + " - " + getCliente();
   }
 
-  public String getConcepto() {
-    return concepto;
+  public BigDecimal getBalance() {
+    return balance;
   }
 
-  public void setConcepto(String concepto) {
-    this.concepto = concepto;
-  }
-
-  public Date getFechaEmision() {
-    return fechaEmision;
-  }
-
-  public void setFechaEmision(Date fechaEmision) {
-    this.fechaEmision = fechaEmision;
-  }
-
-  public Date getFechaVencimiento() {
-    return fechaVencimiento;
-  }
-
-  public void setFechaVencimiento(Date fechaVencimiento) {
-    this.fechaVencimiento = fechaVencimiento;
-  }
-
-  public BigDecimal getImporte() {
-    return importe;
-  }
-
-  public void setImporte(BigDecimal importe) {
-    this.importe = importe;
+  public void setBalance(BigDecimal balance) {
+    this.balance = balance;
   }
 
   public Estado getEstado() {
@@ -113,24 +92,28 @@ public class Factura implements Serializable {
     this.estado = estado;
   }
 
-  public Date getFechaPago() {
-    return fechaPago;
+  public Date getFechaApertura() {
+    return fechaApertura;
   }
 
-  public void setFechaPago(Date fechaPago) {
-    this.fechaPago = fechaPago;
+  public void setFechaApertura(Date fechaApertura) {
+    this.fechaApertura = fechaApertura;
   }
 
-  public Estado[] listEstados() {
-    return Estado.values();
+  public Set<Factura> getFactura() {
+    return factura;
   }
 
-  public Cuenta getCuenta() {
-    return cuenta;
+  public void setFactura(Set<Factura> factura) {
+    this.factura = factura;
   }
 
-  public void setCuenta(Cuenta cuenta) {
-    this.cuenta = cuenta;
+  public Cliente getCliente() {
+    return cliente;
+  }
+
+  public void setCliente(Cliente cliente) {
+    this.cliente = cliente;
   }
 
 }

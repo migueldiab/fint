@@ -22,6 +22,8 @@ public class Servicio implements Serializable {
   private Long id;
   @NotNull
   private String nombre;
+  @NotNull
+  private Long numero;
   @OneToMany
   @JoinColumn(name="id_servicio")
   private Set<Transaccion> transacciones;
@@ -95,6 +97,14 @@ public class Servicio implements Serializable {
 
   public void setCategoria(Categoria categoria) {
     this.categoria = categoria;
+  }
+
+  public Long getNumero() {
+    return numero;
+  }
+
+  public void setNumero(Long numero) {
+    this.numero = numero;
   }
 
 

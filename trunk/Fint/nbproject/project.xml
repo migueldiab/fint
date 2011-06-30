@@ -16,15 +16,15 @@
                     <path-in-war>/</path-in-war>
                 </library>
                 <library>
-                    <file>${reference.common-ejb.dist-ear}</file>
-                    <path-in-war>/</path-in-war>
-                </library>
-                <library>
                     <file>${reference.backend-web.dist-ear}</file>
                     <path-in-war>/</path-in-war>
                 </library>
                 <library>
                     <file>${reference.monitor-ejb.dist-ear}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library>
+                    <file>${reference.common-ejb.dist-ear}</file>
                     <path-in-war>/</path-in-war>
                 </library>
             </web-module-additional-libraries>

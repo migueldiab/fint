@@ -29,18 +29,18 @@
                     </h:inputText>
                     <h:outputLabel value="#{bundle.CreateFacturaLabel_importe}" for="importe" />
                     <h:inputText id="importe" value="#{facturaController.selected.importe}" title="#{bundle.CreateFacturaTitle_importe}" />
-                    <h:outputLabel value="#{bundle.CreateFacturaLabel_cliente}" for="cliente" />
-                    <h:selectOneMenu id="cliente" value="#{facturaController.selected.cliente}" title="#{bundle.CreateFacturaTitle_cliente}" >
-                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreateFacturaLabel_estado}" for="estado" />
                     <h:selectOneMenu id="estado" value="#{facturaController.selected.estado}" title="#{bundle.CreateFacturaTitle_estado}">
-                      <f:selectItems value="#{facturaController.selected.listEstados()}" />
+                      <f:selectItems value="#{facturaController.estados}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreateFacturaLabel_fechaPago}" for="fechaPago" />
                     <h:inputText id="fechaPago" value="#{facturaController.selected.fechaPago}" title="#{bundle.CreateFacturaTitle_fechaPago}" >
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFacturaLabel_cuenta}" for="cuenta" />
+                    <h:selectOneMenu id="cuenta" value="#{facturaController.selected.cuenta}" title="#{bundle.CreateFacturaTitle_cuenta}" >
+                        <f:selectItems value="#{cuentaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{facturaController.create}" value="#{bundle.CreateFacturaSaveLink}" />

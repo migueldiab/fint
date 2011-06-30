@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package edu.ort.dcomp.ute.modelo;
 
 import java.io.Serializable;
@@ -37,9 +32,9 @@ public class Cliente implements Serializable {
   private String apellido;
   @NotNull
   private Long ci;
-  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval=true)
+  @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval=true)
   @JoinColumn(name="id_usuario")
-  private Set<Factura> facturas;
+  private Set<Cuenta> cuentas;
 
   public Long getId() {
     return id;
@@ -71,7 +66,7 @@ public class Cliente implements Serializable {
 
   @Override
   public String toString() {
-    return "edu.ort.dcomp.ute.modelo.Cliente[id=" + id + "]";
+    return getApellido() + ", " + getNombre();
   }
 
   public String getApellido() {
@@ -90,20 +85,20 @@ public class Cliente implements Serializable {
     this.ci = ci;
   }
 
-  public Set<Factura> getFacturas() {
-    return facturas;
-  }
-
-  public void setFacturas(Set<Factura> facturas) {
-    this.facturas = facturas;
-  }
-
   public String getNombre() {
     return nombre;
   }
 
   public void setNombre(String nombre) {
     this.nombre = nombre;
+  }
+
+  public Set<Cuenta> getCuentas() {
+    return cuentas;
+  }
+
+  public void setCuentas(Set<Cuenta> cuentas) {
+    this.cuentas = cuentas;
   }
 
 }
