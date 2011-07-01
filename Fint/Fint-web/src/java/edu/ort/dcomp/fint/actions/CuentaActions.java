@@ -1,14 +1,13 @@
 package edu.ort.dcomp.fint.actions;
 
+import edu.ort.common.log.Logger;
 import edu.ort.dcomp.fint.controller.CuentaController;
 import edu.ort.dcomp.fint.controller.UsuarioController;
 import edu.ort.dcomp.fint.jsf.JsfUtil;
 import edu.ort.dcomp.fint.modelo.Cuenta;
-import java.util.logging.Level;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import edu.ort.common.log.Logger;
 
 
 /**

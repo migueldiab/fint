@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/resources/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewReciboTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewReciboLabel_claveEntidad}"/>
+                    <h:outputText value="#{reciboController.selected.claveEntidad}" title="#{bundle.ViewReciboTitle_claveEntidad}"/>
+                    <h:outputText value="#{bundle.ViewReciboLabel_factura}"/>
+                    <h:outputText value="#{reciboController.selected.factura}" title="#{bundle.ViewReciboTitle_factura}"/>
+                    <h:outputText value="#{bundle.ViewReciboLabel_fechaRecibo}"/>
+                    <h:outputText value="#{reciboController.selected.fechaRecibo}" title="#{bundle.ViewReciboTitle_fechaRecibo}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewReciboLabel_importe}"/>
+                    <h:outputText value="#{reciboController.selected.importe}" title="#{bundle.ViewReciboTitle_importe}"/>
+                    <h:outputText value="#{bundle.ViewReciboLabel_id}"/>
+                    <h:outputText value="#{reciboController.selected.id}" title="#{bundle.ViewReciboTitle_id}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{reciboController.destroyAndView}" value="#{bundle.ViewReciboDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewReciboEditLink}"/>
+                <br />
+                <h:commandLink action="#{reciboController.prepareCreate}" value="#{bundle.ViewReciboCreateLink}" />
+                <br />
+                <h:commandLink action="#{reciboController.prepareList}" value="#{bundle.ViewReciboShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewReciboIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

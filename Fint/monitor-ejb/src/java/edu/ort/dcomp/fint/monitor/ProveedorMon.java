@@ -1,7 +1,6 @@
 package edu.ort.dcomp.fint.monitor;
 
 import java.net.MalformedURLException;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
@@ -29,27 +28,24 @@ public class ProveedorMon {
   UTEParser uteParser;
 
   private Boolean run = Boolean.FALSE;
-  
-  private Logger logger = Logger.getLogger(
-          "com.sun.tutorial.javaee.ejb.timersession.TimerSessionBean");
 
   @PostConstruct
   public void startUpTimers() {
-    System.out.println("Construyendo Timers");
+     System.out.println("Construyendo Timers");
      TimerConfig timerConfig = new TimerConfig();
      timerConfig.setPersistent(false);
      timerConfig.setInfo("parserProveedorAgendado");
      ScheduleExpression sched = new ScheduleExpression();
-     sched.second("*/30");
-     sched.minute("*");
+     sched.second("0");
+     sched.minute("*/1");
      sched.hour("*");
      Timer timer = timerService.createCalendarTimer(sched, timerConfig);
   }
 
   @Timeout
   public void programmaticTimeout(Timer timer) throws MalformedURLException {
-    uteParser.leerFacturasPendientes();
-    uteParser.leerFacturasPasadas();
+//    uteParser.leerFacturasPendientes();
+//    uteParser.leerFacturasPasadas();
   }
 
 //  @Schedule(hour="*", minute="*", second="*/5")

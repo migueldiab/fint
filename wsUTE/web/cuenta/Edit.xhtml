@@ -16,7 +16,7 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditCuentaLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{cuentaController.selected.id}" title="#{bundle.EditCuentaTitle_id}" />
+                    <h:outputLabel id="id" value="#{cuentaController.selected.id}" title="#{bundle.EditCuentaTitle_id}" />
                     <h:outputLabel value="#{bundle.EditCuentaLabel_balance}" for="balance" />
                     <h:inputText id="balance" value="#{cuentaController.selected.balance}" title="#{bundle.EditCuentaTitle_balance}" />
                     <h:outputLabel value="#{bundle.EditCuentaLabel_estado}" for="estado" />

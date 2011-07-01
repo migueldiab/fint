@@ -34,6 +34,15 @@ public class ServicioActions {
     return servicio;
   }
 
+  public String conectar() {
+    String response;
+    response = PATH + "lista";
+    String id = JsfUtil.getRequestParameter("conectar:id");
+    String password = JsfUtil.getRequestParameter("conectar:password");
+    
+    return response;
+  }
+  
   public String guardar() {
     String response;
     try {

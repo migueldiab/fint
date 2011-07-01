@@ -9,7 +9,7 @@
         <meta http-equiv="Pragma" content="no-cache" />
         <h:outputStylesheet library="css" name="gt-styles.css" />
         <h:outputStylesheet library="css" name="reset-fonts.css" />
-        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <title><ui:insert name="title">Web Service UTE</ui:insert></title>
         
     </h:head>
     
@@ -25,9 +25,10 @@
       <div class="gt-nav">
           <ul>
         <ui:insert name="navigation">
-            <li><h:link outcome="/cliente/list" value="Clientes" /></li>
-            <li><h:link outcome="/cuenta/list" value="Cuentas" /></li>
-            <li><h:link outcome="/factura/list" value="Facturas" /></li>
+            <li><h:link outcome="/cliente/List" value="Clientes" /></li>
+            <li><h:link outcome="/cuenta/List" value="Cuentas" /></li>
+            <li><h:link outcome="/factura/List" value="Facturas" /></li>
+            <li><h:link outcome="/recibo/List" value="Recibos" /></li>
         </ui:insert>
           </ul>
       </div>

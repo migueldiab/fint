@@ -1,7 +1,9 @@
 package edu.ort.common.mail;
 
+import edu.ort.common.log.Logger;
 import java.util.Properties;
 import javax.ejb.Asynchronous;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -18,6 +20,9 @@ import javax.mail.internet.MimeMessage;
 @Stateless
 public class Mailer implements MailerLocal {
 
+  @EJB
+  private Logger logger;
+  
   @Asynchronous
   @Override
   public void sendMail(final String toMail, final String subject, final String textMessage) {
@@ -29,8 +34,8 @@ public class Mailer implements MailerLocal {
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.port", port);
-		Session session = Session.getDefaultInstance(props, new MailAuthenticator(username, password));
 		try {
+  		Session session = Session.getDefaultInstance(props, new MailAuthenticator(username, password));
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("basura@adinet.com.uy"));
       InternetAddress[] to = InternetAddress.parse(toMail);
@@ -39,7 +44,7 @@ public class Mailer implements MailerLocal {
 			message.setText(textMessage);
 			Transport.send(message);
 		} catch (MessagingException e) {
-			throw new RuntimeException(e);
+			logger.error("No se pudo enviar mail", e.toString());
 		}
   }
 
