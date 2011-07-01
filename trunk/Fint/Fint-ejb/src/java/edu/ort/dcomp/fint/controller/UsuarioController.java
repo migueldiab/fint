@@ -1,5 +1,6 @@
 package edu.ort.dcomp.fint.controller;
 
+import edu.ort.common.log.Logger;
 import edu.ort.common.mail.MailerLocal;
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.Grupo;
@@ -30,6 +31,9 @@ public class UsuarioController {
 
   @EJB
   private MailerLocal  mailer;
+
+  @EJB
+  private Logger logger;
   
   private String GRUPO_USUARIO = "usuario";
   
@@ -90,11 +94,9 @@ public class UsuarioController {
     unGrupo.setPermisos(GRUPO_USUARIO);
     grupoManager.persist(unGrupo);
     try {
-      usuarioManager.flush();
-      unUsuario = usuarioManager.merge(nuevoUsuario);
       mailer.sendMail(nuevoUsuario.getEmail(), "Bienvenido a FINT", "Bienvenido " + nuevoUsuario.getNombre());
     } catch (Exception e) {
-      System.out.println("Error !");
+      logger.error("Error al notificar al usuario", e.toString());
     }
   }
 

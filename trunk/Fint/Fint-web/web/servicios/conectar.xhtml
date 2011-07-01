@@ -22,11 +22,13 @@
             <div class="panelContainer">
               <div class="panel" title="Crear un nuevo servicio para administrar las cuentas ocasionadas por los mismos">
                 <div class="wrapper">
-                  <h:form id="cuenta">
+                  <h:form id="conectar">
                     <h:panelGrid columns="2">
-                      <h:outputLabel for="nombre" value="Nombre" />
-                      <h:inputText id="nombre" value="#{servicioActions.servicio.nombre}" />
-                      <h:outputLabel for="proveedor" value="Proveedor" />
+                      <h:outputLabel for="id" value="Ingrese su ID " />
+                      <h:inputText id="id" />
+                      <h:outputLabel for="password" value="Ingrese su Clave " />
+                      <h:inputText id="password" />
+                      <h:outputLabel for="proveedor" value="Seleccione el servicio : " />
                       <h:selectOneMenu id="proveedor" value="#{servicioActions.servicio.proveedor}" >
                         <f:converter converterId="proveedorConverter" />
                         <f:selectItems 
@@ -36,7 +38,7 @@
                           itemValue="#{proveedor}"
                         />
                       </h:selectOneMenu>
-                      <h:commandButton action="#{servicioActions.guardar}" value="Guardar" />
+                      <h:commandButton action="#{servicioActions.conectar}" value="Conectar" />
                       <h:button value="Volver" outcome="/servicios/lista" />
                     </h:panelGrid>
                   </h:form>

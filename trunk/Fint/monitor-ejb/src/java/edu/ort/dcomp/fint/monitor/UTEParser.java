@@ -1,7 +1,6 @@
 package edu.ort.dcomp.fint.monitor;
 
 import edu.ort.common.utils.DateTime;
-import edu.ort.dcomp.fint.modelo.Agenda;
 import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.Transaccion;
 import edu.ort.dcomp.fint.modelo.Transaccion.Estado;
@@ -10,7 +9,6 @@ import edu.ort.dcomp.fint.modelo.managers.ServicioManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.TransaccionManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.UsuarioManagerLocal;
 import edu.ort.dcomp.fint.monitor.client.Factura;
-import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.List;

@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.1 (branches/2.1-6728; 2011-02-03T14:14:58+0000) JAXWS-RI/2.2.3 JAXWS/2.2. --><xs:schema xmlns:tns="http://ws.ute.dcomp.ort.edu/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.ute.dcomp.ort.edu/">
 
+<xs:element name="obtenerCuentasPorCliente" type="tns:obtenerCuentasPorCliente" />
+
+<xs:element name="obtenerCuentasPorClienteResponse" type="tns:obtenerCuentasPorClienteResponse" />
+
 <xs:element name="obtenerFacturasPasadas" type="tns:obtenerFacturasPasadas" />
 
 <xs:element name="obtenerFacturasPasadasResponse" type="tns:obtenerFacturasPasadasResponse" />
@@ -8,29 +12,44 @@
 
 <xs:element name="obtenerFacturasPendientesResponse" type="tns:obtenerFacturasPendientesResponse" />
 
-<xs:element name="obtenerFacturasPorClienteEstado" type="tns:obtenerFacturasPorClienteEstado" />
+<xs:element name="obtenerFacturasPorCuentaEstado" type="tns:obtenerFacturasPorCuentaEstado" />
 
-<xs:element name="obtenerFacturasPorClienteEstadoResponse" type="tns:obtenerFacturasPorClienteEstadoResponse" />
+<xs:element name="obtenerFacturasPorCuentaEstadoResponse" type="tns:obtenerFacturasPorCuentaEstadoResponse" />
 
-<xs:complexType name="obtenerFacturasPorClienteEstado">
+<xs:element name="pagarCuenta" type="tns:pagarCuenta" />
+
+<xs:element name="pagarCuentaResponse" type="tns:pagarCuentaResponse" />
+
+<xs:complexType name="pagarCuenta">
 <xs:sequence>
 <xs:element name="usuario" type="xs:string" minOccurs="0" />
 <xs:element name="password" type="xs:string" minOccurs="0" />
-<xs:element name="ciUsuario" type="xs:long" minOccurs="0" />
-<xs:element name="estadoFactura" type="tns:estado" minOccurs="0" />
+<xs:element name="idCuenta" type="xs:long" minOccurs="0" />
+<xs:element name="idFactura" type="xs:long" minOccurs="0" />
+<xs:element name="claveEntidadFinanciera" type="xs:string" minOccurs="0" />
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="obtenerFacturasPorClienteEstadoResponse">
+<xs:complexType name="pagarCuentaResponse">
 <xs:sequence>
-<xs:element name="return" type="tns:factura" minOccurs="0" maxOccurs="unbounded" />
+<xs:element name="return" type="tns:recibo" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="recibo">
+<xs:sequence>
+<xs:element name="claveEntidad" type="xs:string" minOccurs="0" />
+<xs:element name="factura" type="tns:factura" minOccurs="0" />
+<xs:element name="fechaRecibo" type="xs:dateTime" minOccurs="0" />
+<xs:element name="id" type="xs:long" minOccurs="0" />
+<xs:element name="importe" type="xs:decimal" minOccurs="0" />
 </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="factura">
 <xs:sequence>
-<xs:element name="cliente" type="tns:cliente" minOccurs="0" />
 <xs:element name="concepto" type="xs:string" minOccurs="0" />
+<xs:element name="cuenta" type="tns:cuenta" minOccurs="0" />
 <xs:element name="estado" type="tns:estado" minOccurs="0" />
 <xs:element name="fechaEmision" type="xs:dateTime" minOccurs="0" />
 <xs:element name="fechaPago" type="xs:dateTime" minOccurs="0" />
@@ -40,11 +59,22 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="cuenta">
+<xs:sequence>
+<xs:element name="balance" type="xs:decimal" minOccurs="0" />
+<xs:element name="cliente" type="tns:cliente" minOccurs="0" />
+<xs:element name="estado" type="tns:estadoCuenta" minOccurs="0" />
+<xs:element name="factura" type="tns:factura" nillable="true" minOccurs="0" maxOccurs="unbounded" />
+<xs:element name="fechaApertura" type="xs:dateTime" minOccurs="0" />
+<xs:element name="id" type="xs:long" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="cliente">
 <xs:sequence>
 <xs:element name="apellido" type="xs:string" minOccurs="0" />
 <xs:element name="ci" type="xs:long" minOccurs="0" />
-<xs:element name="facturas" type="tns:factura" nillable="true" minOccurs="0" maxOccurs="unbounded" />
+<xs:element name="cuentas" type="tns:cuenta" nillable="true" minOccurs="0" maxOccurs="unbounded" />
 <xs:element name="id" type="xs:long" minOccurs="0" />
 <xs:element name="nombre" type="xs:string" minOccurs="0" />
 </xs:sequence>
@@ -52,7 +82,7 @@
 
 <xs:complexType name="obtenerFacturasPasadas">
 <xs:sequence>
-<xs:element name="ciUsuario" type="xs:long" />
+<xs:element name="idCuenta" type="xs:long" />
 <xs:element name="dias" type="xs:int" />
 <xs:element name="usuario" type="xs:string" minOccurs="0" />
 <xs:element name="password" type="xs:string" minOccurs="0" />
@@ -67,7 +97,7 @@
 
 <xs:complexType name="obtenerFacturasPendientes">
 <xs:sequence>
-<xs:element name="ciUsuario" type="xs:long" />
+<xs:element name="idCuenta" type="xs:long" />
 <xs:element name="usuario" type="xs:string" minOccurs="0" />
 <xs:element name="password" type="xs:string" minOccurs="0" />
 </xs:sequence>
@@ -78,6 +108,42 @@
 <xs:element name="return" type="tns:factura" minOccurs="0" maxOccurs="unbounded" />
 </xs:sequence>
 </xs:complexType>
+
+<xs:complexType name="obtenerFacturasPorCuentaEstado">
+<xs:sequence>
+<xs:element name="usuario" type="xs:string" minOccurs="0" />
+<xs:element name="password" type="xs:string" minOccurs="0" />
+<xs:element name="idCuenta" type="xs:long" minOccurs="0" />
+<xs:element name="estadoFactura" type="tns:estado" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obtenerFacturasPorCuentaEstadoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:factura" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obtenerCuentasPorCliente">
+<xs:sequence>
+<xs:element name="ciCliente" type="xs:long" minOccurs="0" />
+<xs:element name="password" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obtenerCuentasPorClienteResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:cuenta" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:simpleType name="estadoCuenta">
+<xs:restriction base="xs:string">
+<xs:enumeration value="ACTIVA" />
+<xs:enumeration value="INACTIVA" />
+<xs:enumeration value="CANCELADA" />
+</xs:restriction>
+</xs:simpleType>
 
 <xs:simpleType name="estado">
 <xs:restriction base="xs:string">

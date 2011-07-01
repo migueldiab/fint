@@ -16,13 +16,13 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditClienteLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{clienteController.selected.id}" title="#{bundle.EditClienteTitle_id}" />
-                    <h:outputLabel value="#{bundle.EditClienteLabel_apellido}" for="apellido" />
-                    <h:inputText id="apellido" value="#{clienteController.selected.apellido}" title="#{bundle.EditClienteTitle_apellido}" />
+                    <h:outputLabel id="id" value="#{clienteController.selected.id}" title="#{bundle.EditClienteTitle_id}" />
                     <h:outputLabel value="#{bundle.EditClienteLabel_ci}" for="ci" />
                     <h:inputText id="ci" value="#{clienteController.selected.ci}" title="#{bundle.EditClienteTitle_ci}" />
                     <h:outputLabel value="#{bundle.EditClienteLabel_nombre}" for="nombre" />
                     <h:inputText id="nombre" value="#{clienteController.selected.nombre}" title="#{bundle.EditClienteTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_apellido}" for="apellido" />
+                    <h:inputText id="apellido" value="#{clienteController.selected.apellido}" title="#{bundle.EditClienteTitle_apellido}" />
                 </h:panelGrid>
                 <h:commandLink action="#{clienteController.update}" value="#{bundle.EditClienteSaveLink}"/>
                 <br />

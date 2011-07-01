@@ -17,12 +17,12 @@
                 <h:panelGrid columns="2">
                     <h:outputText value="#{bundle.ViewClienteLabel_id}"/>
                     <h:outputText value="#{clienteController.selected.id}" title="#{bundle.ViewClienteTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewClienteLabel_apellido}"/>
-                    <h:outputText value="#{clienteController.selected.apellido}" title="#{bundle.ViewClienteTitle_apellido}"/>
                     <h:outputText value="#{bundle.ViewClienteLabel_ci}"/>
                     <h:outputText value="#{clienteController.selected.ci}" title="#{bundle.ViewClienteTitle_ci}"/>
                     <h:outputText value="#{bundle.ViewClienteLabel_nombre}"/>
                     <h:outputText value="#{clienteController.selected.nombre}" title="#{bundle.ViewClienteTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewClienteLabel_apellido}"/>
+                    <h:outputText value="#{clienteController.selected.apellido}" title="#{bundle.ViewClienteTitle_apellido}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{clienteController.destroyAndView}" value="#{bundle.ViewClienteDestroyLink}"/>

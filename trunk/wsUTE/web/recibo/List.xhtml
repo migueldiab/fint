@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/resources/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListReciboTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListReciboEmpty}" rendered="#{reciboController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{reciboController.items.rowCount > 0}">
+                <h:outputText value="#{reciboController.pagination.pageFirstItem + 1}..#{reciboController.pagination.pageLastItem + 1}/#{reciboController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{reciboController.previous}" value="#{bundle.Previous} #{reciboController.pagination.pageSize}" rendered="#{reciboController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{reciboController.next}" value="#{bundle.Next} #{reciboController.pagination.pageSize}" rendered="#{reciboController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{reciboController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListReciboTitle_claveEntidad}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.claveEntidad}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListReciboTitle_factura}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.factura}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListReciboTitle_fechaRecibo}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaRecibo}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListReciboTitle_importe}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.importe}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListReciboTitle_id}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{reciboController.prepareView}" value="#{bundle.ListReciboViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{reciboController.prepareEdit}" value="#{bundle.ListReciboEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{reciboController.destroy}" value="#{bundle.ListReciboDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{reciboController.prepareCreate}" value="#{bundle.ListReciboCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListReciboIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

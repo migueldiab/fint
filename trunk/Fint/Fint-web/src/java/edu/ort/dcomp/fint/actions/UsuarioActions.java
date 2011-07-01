@@ -82,6 +82,7 @@ public class UsuarioActions {
 
   public String crear() {
     usuarioController.crearNuevoUsuario(nuevoUsuario);
+    JsfUtil.addSuccessMessage("Se ha creado la cuenta. Verifique su email para activarla.");
     return "/index";
   }
   private UsuarioController getController() {

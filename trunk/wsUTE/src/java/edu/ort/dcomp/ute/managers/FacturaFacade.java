@@ -1,7 +1,7 @@
 package edu.ort.dcomp.ute.managers;
 
 import edu.ort.common.utils.DateTime;
-import edu.ort.dcomp.ute.modelo.Cliente;
+import edu.ort.dcomp.ute.modelo.Cuenta;
 import edu.ort.dcomp.ute.modelo.Factura;
 import edu.ort.dcomp.ute.modelo.Factura.Estado;
 import java.util.Calendar;
@@ -29,19 +29,21 @@ public class FacturaFacade extends AbstractFacade<Factura> {
     super(Factura.class);
   }
   
-  public List<Factura> buscarPorClienteEstado(Cliente unCliente, Estado estado) {
-    Query q = getEntityManager().createQuery("SELECT f FROM Factura f WHERE f.cliente = :cliente AND f.estado = :estado");
-    q.setParameter("cliente", unCliente);
+  public List<Factura> buscarPorCuentaEstado(Cuenta unaCuenta, Estado estado) {
+    Query q = getEntityManager().createQuery("SELECT f FROM Factura f WHERE f.cuenta = :cuenta AND f.estado = :estado");
+    q.setParameter("cuenta", unaCuenta);
     q.setParameter("estado", estado);
     final List<Factura> lista = q.getResultList();
     return lista;
   }
 
-  public List<Factura> buscarPorClienteDiasPasados(Cliente unCliente, int dias) {
-    Query q = getEntityManager().createQuery("SELECT f FROM Factura f WHERE f.cliente = :cliente AND f.fechaEmision > :fechaInicio");
-    q.setParameter("cliente", unCliente);
+  public List<Factura> buscarPorCuentaDiasPasados(Cuenta unaCuenta, int dias) {
+    Query q = getEntityManager().createQuery("SELECT f FROM Factura f WHERE f.cuenta = :cliente AND f.fechaEmision > :fechaInicio");
+    q.setParameter("cuenta", unaCuenta);
     q.setParameter("fechaInicio", DateTime.addToNow(Calendar.DATE, -dias));
     final List<Factura> lista = q.getResultList();
     return lista;
   }
+
+
 }

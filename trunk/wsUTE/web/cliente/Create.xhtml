@@ -15,14 +15,12 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateClienteLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{clienteController.selected.id}" title="#{bundle.CreateClienteTitle_id}" />
-                    <h:outputLabel value="#{bundle.CreateClienteLabel_apellido}" for="apellido" />
-                    <h:inputText id="apellido" value="#{clienteController.selected.apellido}" title="#{bundle.CreateClienteTitle_apellido}" />
                     <h:outputLabel value="#{bundle.CreateClienteLabel_ci}" for="ci" />
-                    <h:inputText id="ci" value="#{clienteController.selected.ci}" title="#{bundle.CreateClienteTitle_ci}" />
+                    <h:inputText id="ci" value="#{clienteController.selected.ci}" title="#{bundle.CreateClienteTitle_ci} - s&oacute;lo n&uacute;meros" />
                     <h:outputLabel value="#{bundle.CreateClienteLabel_nombre}" for="nombre" />
                     <h:inputText id="nombre" value="#{clienteController.selected.nombre}" title="#{bundle.CreateClienteTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_apellido}" for="apellido" />
+                    <h:inputText id="apellido" value="#{clienteController.selected.apellido}" title="#{bundle.CreateClienteTitle_apellido}" />
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{clienteController.create}" value="#{bundle.CreateClienteSaveLink}" />

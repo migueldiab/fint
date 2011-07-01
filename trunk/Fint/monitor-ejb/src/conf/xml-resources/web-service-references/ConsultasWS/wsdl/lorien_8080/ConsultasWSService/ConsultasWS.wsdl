@@ -4,11 +4,11 @@
 <xsd:import namespace="http://ws.ute.dcomp.ort.edu/" schemaLocation="http://lorien:8080/ConsultasWSService/ConsultasWS?xsd=1" />
 </xsd:schema>
 </types>
-<message name="obtenerFacturasPorClienteEstado">
-<part name="parameters" element="tns:obtenerFacturasPorClienteEstado" />
+<message name="obtenerFacturasPendientes">
+<part name="parameters" element="tns:obtenerFacturasPendientes" />
 </message>
-<message name="obtenerFacturasPorClienteEstadoResponse">
-<part name="parameters" element="tns:obtenerFacturasPorClienteEstadoResponse" />
+<message name="obtenerFacturasPendientesResponse">
+<part name="parameters" element="tns:obtenerFacturasPendientesResponse" />
 </message>
 <message name="obtenerFacturasPasadas">
 <part name="parameters" element="tns:obtenerFacturasPasadas" />
@@ -16,29 +16,49 @@
 <message name="obtenerFacturasPasadasResponse">
 <part name="parameters" element="tns:obtenerFacturasPasadasResponse" />
 </message>
-<message name="obtenerFacturasPendientes">
-<part name="parameters" element="tns:obtenerFacturasPendientes" />
+<message name="obtenerFacturasPorCuentaEstado">
+<part name="parameters" element="tns:obtenerFacturasPorCuentaEstado" />
 </message>
-<message name="obtenerFacturasPendientesResponse">
-<part name="parameters" element="tns:obtenerFacturasPendientesResponse" />
+<message name="obtenerFacturasPorCuentaEstadoResponse">
+<part name="parameters" element="tns:obtenerFacturasPorCuentaEstadoResponse" />
+</message>
+<message name="obtenerCuentasPorCliente">
+<part name="parameters" element="tns:obtenerCuentasPorCliente" />
+</message>
+<message name="obtenerCuentasPorClienteResponse">
+<part name="parameters" element="tns:obtenerCuentasPorClienteResponse" />
+</message>
+<message name="pagarCuenta">
+<part name="parameters" element="tns:pagarCuenta" />
+</message>
+<message name="pagarCuentaResponse">
+<part name="parameters" element="tns:pagarCuentaResponse" />
 </message>
 <portType name="ConsultasWS">
-<operation name="obtenerFacturasPorClienteEstado">
-<input wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPorClienteEstadoRequest" message="tns:obtenerFacturasPorClienteEstado" />
-<output wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPorClienteEstadoResponse" message="tns:obtenerFacturasPorClienteEstadoResponse" />
+<operation name="obtenerFacturasPendientes">
+<input wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPendientesRequest" message="tns:obtenerFacturasPendientes" />
+<output wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPendientesResponse" message="tns:obtenerFacturasPendientesResponse" />
 </operation>
 <operation name="obtenerFacturasPasadas">
 <input wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPasadasRequest" message="tns:obtenerFacturasPasadas" />
 <output wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPasadasResponse" message="tns:obtenerFacturasPasadasResponse" />
 </operation>
-<operation name="obtenerFacturasPendientes">
-<input wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPendientesRequest" message="tns:obtenerFacturasPendientes" />
-<output wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPendientesResponse" message="tns:obtenerFacturasPendientesResponse" />
+<operation name="obtenerFacturasPorCuentaEstado">
+<input wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPorCuentaEstadoRequest" message="tns:obtenerFacturasPorCuentaEstado" />
+<output wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerFacturasPorCuentaEstadoResponse" message="tns:obtenerFacturasPorCuentaEstadoResponse" />
+</operation>
+<operation name="obtenerCuentasPorCliente">
+<input wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerCuentasPorClienteRequest" message="tns:obtenerCuentasPorCliente" />
+<output wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/obtenerCuentasPorClienteResponse" message="tns:obtenerCuentasPorClienteResponse" />
+</operation>
+<operation name="pagarCuenta">
+<input wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/pagarCuentaRequest" message="tns:pagarCuenta" />
+<output wsam:Action="http://ws.ute.dcomp.ort.edu/ConsultasWS/pagarCuentaResponse" message="tns:pagarCuentaResponse" />
 </operation>
 </portType>
 <binding name="ConsultasWSPortBinding" type="tns:ConsultasWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
-<operation name="obtenerFacturasPorClienteEstado">
+<operation name="obtenerFacturasPendientes">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />
@@ -56,7 +76,25 @@
 <soap:body use="literal" />
 </output>
 </operation>
-<operation name="obtenerFacturasPendientes">
+<operation name="obtenerFacturasPorCuentaEstado">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="obtenerCuentasPorCliente">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="pagarCuenta">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />
