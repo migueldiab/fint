@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+  <ui:composition template="/resources/template.xhtml">
+    <ui:param name="context_help" value="Acceda a toda la información de sus cuentas"/>
+    <ui:define name="content">
+      <div id="homepage">
+        <div class="services">
+          <h2 class="subhead">Acciones Rápidas</h2>
+          <ul>
+            <li class="account"><h:link outcome="/cuentas/crear" value="Crear Cuenta"/></li>
+            <li class="editar"><h:link outcome="/cuentas/registrar" value="Ingresar Gasto"/></li>
+          </ul>
+        </div>
+        <div class="portfolio_preview">
+          <h2>Registrar Gasto</h2>
+          <div id="from_portfolio">
+            <h:form id="transaccion">
+              <h:panelGrid columns="2">
+                <h:outputLabel for="nombre" value="Cuenta" />
+                <h:selectOneMenu id="cuenta" value="#{transaccionActions.transaccion.cuenta}">
+                  <f:converter converterId="cuentaConverter" />
+                  <f:selectItems
+                    value="#{usuarioActions.cuentas}"
+                    var="cuenta"
+                    itemLabel="#{cuenta.nombre}"
+                    itemValue="#{cuenta}"
+                  />
+                </h:selectOneMenu>
+                <h:outputLabel for="numero" value="Registro # " />
+                <h:inputText id="numero" value="#{transaccionActions.transaccion.numero}"/>
+                <h:outputLabel for="fecha" value="Emision" />
+                <h:inputText id="fecha" value="#{transaccionActions.transaccion.fechaEmision}"/>
+                <h:outputLabel for="importe" value="Importe " />
+                <h:inputText id="importe" value="#{transaccionActions.transaccion.importe}"/>
+                <h:outputLabel for="concepto" value="Concepto" />
+                <h:inputText id="concepto" value="#{transaccionActions.transaccion.concepto}"/>
+                <h:outputLabel for="tipo" value="Tipo " />
+                <h:selectOneMenu id="tipo" value="#{transaccionActions.transaccion.tipo}">
+                  <f:selectItems value="#{transaccionActions.tipos}"/>
+                </h:selectOneMenu>
+                <h:outputLabel for="estado" value="Estado " />
+                <h:selectOneMenu id="estado" value="#{transaccionActions.transaccion.estado}">
+                  <f:selectItems value="#{transaccionActions.estados}"/>
+                </h:selectOneMenu>
+                <h:commandButton action="#{transaccionActions.guardar}" value="Guardar" />
+                <h:button value="Volver" outcome="/cuentas/lista" />
+              </h:panelGrid>
+            </h:form>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <br />
+      </div>
+    </ui:define>
+  </ui:composition>
+</html>

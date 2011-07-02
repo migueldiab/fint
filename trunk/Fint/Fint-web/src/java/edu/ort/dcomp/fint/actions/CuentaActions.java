@@ -6,7 +6,9 @@ import edu.ort.dcomp.fint.engine.Engine;
 import edu.ort.dcomp.fint.jsf.JsfUtil;
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.EntidadFinanciera;
+import edu.ort.dcomp.fint.modelo.Transaccion;
 import java.util.List;
+import java.util.Set;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
@@ -42,6 +44,10 @@ public class CuentaActions {
     return cuenta;
   }
 
+  public Transaccion[] getTransacciones() {
+    return cuenta.getTransacciones().toArray(new Transaccion[0]);
+  }
+
   public String guardar() {
     engine.infoLog("CuentaActions - guardar" + cuenta.getTipo());
     String response;
@@ -64,8 +70,7 @@ public class CuentaActions {
   }
 
   public String estadoRealCuenta(Cuenta unaCuenta) {
-    System.out.println("Estado Real");
-    cuentaController.estadoRealCuenta(unaCuenta);
+    cuenta = unaCuenta;
     return PATH + "estado";
   }
 

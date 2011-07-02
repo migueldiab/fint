@@ -12,38 +12,13 @@
         <div class="services">
           <h2 class="subhead">Acciones Rápidas</h2>
           <ul>
-            <li class="account"><h:link outcome="/cuentas/crear" value="Crear Cuenta"/></li>
+
           </ul>
         </div>
         <div class="portfolio_preview">
-          <h2>Mis Cuentas</h2>
+          <h2>Reportes</h2>
           <div id="from_portfolio">
-            <div class="slider-wrap">
-                <div id="main-photo-slider" class="csw">
-                  <div class="panelContainer">
-                    <h:form id="cuentas">
-                    <c:forEach items="#{usuarioActions.cuentas}" var="cuenta">
-                      <div class="panel" title="#{cuenta.nombre}">
-                        <div class="wrapper">
-                          <h:panelGrid columns="2">
-                            <h:outputLabel value="Cuenta :" />
-                            <h:outputLabel value="#{cuenta.nombre}" />
-                            <h:outputLabel value="Entidad :" />
-                            <h:outputLabel value="#{cuenta.entidadFinanciera}" />                            
-                          </h:panelGrid>
-                          <br/><br/>
-                          <h:commandButton value="Ver Movimientos" action="#{cuentaActions.estadoRealCuenta(cuenta)}" />
-                          <h:commandButton value="Estado Proyectado" action="#{cuentaActions.estadoProyectadoCuenta(cuenta)}"/>
-                          <br/><br/>
-                          <h:button value="Volver" outcome="/inicio" />
-                          <h:commandButton value="Borrar" action="#{cuentaActions.borrarCuenta(cuenta)}"/>
-                        </div>
-                      </div>
-                    </c:forEach>
-                      </h:form>
-                  </div>
-                </div>
-            </div>
+            
           </div>
         </div>
         <div class="clear"></div>

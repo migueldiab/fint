@@ -6,10 +6,13 @@ import edu.ort.dcomp.fint.modelo.Agenda;
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.Grupo;
 import edu.ort.dcomp.fint.modelo.Servicio;
+import edu.ort.dcomp.fint.modelo.Transaccion;
 import edu.ort.dcomp.fint.modelo.Usuario;
 import edu.ort.dcomp.fint.modelo.managers.AgendaManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.GrupoManagerLocal;
+import edu.ort.dcomp.fint.modelo.managers.TransaccionManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.UsuarioManagerLocal;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -36,6 +39,9 @@ public class UsuarioFacade {
 
   @EJB
   private AgendaManagerLocal ejbAgenda;
+
+  @EJB
+  private TransaccionManagerLocal ejbTransaccion;
 
   @EJB
   private MailerLocal  mailer;
@@ -122,6 +128,14 @@ public class UsuarioFacade {
     unaAgenda.setTipo(Agenda.Tipo.SERVICIO);
     unaAgenda.setUsuario(usuario);
     ejbAgenda.persist(unaAgenda);
+  }
+
+  public void registrarTransaccion(Transaccion transaccion) {
+    transaccion.setUsuario(getUsuario());
+    Date fecha = new Date();
+    transaccion.setFechaActualizacion(fecha);
+    transaccion.setFechaIngreso(fecha);
+    ejbTransaccion.persist(transaccion);    
   }
 
 }
