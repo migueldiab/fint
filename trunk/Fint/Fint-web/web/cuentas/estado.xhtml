@@ -26,7 +26,12 @@
                     <f:facet name="header">
                       <h:outputLabel value="Ingreso" />
                     </f:facet>
-                    <h:outputLabel value="#{trans.fechaIngreso}" />
+                    <h:outputLabel value="#{trans.fechaIngreso}" >
+                      <f:convertDateTime pattern="dd MMM" />
+                    </h:outputLabel> /
+                    <h:outputLabel value="#{trans.fechaEmision}" >
+                      <f:convertDateTime pattern="dd MMM" />
+                    </h:outputLabel>
                   </h:column>
                   <h:column>
                     <f:facet name="header">
@@ -48,9 +53,15 @@
                   </h:column>
                   <h:column>
                     <f:facet name="header">
-                      <h:outputLabel value="Importe" />
+                      <h:outputLabel value="Debe" />
                     </f:facet>
-                    <h:outputLabel value="#{trans.importe}" />
+                    <h:outputLabel value="#{trans.importe}" rendered="#{transaccionActions.esRetiro(trans)}" />
+                  </h:column>
+                  <h:column>
+                    <f:facet name="header">
+                      <h:outputLabel value="Haber" />
+                    </f:facet>
+                    <h:outputLabel value="#{trans.importe}" rendered="#{!transaccionActions.esRetiro(trans)}"/>
                   </h:column>
                 </h:dataTable>
               </div>

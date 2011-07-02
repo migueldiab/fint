@@ -21,7 +21,7 @@
           <div id="from_portfolio">
             <h:form id="transaccion">
               <h:panelGrid columns="2">
-                <h:outputLabel for="nombre" value="Cuenta" />
+                <h:outputLabel for="cuenta" value="Cuenta" />
                 <h:selectOneMenu id="cuenta" value="#{transaccionActions.transaccion.cuenta}">
                   <f:converter converterId="cuentaConverter" />
                   <f:selectItems
@@ -33,9 +33,11 @@
                 </h:selectOneMenu>
                 <h:outputLabel for="numero" value="Registro # " />
                 <h:inputText id="numero" value="#{transaccionActions.transaccion.numero}"/>
-                <h:outputLabel for="fecha" value="Emision" />
-                <h:inputText id="fecha" value="#{transaccionActions.transaccion.fechaEmision}"/>
-                <h:outputLabel for="importe" value="Importe " />
+                <h:outputLabel for="fechaEmision" value="Emision" />
+                <h:inputText id="fechaEmision" value="#{transaccionActions.transaccion.fechaEmision}" title="en formato dd/MM/yyyy">
+                  <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:inputText>
+                <h:outputLabel for="importe" value="Importe" />
                 <h:inputText id="importe" value="#{transaccionActions.transaccion.importe}"/>
                 <h:outputLabel for="concepto" value="Concepto" />
                 <h:inputText id="concepto" value="#{transaccionActions.transaccion.concepto}"/>

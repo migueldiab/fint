@@ -43,8 +43,8 @@ public class TransaccionActions {
       usuarioController.registrarTransaccion(transaccion);
       response = PATH + "lista";
     } catch (Exception e) {
-      engine.errorLog("CuentaActions - No se pudo crear la cuenta", e.getLocalizedMessage());
-      JsfUtil.addErrorMessage("No se pudo crear la cuenta");
+      engine.errorLog("Transaccion - No se pudo registrar", e.getLocalizedMessage());
+      JsfUtil.addErrorMessage("No se pudo crear la Transaccion");
       response = PATH + "registrar";
     }
     return response;
@@ -56,6 +56,25 @@ public class TransaccionActions {
 
   public Transaccion.Estado[] getEstados() {
     return Transaccion.Estado.values();
+  }
+
+  public Boolean esRetiro(Transaccion trans) {
+    Boolean result = null;
+    switch (trans.getTipo()) {
+      case CUENTA:
+        result = Boolean.TRUE;
+        break;
+      case DEPOSITO:
+        result = Boolean.FALSE;
+        break;
+      case RETIRO:
+        result = Boolean.TRUE;
+        break;
+      case TRANSFERENCIA:
+        result = Boolean.FALSE;
+        break;
+    }
+    return result;
   }
 
 }
