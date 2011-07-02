@@ -1,5 +1,6 @@
 package edu.ort.dcomp.fint.monitor;
 
+import edu.ort.common.log.Logger;
 import edu.ort.common.utils.DateTime;
 import edu.ort.dcomp.fint.modelo.Proveedor;
 import edu.ort.dcomp.fint.modelo.Servicio;
@@ -18,8 +19,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.Asynchronous;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -46,6 +45,8 @@ public class UTEParser implements GenericProveedorParser {
   private ProveedorManagerLocal ejbProveedor;
   @EJB
   private TransaccionManagerLocal ejbTransaccion;
+  @EJB
+  private Logger logger;
 
   @Asynchronous
   @Override
@@ -138,12 +139,13 @@ public class UTEParser implements GenericProveedorParser {
   public List<Servicio> listarCuentas(String id, String password) {
     Long ciCliente = Long.parseLong(id);
     List<Cuenta> cuentas = null;
+    List<Servicio> result = null;
     try {
       cuentas = getProxy().obtenerCuentasPorCliente(ciCliente, password);
+      result = importarCuentas(cuentas);
     } catch (MalformedURLException ex) {
-      Logger.getLogger(UTEParser.class.getName()).log(Level.SEVERE, null, ex);
+      
     }
-    List<Servicio> result = importarCuentas(cuentas);
     return result;
   }
 
@@ -178,7 +180,7 @@ public class UTEParser implements GenericProveedorParser {
     try {
       service = new ConsultasWSService(getWSURL(), serviceName);
     } catch (MalformedURLException ex) {
-      
+      logger.error("No se pudo conectar al Web Service", ex.toString());
     }
     return service;
   }
