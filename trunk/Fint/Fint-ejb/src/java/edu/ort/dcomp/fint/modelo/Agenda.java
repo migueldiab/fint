@@ -9,8 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
-import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -30,8 +30,12 @@ public class Agenda implements Serializable {
   private Date fecha;
   private String destinatario;
   @ManyToOne
-  @NotNull
   private Categoria categoria;
+  @OneToOne
+  private Servicio servicio;
+  @OneToOne
+  private Cuenta cuenta;
+  @ManyToOne
   private Usuario usuario;
   @Enumerated(EnumType.STRING)
   private Tipo tipo;
@@ -107,6 +111,22 @@ public class Agenda implements Serializable {
 
   public void setTipo(Tipo tipo) {
     this.tipo = tipo;
+  }
+
+  public Cuenta getCuenta() {
+    return cuenta;
+  }
+
+  public void setCuenta(Cuenta cuenta) {
+    this.cuenta = cuenta;
+  }
+
+  public Servicio getServicio() {
+    return servicio;
+  }
+
+  public void setServicio(Servicio servicio) {
+    this.servicio = servicio;
   }
 
   public Usuario getUsuario() {

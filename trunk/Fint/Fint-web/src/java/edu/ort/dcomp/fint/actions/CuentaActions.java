@@ -5,6 +5,8 @@ import edu.ort.dcomp.fint.engine.UsuarioFacade;
 import edu.ort.dcomp.fint.engine.Engine;
 import edu.ort.dcomp.fint.jsf.JsfUtil;
 import edu.ort.dcomp.fint.modelo.Cuenta;
+import edu.ort.dcomp.fint.modelo.EntidadFinanciera;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
@@ -41,7 +43,7 @@ public class CuentaActions {
   }
 
   public String guardar() {
-    engine.infoLog("CuentaActions - guardar");
+    engine.infoLog("CuentaActions - guardar" + cuenta.getTipo());
     String response;
     try {
       usuarioController.guardarCuenta(cuenta);
@@ -74,5 +76,12 @@ public class CuentaActions {
   }
 
 
+  public List<EntidadFinanciera> getEntidadesFinancieras() {
+    return cuentaController.getEntidadesFinancieras();
+  }
+
+  public Cuenta.Tipo[] getTiposCuenta() {
+    return Cuenta.Tipo.values();
+  }
   
 }

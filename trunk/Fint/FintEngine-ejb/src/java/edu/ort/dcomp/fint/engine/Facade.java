@@ -74,10 +74,6 @@ public class Facade {
     ejbProveedor.persist(ute);
   }
 
-  public List<EntidadFinanciera> getEntidadesFinancieras() {
-    return ejbEntidadFinanciera.findAll();
-  }
-
   public EntidadFinanciera getEntidadFinancieraById(Integer idEF) {
     return ejbEntidadFinanciera.find(idEF);
   }

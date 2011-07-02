@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+  <ui:composition template="/resources/template.xhtml">
+    <ui:param name="context_help" value="Acceda a toda la información de sus cuentas"/>
+    <ui:define name="content">
+      <div id="homepage">
+        <div class="services">
+          <h2 class="subhead">Acciones Rápidas</h2>
+          <ul>
+            <li class="account"><h:link outcome="/pagos/crear" value="Crear Pago"/></li>
+          </ul>
+        </div>
+        <div class="portfolio_preview">
+          <h2>Crear nuevo Pago</h2>
+          <div id="from_portfolio">
+            <h:form id="pago">
+              Deseo pagar mis facturas pendientes de : 
+              <h:selectOneMenu id="servicio">
+                <f:converter converterId="servicioConverter" />
+                <f:selectItems
+                  value="#{usuarioActions.servicios}"
+                  var="servicio"
+                  itemLabel="#{servicio.nombre}"
+                  itemValue="#{servicio}"
+                />
+              </h:selectOneMenu>
+              <br/>
+              Con mi cuenta :
+              <h:selectOneMenu id="cuenta">
+                <f:converter converterId="cuentaConverter" />
+                <f:selectItems
+                  value="#{usuarioActions.cuentas}"
+                  var="cuenta"
+                  itemLabel="#{cuenta.nombre}"
+                  itemValue="#{cuenta}"
+                />
+              </h:selectOneMenu>
+              <br/><br/>
+              <h:commandButton value="Crear Pago" action="#{agendaActions.crearPago}" />
+            </h:form>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <br />
+      </div>
+    </ui:define>
+  </ui:composition>
+</html>

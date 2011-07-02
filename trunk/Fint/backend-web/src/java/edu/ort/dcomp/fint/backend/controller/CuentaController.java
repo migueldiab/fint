@@ -23,13 +23,17 @@ public class CuentaController {
 
     private Cuenta current;
     private DataModel items = null;
-    @EJB private CuentaManagerLocal ejbFacade;
+    @EJB private CuentaManagerLocal ejbCuenta;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public CuentaController() {
     }
 
+    public Cuenta.Tipo[] getTiposCuenta() {
+      return Cuenta.Tipo.values();
+    }
+    
     public Cuenta getSelected() {
         if (current == null) {
             current = new Cuenta();
@@ -39,7 +43,7 @@ public class CuentaController {
     }
 
     private CuentaManagerLocal getFacade() {
-        return ejbFacade;
+        return ejbCuenta;
     }
 
     public PaginationHelper getPagination() {
@@ -174,11 +178,11 @@ public class CuentaController {
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {
-        return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
+        return JsfUtil.getSelectItems(ejbCuenta.findAll(), false);
     }
 
     public SelectItem[] getItemsAvailableSelectOne() {
-        return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
+        return JsfUtil.getSelectItems(ejbCuenta.findAll(), true);
     }
 
     @FacesConverter(forClass=Cuenta.class)
@@ -190,7 +194,7 @@ public class CuentaController {
             }
             CuentaController controller = (CuentaController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "cuentaController");
-            return controller.ejbFacade.find(getKey(value));
+            return controller.ejbCuenta.find(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
