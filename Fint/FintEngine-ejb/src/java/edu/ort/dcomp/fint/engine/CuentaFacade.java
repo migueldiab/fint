@@ -3,6 +3,7 @@ package edu.ort.dcomp.fint.engine;
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.EntidadFinanciera;
 import edu.ort.dcomp.fint.modelo.Transaccion;
+import edu.ort.dcomp.fint.modelo.managers.CuentaManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.EntidadFinancieraManagerLocal;
 import java.util.List;
 import java.util.Set;
@@ -23,6 +24,9 @@ public class CuentaFacade {
   @EJB
   EntidadFinancieraManagerLocal ejbEntidadFinanciera;
 
+  @EJB
+  CuentaManagerLocal ejbCuenta;
+
   public Set<Transaccion> estadoRealCuenta(Cuenta unaCuenta) {
     return unaCuenta.getTransacciones();
   }
@@ -34,5 +38,9 @@ public class CuentaFacade {
   public List<EntidadFinanciera> getEntidadesFinancieras() {
     engine.infoLog("getEntidadesFinancieras()");
     return ejbEntidadFinanciera.findAll();
+  }
+
+  public Cuenta merge(Cuenta cuenta) {
+    return ejbCuenta.merge(cuenta);
   }
 }

@@ -45,6 +45,7 @@ public class CuentaActions {
   }
 
   public Transaccion[] getTransacciones() {
+    cuenta = cuentaController.merge(cuenta);
     return cuenta.getTransacciones().toArray(new Transaccion[0]);
   }
 
