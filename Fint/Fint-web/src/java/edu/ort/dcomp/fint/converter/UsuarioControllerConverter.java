@@ -1,6 +1,6 @@
 package edu.ort.dcomp.fint.converter;
 
-import edu.ort.dcomp.fint.controller.UsuarioController;
+import edu.ort.dcomp.fint.engine.UsuarioFacade;
 import edu.ort.dcomp.fint.modelo.Usuario;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -19,7 +19,7 @@ public class UsuarioControllerConverter implements Converter {
   public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
     Usuario unUsuario = null;
     if (value != null && value.length() > 0) {
-      UsuarioController controller = (UsuarioController)facesContext.getApplication().getELResolver().
+      UsuarioFacade controller = (UsuarioFacade)facesContext.getApplication().getELResolver().
           getValue(facesContext.getELContext(), null, "usuarioController");
       unUsuario = controller.find(getKey(value));
     }
@@ -48,7 +48,7 @@ public class UsuarioControllerConverter implements Converter {
       Usuario o = (Usuario) object;
       return getStringKey(o.getId());
     } else {
-      throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: "+UsuarioController.class.getName());
+      throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: "+UsuarioFacade.class.getName());
     }
   }
 

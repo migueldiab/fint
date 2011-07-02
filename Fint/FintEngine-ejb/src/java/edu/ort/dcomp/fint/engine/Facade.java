@@ -1,6 +1,5 @@
 package edu.ort.dcomp.fint.engine;
 
-import edu.ort.dcomp.fint.controller.UsuarioController;
 import edu.ort.dcomp.fint.modelo.Grupo;
 import edu.ort.dcomp.fint.modelo.EntidadFinanciera;
 import edu.ort.dcomp.fint.modelo.Proveedor;
@@ -13,15 +12,15 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.inject.Named;
 
 /**
  *
  * @author migueldiab
  */
-@Named
 @Stateless
+@LocalBean
 public class Facade {
 
   public static Facade getFacade() {
@@ -30,19 +29,16 @@ public class Facade {
   }
 
   @EJB
-  UsuarioManagerLocal usuarioFacadeLocal;
+  private UsuarioManagerLocal ejbUsuario;
 
   @EJB
-  GrupoManagerLocal grupoFacadeLocal;
+  private GrupoManagerLocal ejbGrupo;
 
   @EJB
-  EntidadFinancieraManagerLocal entidadFinancieraManagerLocal;
+  private EntidadFinancieraManagerLocal ejbEntidadFinanciera;
 
   @EJB
-  ProveedorManagerLocal proveedorManagerproveedorManager;
-
-  @EJB
-  UsuarioController usuarioController;
+  private ProveedorManagerLocal ejbProveedor;
 
   public String getWelcomeMessage() {
     return "Bienvenido a la página de inicio de FINT";
@@ -52,20 +48,20 @@ public class Facade {
     Grupo unGrupo = new Grupo();
     unGrupo.setLogin("admin");
     unGrupo.setPermisos("admin");
-    grupoFacadeLocal.persist(unGrupo);
+    ejbGrupo.persist(unGrupo);
     Usuario unUsuario = new Usuario();
     unUsuario.setLogin("admin");
     unUsuario.setContrasena("admin");
     unUsuario.setCi(99999999L);
     unUsuario.setEmail("admin@fint.com");
-    usuarioFacadeLocal.persist(unUsuario);
+    ejbUsuario.persist(unUsuario);
 
     EntidadFinanciera brou = new EntidadFinanciera();
     brou.setNombre("BROU");
     EntidadFinanciera nbc = new EntidadFinanciera();
     nbc.setNombre("Nuevo Banco Comercial");
-    entidadFinancieraManagerLocal.persist(brou);
-    entidadFinancieraManagerLocal.persist(nbc);
+    ejbEntidadFinanciera.persist(brou);
+    ejbEntidadFinanciera.persist(nbc);
 
     Proveedor ute = new Proveedor();
     ute.setNombre("UTE");
@@ -73,31 +69,17 @@ public class Facade {
     ose.setNombre("OSE");
     Proveedor antel = new Proveedor();
     antel.setNombre("Antel");
-    proveedorManagerproveedorManager.persist(ose);
-    proveedorManagerproveedorManager.persist(antel);
-    proveedorManagerproveedorManager.persist(ute);
-
-
-  }
-
-  public Usuario obtenerUsuarioLogueado() {
-    return usuarioController.getUsuario();
+    ejbProveedor.persist(ose);
+    ejbProveedor.persist(antel);
+    ejbProveedor.persist(ute);
   }
 
   public List<EntidadFinanciera> getEntidadesFinancieras() {
-    return entidadFinancieraManagerLocal.findAll();
+    return ejbEntidadFinanciera.findAll();
   }
 
   public EntidadFinanciera getEntidadFinancieraById(Integer idEF) {
-    return entidadFinancieraManagerLocal.find(idEF);
-  }
-
-  public List<Proveedor> getProveedores() {
-    return proveedorManagerproveedorManager.findAll();
-  }
-
-  public Proveedor getProveedorById(Integer idProveedor) {
-    return proveedorManagerproveedorManager.find(idProveedor);
+    return ejbEntidadFinanciera.find(idEF);
   }
 
 }

@@ -8,7 +8,7 @@ import javax.ejb.Stateless;
  * @author migueldiab
  */
 @Stateless
-public class AgendaManager extends AbstractManager<Agenda> {
+public class AgendaManager extends AbstractManager<Agenda> implements AgendaManagerLocal {
   public AgendaManager() {
     super(Agenda.class);
   }

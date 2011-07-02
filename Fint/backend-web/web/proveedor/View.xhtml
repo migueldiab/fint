@@ -19,6 +19,8 @@
                     <h:outputText value="#{proveedorController.selected.id}" title="#{bundle.ViewProveedorTitle_id}"/>
                     <h:outputText value="#{bundle.ViewProveedorLabel_nombre}"/>
                     <h:outputText value="#{proveedorController.selected.nombre}" title="#{bundle.ViewProveedorTitle_nombre}"/>
+                    <h:outputText value="Web Service"/>
+                    <h:outputText value="#{proveedorController.selected.parser}" title="Web Service"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{proveedorController.destroyAndView}" value="#{bundle.ViewProveedorDestroyLink}"/>

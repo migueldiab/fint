@@ -17,7 +17,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@ManagedBean (name="proveedorController")
+@ManagedBean
 @SessionScoped
 public class ProveedorController {
 
@@ -30,6 +30,10 @@ public class ProveedorController {
     public ProveedorController() {
     }
 
+    public Proveedor.wsParser[] getParsers() {
+      return Proveedor.wsParser.values();
+    }
+    
     public Proveedor getSelected() {
         if (current == null) {
             current = new Proveedor();

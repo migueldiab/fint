@@ -6,10 +6,6 @@
             <name>Fint-web</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
-                <library dirs="100">
-                    <file>${reference.Fint-ejb.dist}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
                 <library dirs="200">
                     <file>${libs.mojarra-2.1.1-FCS.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
@@ -27,7 +23,11 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="100">
-                    <file>${reference.common-ejb.dist}</file>
+                    <file>${reference.FintEngine-ejb.dist}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="100">
+                    <file>${reference.Fint-ejb.dist}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
@@ -60,7 +60,7 @@
                 <id>dist</id>
             </reference>
             <reference>
-                <foreign-project>common-ejb</foreign-project>
+                <foreign-project>FintEngine-ejb</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>dist</target>

@@ -27,12 +27,12 @@
                       <h:outputLabel for="id" value="Ingrese su ID " />
                       <h:inputText id="id" />
                       <h:outputLabel for="password" value="Ingrese su Clave " />
-                      <h:inputText id="password" />
-                      <h:outputLabel for="proveedor" value="Seleccione el servicio : " />
+                      <h:inputSecret id="password" />
+                      <h:outputLabel for="proveedor" value="Seleccione el proveedor : " />
                       <h:selectOneMenu id="proveedor" value="#{servicioActions.servicio.proveedor}" >
                         <f:converter converterId="proveedorConverter" />
                         <f:selectItems 
-                          value="#{facade.proveedores}"
+                          value="#{servicioActions.proveedores}"
                           var="proveedor"
                           itemLabel="#{proveedor.nombre}"
                           itemValue="#{proveedor}"

@@ -3,7 +3,7 @@ package edu.ort.dcomp.fint.backend.controller;
 import edu.ort.dcomp.fint.modelo.Agenda;
 import edu.ort.dcomp.fint.backend.controller.util.JsfUtil;
 import edu.ort.dcomp.fint.backend.controller.util.PaginationHelper;
-import edu.ort.dcomp.fint.modelo.managers.AgendaManager;
+import edu.ort.dcomp.fint.modelo.managers.AgendaManagerLocal;
 
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -17,13 +17,13 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@ManagedBean (name="agendaController")
+@ManagedBean
 @SessionScoped
 public class AgendaController {
 
     private Agenda current;
     private DataModel items = null;
-    @EJB private AgendaManager ejbFacade;
+    @EJB private AgendaManagerLocal ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -38,7 +38,7 @@ public class AgendaController {
         return current;
     }
 
-    private AgendaManager getFacade() {
+    private AgendaManagerLocal getFacade() {
         return ejbFacade;
     }
 

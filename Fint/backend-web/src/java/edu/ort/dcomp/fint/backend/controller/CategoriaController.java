@@ -3,7 +3,7 @@ package edu.ort.dcomp.fint.backend.controller;
 import edu.ort.dcomp.fint.modelo.Categoria;
 import edu.ort.dcomp.fint.backend.controller.util.JsfUtil;
 import edu.ort.dcomp.fint.backend.controller.util.PaginationHelper;
-import edu.ort.dcomp.fint.modelo.managers.CategoriaManager;
+import edu.ort.dcomp.fint.modelo.managers.CategoriaManagerLocal;
 
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -17,13 +17,13 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@ManagedBean (name="categoriaController")
+@ManagedBean
 @SessionScoped
 public class CategoriaController {
 
     private Categoria current;
     private DataModel items = null;
-    @EJB private CategoriaManager ejbFacade;
+    @EJB private CategoriaManagerLocal ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -38,7 +38,7 @@ public class CategoriaController {
         return current;
     }
 
-    private CategoriaManager getFacade() {
+    private CategoriaManagerLocal getFacade() {
         return ejbFacade;
     }
 

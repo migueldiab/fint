@@ -1,28 +1,28 @@
 package edu.ort.common.log;
 
 import javax.ejb.Asynchronous;
-import javax.ejb.Local;
+import javax.ejb.LocalBean;
 
 /**
  *
  * @author migueldiab
  */
-@Local
+@LocalBean
 public interface Logger {
 
   @Asynchronous
-  void crit(String mensaje, String trace);
+  public void crit(String mensaje, String trace);
 
   @Asynchronous
-  void debug(String mensaje);
+  public void debug(String mensaje);
 
   @Asynchronous
-  void error(String mensaje, String trace);
+  public void error(String mensaje, String trace);
 
   @Asynchronous
-  void info(String mensaje);
+  public void info(String mensaje);
 
   @Asynchronous
-  void warn(String mensaje, String trace);
+  public void warn(String mensaje, String trace);
 
 }

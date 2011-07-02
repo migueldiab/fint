@@ -13,7 +13,7 @@ import javax.ejb.Stateless;
 public class DBLogger implements Logger {
 
   @EJB
-  LogEntryFacadeLocal ejbLog;
+  private LogEntryFacadeLocal ejbLogEntry;
 
   @Asynchronous
   @Override
@@ -24,7 +24,7 @@ public class DBLogger implements Logger {
     log.setSeveridad(LogEntry.Severidad.INFO);
     log.setTimestamp(new Date());
     log.setTrace("");
-    ejbLog.create(log);
+    ejbLogEntry.create(log);
   }
   @Asynchronous
   @Override
@@ -35,7 +35,7 @@ public class DBLogger implements Logger {
     log.setSeveridad(LogEntry.Severidad.DEBUG);
     log.setTimestamp(new Date());
     log.setTrace("");
-    ejbLog.create(log);
+    ejbLogEntry.create(log);
   }
   @Asynchronous
   @Override
@@ -46,7 +46,7 @@ public class DBLogger implements Logger {
     log.setSeveridad(LogEntry.Severidad.CRITICAL);
     log.setTimestamp(new Date());
     log.setTrace(trace);
-    ejbLog.create(log);
+    ejbLogEntry.create(log);
   }
   @Asynchronous
   @Override
@@ -57,7 +57,7 @@ public class DBLogger implements Logger {
     log.setSeveridad(LogEntry.Severidad.ERROR);
     log.setTimestamp(new Date());
     log.setTrace(trace);
-    ejbLog.create(log);
+    ejbLogEntry.create(log);
   }
   @Asynchronous
   @Override
@@ -68,6 +68,6 @@ public class DBLogger implements Logger {
     log.setSeveridad(LogEntry.Severidad.WARN);
     log.setTimestamp(new Date());
     log.setTrace(trace);
-    ejbLog.create(log);
+    ejbLogEntry.create(log);
   }
 }
