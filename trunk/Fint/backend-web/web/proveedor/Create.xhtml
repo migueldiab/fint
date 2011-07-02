@@ -15,10 +15,12 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateProveedorLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{proveedorController.selected.id}" title="#{bundle.CreateProveedorTitle_id}" />
                     <h:outputLabel value="#{bundle.CreateProveedorLabel_nombre}" for="nombre" />
                     <h:inputText id="nombre" value="#{proveedorController.selected.nombre}" title="#{bundle.CreateProveedorTitle_nombre}" />
+                    <h:outputLabel value="Web Service" for="parser" />
+                    <h:selectOneMenu id="parser" value="#{proveedorController.selected.parser}" title="Conector de Web Service" >
+                      <f:selectItems value="#{proveedorController.parsers}"/>
+                    </h:selectOneMenu>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{proveedorController.create}" value="#{bundle.CreateProveedorSaveLink}" />

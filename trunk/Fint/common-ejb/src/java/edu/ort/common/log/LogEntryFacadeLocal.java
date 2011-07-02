@@ -1,13 +1,13 @@
 package edu.ort.common.log;
 
 import java.util.List;
-import javax.ejb.Local;
+import javax.ejb.LocalBean;
 
 /**
  *
  * @author migueldiab
  */
-@Local
+@LocalBean
 public interface LogEntryFacadeLocal {
 
   void create(LogEntry logEntry);

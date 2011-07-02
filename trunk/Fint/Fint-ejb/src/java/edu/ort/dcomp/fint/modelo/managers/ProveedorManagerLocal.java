@@ -1,19 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package edu.ort.dcomp.fint.modelo.managers;
 
 import edu.ort.dcomp.fint.modelo.Proveedor;
 import java.util.List;
-import javax.ejb.Local;
+import javax.ejb.LocalBean;
 
 /**
  *
  * @author migueldiab
  */
-@Local
+@LocalBean
 public interface ProveedorManagerLocal {
 
   void persist(Proveedor tipoServicio);
@@ -29,5 +24,7 @@ public interface ProveedorManagerLocal {
   List<Proveedor> findRange(int[] range);
 
   int count();
+
+  public Proveedor buscarPorNombre(String PROVEEDOR_ASOCIADO);
 
 }

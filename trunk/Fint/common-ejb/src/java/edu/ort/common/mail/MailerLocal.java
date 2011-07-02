@@ -1,13 +1,13 @@
 package edu.ort.common.mail;
 
 import javax.ejb.Asynchronous;
-import javax.ejb.Local;
+import javax.ejb.LocalBean;
 
 /**
  *
  * @author migueldiab
  */
-@Local
+@LocalBean
 public interface MailerLocal {
 
   @Asynchronous

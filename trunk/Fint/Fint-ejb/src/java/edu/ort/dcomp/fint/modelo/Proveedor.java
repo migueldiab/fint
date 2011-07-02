@@ -2,6 +2,7 @@ package edu.ort.dcomp.fint.modelo;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,11 +21,17 @@ import javax.validation.constraints.NotNull;
 )
 public class Proveedor implements Serializable {
   private static final long serialVersionUID = 1L;
+  public enum wsParser {
+    UTEParser, OSEParser, AntelParser
+  }
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
   @NotNull
   private String nombre;
+  @Enumerated
+  @NotNull
+  private wsParser parser;
 
   public Integer getId() {
     return id;
@@ -65,6 +72,14 @@ public class Proveedor implements Serializable {
 
   public void setNombre(String nombre) {
     this.nombre = nombre;
+  }
+
+  public wsParser getParser() {
+    return parser;
+  }
+
+  public void setParser(wsParser parser) {
+    this.parser = parser;
   }
 
   

@@ -16,9 +16,12 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditProveedorLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{proveedorController.selected.id}" title="#{bundle.EditProveedorTitle_id}" />
+                    <h:outputLabel id="id" value="#{proveedorController.selected.id}" title="#{bundle.EditProveedorTitle_id}" />
                     <h:outputLabel value="#{bundle.EditProveedorLabel_nombre}" for="nombre" />
                     <h:inputText id="nombre" value="#{proveedorController.selected.nombre}" title="#{bundle.EditProveedorTitle_nombre}" />
+                    <h:selectOneMenu id="parser" value="#{proveedorController.selected.parser}" title="Conector de Web Service" >
+                      <f:selectItems value="#{proveedorController.parsers}"/>
+                    </h:selectOneMenu>
                 </h:panelGrid>
                 <h:commandLink action="#{proveedorController.update}" value="#{bundle.EditProveedorSaveLink}"/>
                 <br />

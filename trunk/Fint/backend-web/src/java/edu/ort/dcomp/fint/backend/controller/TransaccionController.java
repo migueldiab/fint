@@ -17,7 +17,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@ManagedBean (name="transaccionController")
+@ManagedBean
 @SessionScoped
 public class TransaccionController {
 

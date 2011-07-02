@@ -1,7 +1,7 @@
 package edu.ort.dcomp.fint.actions;
 
-import edu.ort.common.log.Logger;
-import edu.ort.dcomp.fint.controller.UsuarioController;
+import edu.ort.dcomp.fint.engine.UsuarioFacade;
+import edu.ort.dcomp.fint.engine.Engine;
 import edu.ort.dcomp.fint.jsf.JsfUtil;
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.Servicio;
@@ -31,13 +31,13 @@ public class UsuarioActions {
   }
 
   @EJB
-  private UsuarioController usuarioController;
+  private UsuarioFacade usuarioController;
 
   @EJB
-  private Logger logger;
+  private Engine engine;
 
   public Usuario getUsuario() {
-    logger.info("UsuarioActions - getUsuario");
+    engine.infoLog("UsuarioActions - getUsuario");
     return usuarioController.getUsuario();
   }
 
@@ -52,7 +52,7 @@ public class UsuarioActions {
   }
 
   public Boolean isUserInRole(final String role) {
-    logger.info("UsuarioActions - isUserInRole" + role);
+    engine.infoLog("UsuarioActions - isUserInRole" + role);
     final ExternalContext external = FacesContext.getCurrentInstance().getExternalContext();
     final HttpServletRequest request = (HttpServletRequest) external.getRequest();
     return request.isUserInRole(role);
@@ -66,12 +66,12 @@ public class UsuarioActions {
   }
   
   public Boolean getLoggedIn() {
-    logger.info("UsuarioActions - getLoggedIn" + getUsuario());
+    engine.infoLog("UsuarioActions - getLoggedIn" + getUsuario());
     return null != getUsuario();
   }
   
   public void logout() throws IOException {
-    logger.info("UsuarioActions - logout" + getUsuario());
+    engine.infoLog("UsuarioActions - logout" + getUsuario());
     final FacesContext context = FacesContext.getCurrentInstance();
  		final ExternalContext ec = context.getExternalContext();
  		final HttpServletRequest request = (HttpServletRequest)ec.getRequest();
@@ -85,7 +85,7 @@ public class UsuarioActions {
     JsfUtil.addSuccessMessage("Se ha creado la cuenta. Verifique su email para activarla.");
     return "/index";
   }
-  private UsuarioController getController() {
+  private UsuarioFacade getController() {
     return usuarioController;
   }
 

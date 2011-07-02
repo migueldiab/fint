@@ -34,6 +34,12 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">
+                            <h:outputText value="Web Service"/>
+                        </f:facet>
+                        <h:outputText value="#{item.parser}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
                             <h:outputText value="&nbsp;"/>
                         </f:facet>
                         <h:commandLink action="#{proveedorController.prepareView}" value="#{bundle.ListProveedorViewLink}"/>

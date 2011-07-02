@@ -2,13 +2,13 @@ package edu.ort.dcomp.fint.modelo.managers;
 
 import edu.ort.dcomp.fint.modelo.Usuario;
 import java.util.List;
-import javax.ejb.Local;
+import javax.ejb.LocalBean;
 
 /**
  *
  * @author migueldiab
  */
-@Local
+@LocalBean
 public interface UsuarioManagerLocal {
 
   void persist(Usuario usuario);

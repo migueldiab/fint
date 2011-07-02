@@ -1,4 +1,4 @@
-package edu.ort.dcomp.fint.controller;
+package edu.ort.dcomp.fint.engine;
 
 import edu.ort.common.log.Logger;
 import edu.ort.common.mail.MailerLocal;
@@ -9,6 +9,7 @@ import edu.ort.dcomp.fint.modelo.Usuario;
 import edu.ort.dcomp.fint.modelo.managers.GrupoManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.UsuarioManagerLocal;
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -19,7 +20,8 @@ import javax.servlet.http.HttpServletRequest;
  * @author migueldiab
  */
 @Stateful
-public class UsuarioController {
+@LocalBean
+public class UsuarioFacade {
 
   private Usuario unUsuario;
   
@@ -37,7 +39,7 @@ public class UsuarioController {
   
   private String GRUPO_USUARIO = "usuario";
   
-  public UsuarioController() {
+  public UsuarioFacade() {
     
   }
 

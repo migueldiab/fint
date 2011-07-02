@@ -1,64 +1,73 @@
 package edu.ort.dcomp.fint.monitor;
 
 import edu.ort.common.utils.DateTime;
+import edu.ort.dcomp.fint.modelo.Proveedor;
 import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.Transaccion;
 import edu.ort.dcomp.fint.modelo.Transaccion.Estado;
 import edu.ort.dcomp.fint.modelo.Usuario;
-import edu.ort.dcomp.fint.modelo.managers.ServicioManagerLocal;
+import edu.ort.dcomp.fint.modelo.managers.ProveedorManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.TransaccionManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.UsuarioManagerLocal;
+import edu.ort.dcomp.fint.monitor.client.ConsultasWS;
+import edu.ort.dcomp.fint.monitor.client.ConsultasWSService;
+import edu.ort.dcomp.fint.monitor.client.Cuenta;
 import edu.ort.dcomp.fint.monitor.client.Factura;
 import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Asynchronous;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ejb.LocalBean;
+import javax.xml.namespace.QName;
+import javax.xml.ws.WebServiceRef;
 
 /**
  *
  * @author migueldiab
  */
 @Stateless
-@LocalBean
 public class UTEParser implements GenericProveedorParser {
+  @WebServiceRef(wsdlLocation = "http://localhost:8080/ConsultasWSService/ConsultasWS?wsdl")
+  private ConsultasWSService service = getService();
 
-  private final String SERVICIO_ASOCIADO = "UTE";
-  private Servicio servicioAsociado;
+  private static String WS_URL;
+
+  private final String PROVEEDOR_ASOCIADO = "UTE";
+  private Proveedor proveedorAsociado;
   
   @EJB
-  WSFacade wSFacade;
-
+  private UsuarioManagerLocal ejbUsuario;
   @EJB
-  UsuarioManagerLocal ejbUsuario;
+  private ProveedorManagerLocal ejbProveedor;
   @EJB
-  ServicioManagerLocal ejbServicio;
-  @EJB
-  TransaccionManagerLocal ejbTransaccion;
+  private TransaccionManagerLocal ejbTransaccion;
 
   @Asynchronous
   @Override
   public void leerFacturasPendientes() throws MalformedURLException {
     final List<Usuario> lista = ejbUsuario.findAll();
     for (Usuario usuario : lista) {
-      List<Factura> result = wSFacade.getProxy().
+      List<Factura> result = getProxy().
               obtenerFacturasPendientes(usuario.getCi(), "", "");
       for (Factura factura : result) {
-        if (!ejbTransaccion.existe(servicioAsociado, factura.getId().toString())) {
-          importarTransaccion(factura, usuario, servicioAsociado);
-        }
+//        if (!ejbTransaccion.existe(proveedorAsociado, factura.getId().toString())) {
+//          importarTransaccion(factura, usuario, proveedorAsociado);
+//        }
       }
     } 
   }
   
   @Override
-  public Servicio getServicioAsociado() {
-    if (null == servicioAsociado) {
-      servicioAsociado = ejbServicio.buscarPorNombre(SERVICIO_ASOCIADO);
+  public Proveedor getProveedorAsociado() {
+    if (null == proveedorAsociado) {
+      proveedorAsociado = ejbProveedor.buscarPorNombre(PROVEEDOR_ASOCIADO);
     }
-    return servicioAsociado;
+    return proveedorAsociado;
   }
 
   private Estado parseEstado(edu.ort.dcomp.fint.monitor.client.Estado estado) {
@@ -87,15 +96,15 @@ public class UTEParser implements GenericProveedorParser {
   public void leerFacturasPasadas() throws MalformedURLException {
     final List<Usuario> lista = ejbUsuario.findAll();
     for (Usuario usuario : lista) {
-      List<Factura> result = wSFacade.getProxy().
+      List<Factura> result = getProxy().
               obtenerFacturasPasadas(usuario.getCi(), 15, "", "");
       for (Factura factura : result) {
-        Transaccion trans = ejbTransaccion.buscarPorServicioNumero(servicioAsociado, factura.getId().toString());
-        if (null == trans) {
-          importarTransaccion(factura, usuario, servicioAsociado);
-        } else {
-          actualizarTransaccion(trans, factura, usuario, servicioAsociado);
-        }
+//        Transaccion trans = ejbTransaccion.buscarPorServicioNumero(proveedorAsociado, factura.getId().toString());
+//        if (null == trans) {
+//          importarTransaccion(factura, usuario, proveedorAsociado);
+//        } else {
+//          actualizarTransaccion(trans, factura, usuario, proveedorAsociado);
+//        }
       }
     }
   }
@@ -103,7 +112,7 @@ public class UTEParser implements GenericProveedorParser {
   private void importarTransaccion(Factura factura, Usuario usuario, Servicio servicioAsociado) {
     final Transaccion unaT = new Transaccion();
     unaT.setConcepto(factura.getConcepto());
-    unaT.setDestinatario(SERVICIO_ASOCIADO);
+    unaT.setDestinatario(PROVEEDOR_ASOCIADO);
     unaT.setImporte(factura.getImporte());
     unaT.setFechaEmision(DateTime.asDate(factura.getFechaEmision()) );
     unaT.setFechaIngreso(new Date());
@@ -123,5 +132,54 @@ public class UTEParser implements GenericProveedorParser {
     trans.setFechaPago(DateTime.asDate(factura.getFechaPago()));
     trans.setEstado(parseEstado(factura.getEstado()));
     ejbTransaccion.merge(trans);
+  }
+
+  @Override
+  public List<Servicio> listarCuentas(String id, String password) {
+    Long ciCliente = Long.parseLong(id);
+    List<Cuenta> cuentas = null;
+    try {
+      cuentas = getProxy().obtenerCuentasPorCliente(ciCliente, password);
+    } catch (MalformedURLException ex) {
+      Logger.getLogger(UTEParser.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    List<Servicio> result = importarCuentas(cuentas);
+    return result;
+  }
+
+  private List<Servicio> importarCuentas(List<Cuenta> cuentas) {
+    List<Servicio> result = new ArrayList<Servicio>();
+    for (Cuenta cuenta : cuentas) {
+      Servicio nuevoServicio = new Servicio();
+      //nuevoServicio.setCategoria();
+      nuevoServicio.setNombre(cuenta.getId().toString() + proveedorAsociado);
+      nuevoServicio.setNumero(cuenta.getId());
+      nuevoServicio.setProveedor(proveedorAsociado);
+      result.add(nuevoServicio);
+    }
+    return result;
+  }
+
+  private ConsultasWS getProxy() throws MalformedURLException {
+    ConsultasWS consultaWS = service.getConsultasWSPort();
+    return consultaWS;
+  }
+
+  private URL getWSURL() throws MalformedURLException {
+    if (null == WS_URL) {
+      WS_URL = "http://localhost:8080/ConsultasWSService/ConsultasWS?wsdl";
+    }
+    return new URL(WS_URL);
+  }
+
+  private ConsultasWSService getService() {
+    final QName serviceName = new QName("http://ws.ute.dcomp.ort.edu/", "ConsultasWSService");
+    ConsultasWSService service = null;
+    try {
+      service = new ConsultasWSService(getWSURL(), serviceName);
+    } catch (MalformedURLException ex) {
+      
+    }
+    return service;
   }
 }

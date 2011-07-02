@@ -30,7 +30,7 @@
                       <h:selectOneMenu id="proveedor" value="#{servicioActions.servicio.proveedor}" >
                         <f:converter converterId="proveedorConverter" />
                         <f:selectItems 
-                          value="#{facade.proveedores}"
+                          value="#{servicioActions.proveedores}"
                           var="proveedor"
                           itemLabel="#{proveedor.nombre}"
                           itemValue="#{proveedor}"

@@ -1,19 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package edu.ort.dcomp.fint.modelo.managers;
 
 import edu.ort.dcomp.fint.modelo.Servicio;
 import java.util.List;
-import javax.ejb.Local;
+import javax.ejb.LocalBean;
 
 /**
  *
  * @author migueldiab
  */
-@Local
+@LocalBean
 public interface ServicioManagerLocal {
 
   void persist(Servicio servicio);

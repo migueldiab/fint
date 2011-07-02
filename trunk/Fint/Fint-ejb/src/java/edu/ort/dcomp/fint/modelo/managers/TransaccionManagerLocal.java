@@ -3,13 +3,13 @@ package edu.ort.dcomp.fint.modelo.managers;
 import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.Transaccion;
 import java.util.List;
-import javax.ejb.Local;
+import javax.ejb.LocalBean;
 
 /**
  *
  * @author migueldiab
  */
-@Local
+@LocalBean
 public interface TransaccionManagerLocal {
 
   void persist(Transaccion transaccion);

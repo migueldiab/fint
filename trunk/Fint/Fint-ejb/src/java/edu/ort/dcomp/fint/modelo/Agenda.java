@@ -1,17 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package edu.ort.dcomp.fint.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,9 +35,6 @@ public class Agenda implements Serializable {
   private Usuario usuario;
   @Enumerated(EnumType.STRING)
   private Tipo tipo;
-  @Embedded
-  private Recurrencia recurrencia;
-
 
   public Long getId() {
     return id;
@@ -109,14 +99,6 @@ public class Agenda implements Serializable {
 
   public void setNumero(String numero) {
     this.numero = numero;
-  }
-
-  public Recurrencia getRecurrencia() {
-    return recurrencia;
-  }
-
-  public void setRecurrencia(Recurrencia recurrencia) {
-    this.recurrencia = recurrencia;
   }
 
   public Tipo getTipo() {
