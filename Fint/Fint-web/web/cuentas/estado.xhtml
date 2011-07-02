@@ -13,16 +13,46 @@
           <h2 class="subhead">Acciones Rápidas</h2>
           <ul>
             <li class="account"><h:link outcome="/cuentas/crear" value="Crear Cuenta"/></li>
+            <li class="editar"><h:link outcome="/cuentas/registrar" value="Ingresar Gasto"/></li>
           </ul>
         </div>
         <div class="portfolio_preview">
-          <h2>#{param["cuenta"]}</h2>
+          <h2>#{cuentaActions.cuenta.nombre}</h2>
           <div id="from_portfolio">
             <div class="panelContainer">
-              <div class="panel" title='Estado de cuenta #{param["cuenta"]}'>
-                <div class="wrapper">
-                  
-                </div>
+              <div class="panel" title='Estado de cuenta #{cuentaActions.cuenta.nombre}'>
+                <h:dataTable value="#{cuentaActions.transacciones}" var="trans">
+                  <h:column>
+                    <f:facet name="header">
+                      <h:outputLabel value="Ingreso" />
+                    </f:facet>
+                    <h:outputLabel value="#{trans.fechaIngreso}" />
+                  </h:column>
+                  <h:column>
+                    <f:facet name="header">
+                      <h:outputLabel value="Numero" />
+                    </f:facet>
+                    <h:outputLabel value="#{trans.numero}" />
+                  </h:column>
+                  <h:column>
+                    <f:facet name="header">
+                      <h:outputLabel value="Desc." />
+                    </f:facet>
+                    <h:outputLabel value="#{trans.concepto}" />
+                  </h:column>
+                  <h:column>
+                    <f:facet name="header">
+                      <h:outputLabel value="Estado" />
+                    </f:facet>
+                    <h:outputLabel value="#{trans.estado}" />
+                  </h:column>
+                  <h:column>
+                    <f:facet name="header">
+                      <h:outputLabel value="Importe" />
+                    </f:facet>
+                    <h:outputLabel value="#{trans.importe}" />
+                  </h:column>
+                </h:dataTable>
               </div>
             </div>
           </div>

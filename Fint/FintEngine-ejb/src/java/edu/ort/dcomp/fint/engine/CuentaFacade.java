@@ -5,6 +5,7 @@ import edu.ort.dcomp.fint.modelo.EntidadFinanciera;
 import edu.ort.dcomp.fint.modelo.Transaccion;
 import edu.ort.dcomp.fint.modelo.managers.EntidadFinancieraManagerLocal;
 import java.util.List;
+import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -22,10 +23,8 @@ public class CuentaFacade {
   @EJB
   EntidadFinancieraManagerLocal ejbEntidadFinanciera;
 
-  public void estadoRealCuenta(Cuenta unaCuenta) {
-    for (Transaccion transaccion : unaCuenta.getTransacciones()) {
-      System.out.println("Una Cuenta " + transaccion);
-    }    
+  public Set<Transaccion> estadoRealCuenta(Cuenta unaCuenta) {
+    return unaCuenta.getTransacciones();
   }
 
   public void estadoProyectadoCuenta(Cuenta unaCuenta) {

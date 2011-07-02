@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -42,6 +43,7 @@ public class Transaccion implements Serializable {
   private String destinatario;
   @ManyToOne
   @JoinColumn(name="id_cuenta")
+  @NotNull
   private Cuenta cuenta;
   @ManyToOne
   @JoinColumn(name="id_servicio")

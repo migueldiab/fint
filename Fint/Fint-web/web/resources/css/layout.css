@@ -34,6 +34,8 @@ h4 {font-size:12px;}
 .services li {display:block; padding:3px 5px 3px 48px; margin:5px 0 3px; height:46px; border-bottom:solid 1px #ccc;}
 .services li.idea {background:url(../resources/images/ideaicon.jpg) no-repeat; }
 .services li.account {background:url(../resources/images/87.png) no-repeat; }
+.services li.agenda {background:url(../resources/images/14.png) no-repeat; }
+.services li.editar {background:url(../resources/images/13.png) no-repeat; }
 .services li.refresh {background:url(../resources/images/48.png) no-repeat; }
 .services li.design {background: url(../resources/images/designicon.jpg) no-repeat; }
 .services li.apps {background: url(../resources/images/interneticon.jpg) no-repeat; }
