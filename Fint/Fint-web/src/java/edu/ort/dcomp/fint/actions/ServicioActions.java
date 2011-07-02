@@ -8,11 +8,9 @@ import edu.ort.dcomp.fint.jsf.JsfUtil;
 import edu.ort.dcomp.fint.modelo.Proveedor;
 import edu.ort.dcomp.fint.modelo.Servicio;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 
 /**
@@ -20,7 +18,7 @@ import javax.faces.bean.ManagedBean;
  * @author migueldiab
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class ServicioActions {
 
   @EJB
@@ -29,6 +27,9 @@ public class ServicioActions {
   private Engine engine;
 
   private Servicio servicio;
+
+  private List<Servicio> listaServicios;
+  
   private static String PATH = "/servicios/";
 
   public ServicioActions() {
@@ -44,21 +45,28 @@ public class ServicioActions {
     return servicio;
   }
 
-  public String conectar() {
+  public List<Servicio> getListaServicios() {
+    return listaServicios;
+  }
+
+  public String buscarServicios() {
     String response = PATH + "lista";
     String id = JsfUtil.getRequestParameter("conectar:id");
     String password = JsfUtil.getRequestParameter("conectar:password");
     Proveedor proveedor = (Proveedor) JsfUtil.getObjectFromRequestParameter("conectar:proveedor", new ProveedorConverter(), null);
-    List<Servicio> lista = servicioFacade.listarCuentasProveedor(id, password, proveedor);
-    if (null != lista) {
+    List<Servicio> lista = null;
+    try {
+      lista = servicioFacade.listarCuentasProveedor(id, password, proveedor);
       if (lista.isEmpty()) {
         JsfUtil.addErrorMessage("El proveedor no tiene cuentas disponibles para esa ID. Consulte con su proveedor por activación de servicios en línea");
       } else {
+        response = PATH + "conectar";
+        listaServicios = lista;
         for (Servicio servicio1 : lista) {
-
+          System.out.println("servicio " + servicio1);
         }
       }
-    } else {
+    } catch (Exception ex) {
       JsfUtil.addErrorMessage("Hubo un error al conectarse con el servicio del proveedor. Intente mas tarde");
     }
     return response;
@@ -70,14 +78,30 @@ public class ServicioActions {
       usuarioController.guardarServicio(servicio);
       response = PATH + "lista";
     } catch (Exception e) {
-      Logger.getLogger("ServicioActions").log(Level.WARNING, "No se pudo crear el servicio");
-      JsfUtil.addErrorMessage("No se pudo crear la servicio");
+      String msg = "No se pudo crear el servicio";
+      engine.errorLog(msg, e.toString());
+      JsfUtil.addErrorMessage(msg);
       response = PATH + "crear";
     }
     return response;
     
   }
 
+  public String conectarServicio(Servicio unServicio) {
+    String response;
+    try {
+      usuarioController.guardarServicio(unServicio);
+      JsfUtil.addSuccessMessage("Se agregó el servicio!");
+      response = PATH + "lista";
+    } catch (Exception e) {
+      String msg = "No se pudo crear automaticametne el servicio";
+      engine.errorLog(msg, e.toString());
+      JsfUtil.addErrorMessage(msg);
+      response = PATH + "crear";
+    }
+    return response;
+  }
+  
   public String borrarServicio(Servicio unServicio) {
     System.out.println("Borrando");
     usuarioController.borrarServicio(unServicio);

@@ -6,45 +6,35 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:f="http://java.sun.com/jsf/core">
   <ui:composition template="/resources/template.xhtml">
-    <ui:param name="context_help" value="Acceda a toda la información de sus cuentas"/>
+    <ui:param name="context_help" value="Acceda a toda la información de sus servicios"/>
     <ui:define name="content">
       <div id="homepage">
         <div class="services">
           <h2 class="subhead">Acciones Rápidas</h2>
           <ul>
             <li class="account"><h:link outcome="/servicios/crear" value="Crear Servicio"/></li>
-            <li class="refresh"><h:link outcome="/servicios/conectar" value="Conectar Servicios"/></li>
+            <li class="refresh"><h:link outcome="/servicios/buscarServicios" value="Conectar Servicios"/></li>
           </ul>
         </div>
         <div class="portfolio_preview">
-          <h2>Crear nuevo servicio</h2>
+          <h2>Conectar a Servicio OnLine</h2>
           <div id="from_portfolio">
-            <div class="panelContainer">
-              <div class="panel" title="Crear un nuevo servicio para administrar las cuentas ocasionadas por los mismos">
-                <div class="wrapper">
-                  <h:form id="conectar">
-                    <h:panelGrid columns="2">
-                      <h:outputLabel for="id" value="Ingrese su ID " />
-                      <h:inputText id="id" />
-                      <h:outputLabel for="password" value="Ingrese su Clave " />
-                      <h:inputSecret id="password" />
-                      <h:outputLabel for="proveedor" value="Seleccione el proveedor : " />
-                      <h:selectOneMenu id="proveedor" value="#{servicioActions.servicio.proveedor}" >
-                        <f:converter converterId="proveedorConverter" />
-                        <f:selectItems 
-                          value="#{servicioActions.proveedores}"
-                          var="proveedor"
-                          itemLabel="#{proveedor.nombre}"
-                          itemValue="#{proveedor}"
-                        />
-                      </h:selectOneMenu>
-                      <h:commandButton action="#{servicioActions.conectar}" value="Conectar" />
-                      <h:button value="Volver" outcome="/servicios/lista" />
-                    </h:panelGrid>
-                  </h:form>
-                </div>
-              </div>
-            </div>
+            <h:form id="servicios">
+              <h:dataTable value="#{servicioActions.listaServicios}" var="servicio">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nombre Servicio"/>
+                    </f:facet>
+                    <h2><h:outputText value="#{servicio.nombre}"/></h2>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Acciones"/>
+                    </f:facet>
+                  <h:commandLink value="[ Conectar ]" action="#{servicioActions.conectarServicio(servicio)}"/>
+                </h:column>                
+              </h:dataTable>              
+            </h:form>
           </div>
         </div>
         <div class="clear"></div>
