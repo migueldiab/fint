@@ -45,14 +45,21 @@ public class ServicioActions {
   }
 
   public String conectar() {
-    String response;
-    response = PATH + "lista";
+    String response = PATH + "lista";
     String id = JsfUtil.getRequestParameter("conectar:id");
     String password = JsfUtil.getRequestParameter("conectar:password");
     Proveedor proveedor = (Proveedor) JsfUtil.getObjectFromRequestParameter("conectar:proveedor", new ProveedorConverter(), null);
     List<Servicio> lista = servicioFacade.listarCuentasProveedor(id, password, proveedor);
-    for (Servicio servicio1 : lista) {
-      
+    if (null != lista) {
+      if (lista.isEmpty()) {
+        JsfUtil.addErrorMessage("El proveedor no tiene cuentas disponibles para esa ID. Consulte con su proveedor por activación de servicios en línea");
+      } else {
+        for (Servicio servicio1 : lista) {
+
+        }
+      }
+    } else {
+      JsfUtil.addErrorMessage("Hubo un error al conectarse con el servicio del proveedor. Intente mas tarde");
     }
     return response;
   }

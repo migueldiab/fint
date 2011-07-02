@@ -434,12 +434,16 @@ exists or setup the property manually. For example like this:
             <property name="deploy.on.save" value="false"/>
         </ant>
         <ant antfile="${project.Fint-ejb}/build.xml" inheritall="false" target="dist"/>
+        <ant antfile="${project.common-ejb}/build.xml" inheritall="false" target="dist"/>
     </target>
     <target depends="init" if="dist.ear.dir" name="-deps-ear-jar" unless="no.deps">
         <ant antfile="${project.Common}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
         <ant antfile="${project.Fint-ejb}/build.xml" inheritall="false" target="dist-ear">
+            <property location="${build.dir}" name="dist.ear.dir"/>
+        </ant>
+        <ant antfile="${project.common-ejb}/build.xml" inheritall="false" target="dist-ear">
             <property location="${build.dir}" name="dist.ear.dir"/>
         </ant>
     </target>
@@ -455,10 +459,12 @@ exists or setup the property manually. For example like this:
     <target depends="compile" name="library-inclusion-in-archive">
         <copyfiles files="${reference.Fint-ejb.dist}" todir="${build.classes.dir}"/>
         <copyfiles files="${reference.Common.jar}" todir="${build.classes.dir}"/>
+        <copyfiles files="${reference.common-ejb.dist}" todir="${build.classes.dir}"/>
     </target>
     <target depends="compile" name="library-inclusion-in-manifest">
         <copyfiles files="${reference.Fint-ejb.dist}" todir="${dist.ear.dir}"/>
         <copyfiles files="${reference.Common.jar}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${reference.common-ejb.dist}" todir="${dist.ear.dir}"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
     <target name="-copy-meta-inf">
@@ -752,6 +758,7 @@ exists or setup the property manually. For example like this:
     <target depends="init" if="no.dist.ear.dir" name="deps-clean" unless="no.deps">
         <ant antfile="${project.Common}/build.xml" inheritall="false" target="clean"/>
         <ant antfile="${project.Fint-ejb}/build.xml" inheritall="false" target="clean"/>
+        <ant antfile="${project.common-ejb}/build.xml" inheritall="false" target="clean"/>
     </target>
     <target depends="init" name="-do-clean">
         <delete dir="${build.dir}"/>

@@ -31,29 +31,34 @@ public class ServicioFacade {
   public List<Servicio> listarCuentasProveedor(String id, String password, Proveedor proveedor) {
     engine.infoLog("List<Servicio> listarCuentasProveedor(id "+id+", password "+password+", Proveedor "+proveedor+")");
     List<Servicio> result = null;
-    initParser(proveedor);
-    result = genericProveedorParser.listarCuentas(id, password);
+    if (initParser(proveedor)) {
+      result = genericProveedorParser.listarCuentas(id, password);
+    }
     return result;
   }
 
-  private void initParser(Proveedor proveedor) {
+  private Boolean initParser(Proveedor proveedor) {
+    Boolean result = Boolean.FALSE;
     String name = null;
     switch (proveedor.getParser()) {
       case UTEParser:
-        name = "java:module/UTEParser!edu.ort.dcomp.fint.monitor.UTEParser";
+        name = "java:global/Fint/monitor-ejb/UTEParser";
         break;
       default:
-        throw new AssertionError();
+        engine.errorLog("No existe un parser para el proveedor " + proveedor, "");
     }
     try
     {
        final Context ctx = new InitialContext();
        genericProveedorParser = (GenericProveedorParser) ctx.lookup(name);
+       result = Boolean.TRUE;
     }
-    catch ( NamingException e )
+    catch (NamingException e)
     {
-      System.out.println("Could not locate parser");
-    }    
+      engine.errorLog("Could not locate parser", e.toString());
+      
+    }
+    return result;
   }
 
   public List<Proveedor> getProveedores() {

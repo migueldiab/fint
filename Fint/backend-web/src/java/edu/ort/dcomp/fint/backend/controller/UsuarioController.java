@@ -1,8 +1,8 @@
 package edu.ort.dcomp.fint.backend.controller;
 
 import edu.ort.dcomp.fint.modelo.Usuario;
-import edu.ort.dcomp.fint.backend.controller.util.JsfUtil;
-import edu.ort.dcomp.fint.backend.controller.util.PaginationHelper;
+import edu.ort.dcomp.fint.jsf.JsfUtil;
+import edu.ort.dcomp.fint.jsf.PaginationHelper;
 import edu.ort.dcomp.fint.modelo.managers.UsuarioManagerLocal;
 
 import java.util.ResourceBundle;
