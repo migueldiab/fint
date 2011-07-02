@@ -1,7 +1,9 @@
 package edu.ort.dcomp.fint.modelo.managers;
 
 import edu.ort.dcomp.fint.modelo.Agenda;
+import edu.ort.dcomp.fint.modelo.Usuario;
 import java.util.List;
+import java.util.Set;
 import javax.ejb.LocalBean;
 
 /**
@@ -24,5 +26,7 @@ public interface AgendaManagerLocal {
   List<Agenda> findRange(int[] range);
 
   int count();
+
+  public List<Agenda> buscarPorUsuario(Usuario usuario);
 
 }

@@ -29,11 +29,15 @@
                       <h:selectOneMenu id="entidadFinanciera" value="#{cuentaActions.cuenta.entidadFinanciera}" >
                         <f:converter converterId="entidadFinancieraConverter" />
                         <f:selectItems 
-                          value="#{facade.entidadesFinancieras}"
+                          value="#{cuentaActions.entidadesFinancieras}"
                           var="ef"
                           itemLabel="#{ef.nombre}"
                           itemValue="#{ef}"
                         />
+                      </h:selectOneMenu>
+                      <h:outputLabel for="tipo" value="Tipo de Cuenta" />
+                      <h:selectOneMenu id="tipo" value="#{cuentaActions.cuenta.tipo}" title="Tipo Cuenta">
+                        <f:selectItems value="#{cuentaActions.tiposCuenta}"/>
                       </h:selectOneMenu>
                       <h:commandButton action="#{cuentaActions.guardar}" value="Guardar" />
                       <h:button value="Volver" outcome="/cuentas/lista" />

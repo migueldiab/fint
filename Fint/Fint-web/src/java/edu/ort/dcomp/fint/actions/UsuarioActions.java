@@ -3,10 +3,12 @@ package edu.ort.dcomp.fint.actions;
 import edu.ort.dcomp.fint.engine.UsuarioFacade;
 import edu.ort.dcomp.fint.engine.Engine;
 import edu.ort.dcomp.fint.jsf.JsfUtil;
+import edu.ort.dcomp.fint.modelo.Agenda;
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.Usuario;
 import java.io.IOException;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javax.ejb.EJB;
@@ -43,12 +45,19 @@ public class UsuarioActions {
 
   public Set<Cuenta> getCuentas() {
     Set<Cuenta> lista = getUsuario().getCuentas();
+    for (Cuenta cuenta : lista) {
+      System.out.println("cuenta" + cuenta);
+    }
     return lista;
   }
 
   public Set<Servicio> getServicios() {
     Set<Servicio> lista = getUsuario().getServicios();
     return lista;
+  }
+
+  public List<Agenda> getAgendaPagos() {
+    return usuarioController.getAgendaPagos(getUsuario());
   }
 
   public Boolean isUserInRole(final String role) {

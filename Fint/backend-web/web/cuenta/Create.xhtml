@@ -24,7 +24,9 @@
                         <f:selectItems value="#{entidadFinancieraController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreateCuentaLabel_tipo}" for="tipo" />
-                    <h:inputText id="tipo" value="#{cuentaController.selected.tipo}" title="#{bundle.CreateCuentaTitle_tipo}" />
+                    <h:selectOneMenu id="tipo" value="#{cuentaController.selected.tipo}" title="#{bundle.CreateCuentaTitle_tipo}">
+                      <f:selectItems value="#{cuentaController.tiposCuenta}"/>
+                    </h:selectOneMenu>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{cuentaController.create}" value="#{bundle.CreateCuentaSaveLink}" />

@@ -2,12 +2,15 @@ package edu.ort.dcomp.fint.engine;
 
 import edu.ort.common.log.Logger;
 import edu.ort.common.mail.MailerLocal;
+import edu.ort.dcomp.fint.modelo.Agenda;
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.Grupo;
 import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.Usuario;
+import edu.ort.dcomp.fint.modelo.managers.AgendaManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.GrupoManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.UsuarioManagerLocal;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
@@ -26,10 +29,13 @@ public class UsuarioFacade {
   private Usuario unUsuario;
   
   @EJB 
-  private UsuarioManagerLocal usuarioManager;
+  private UsuarioManagerLocal ejbUsuario;
 
   @EJB
-  private GrupoManagerLocal grupoManager;
+  private GrupoManagerLocal ejbGrupo;
+
+  @EJB
+  private AgendaManagerLocal ejbAgenda;
 
   @EJB
   private MailerLocal  mailer;
@@ -44,15 +50,15 @@ public class UsuarioFacade {
   }
 
   public Usuario findByLogin(String user) {
-    return usuarioManager.findByLogin(user);
+    return ejbUsuario.findByLogin(user);
   }
 
   public Usuario find(Long key) {
-    return usuarioManager.find(key);
+    return ejbUsuario.find(key);
   }
 
   public void edit(Usuario usuarioLogueado) {
-    usuarioManager.merge(usuarioLogueado);
+    ejbUsuario.merge(usuarioLogueado);
   }
 
   public Usuario getUsuario() {
@@ -71,35 +77,51 @@ public class UsuarioFacade {
 
   public void guardarCuenta(Cuenta cuenta) {
     getUsuario().agregarCuenta(cuenta);
-    unUsuario = usuarioManager.merge(getUsuario());
+    unUsuario = ejbUsuario.merge(getUsuario());
   }
 
   public void borrarCuenta(Cuenta unaCuenta) {
     getUsuario().getCuentas().remove(unaCuenta);
-    unUsuario = usuarioManager.merge(getUsuario());
+    unUsuario = ejbUsuario.merge(getUsuario());
   }
 
   public void guardarServicio(Servicio servicio) {
     getUsuario().agregarServicio(servicio);
-    unUsuario = usuarioManager.merge(getUsuario());
+    unUsuario = ejbUsuario.merge(getUsuario());
   }
 
   public void borrarServicio(Servicio unServicio) {
     getUsuario().getServicios().remove(unServicio);
-    unUsuario = usuarioManager.merge(getUsuario());
+    unUsuario = ejbUsuario.merge(getUsuario());
   }
 
   public void crearNuevoUsuario(Usuario nuevoUsuario) {
-    usuarioManager.persist(nuevoUsuario);
+    ejbUsuario.persist(nuevoUsuario);
     Grupo unGrupo = new Grupo();
     unGrupo.setLogin(nuevoUsuario.getLogin());
     unGrupo.setPermisos(GRUPO_USUARIO);
-    grupoManager.persist(unGrupo);
+    ejbGrupo.persist(unGrupo);
     try {
       mailer.sendMail(nuevoUsuario.getEmail(), "Bienvenido a FINT", "Bienvenido " + nuevoUsuario.getNombre());
     } catch (Exception e) {
       logger.error("Error al notificar al usuario", e.toString());
     }
+  }
+
+  public List<Agenda> getAgendaPagos(Usuario usuario) {
+    List<Agenda> result = null;
+    result = ejbAgenda.buscarPorUsuario(usuario);
+    return result;
+  }
+
+  public void crearAgenda(Cuenta unaCuenta, Servicio unServicio) {
+    Usuario usuario = getUsuario();
+    Agenda unaAgenda = new Agenda();
+    unaAgenda.setCuenta(unaCuenta);
+    unaAgenda.setServicio(unServicio);
+    unaAgenda.setTipo(Agenda.Tipo.SERVICIO);
+    unaAgenda.setUsuario(usuario);
+    ejbAgenda.persist(unaAgenda);
   }
 
 }
