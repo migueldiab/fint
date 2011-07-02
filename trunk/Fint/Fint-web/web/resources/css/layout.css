@@ -6,6 +6,8 @@ body {background:url(../resources/images/bg.jpg) repeat; font:11px Verdana, Aria
 input[type="submit"] { border: solid 1px #003333; padding: 1px 5px 1px 5px; width: 120px; background: #ccccff ;}
 input[type="button"] { border: solid 1px #003333; padding: 1px 5px 1px 5px; width: 120px; background: #ffffff ;}
 
+th {font-size:16px; padding:5px 10px 5px 5px; color:#2a2aa0; height:25px; border-bottom: solid 1px; border-left: solid 1px;}
+
 #wrap { width:894px; margin:auto;}
 .hide { display: none; }
 .clear {clear:both;}
@@ -22,12 +24,12 @@ input[type="button"] { border: solid 1px #003333; padding: 1px 5px 1px 5px; widt
 
 h1, h2, h3, h4 {font-family:"Trebuchet MS", halvetica, Verdana, sans-serif; font-weight:bold;}
 h1 {font-size:18px;}
-h2 {font-size:16px;}
+h2 {font-size:16px; display:block; padding:3px 3px 0 5px; color:#fff; height:25px; }
+.services h2 { color:#555; }
 h3 {font-size:14px;}
 h4 {font-size:12px;}
 
 .subhead {display:block; background:url(../resources/images/subheadbg.jpg) repeat-x; height:25px; padding:3px 5px 0 5px;}
-.portfolio_preview h2 {display:block; padding:3px 3px 0 5px; color:#fff; height:25px;}
 
 .services li {display:block; padding:3px 5px 3px 48px; margin:5px 0 3px; height:46px; border-bottom:solid 1px #ccc;}
 .services li.idea {background:url(../resources/images/ideaicon.jpg) no-repeat; }
@@ -340,7 +342,7 @@ a:visited img, a:active img {border:none;}#getaquote #fcf2 .r .f {
 	background: #DDFFDD url(../resources/images/33.png) no-repeat 0px 0px;
 	display: block;
 	padding: 0px 0px 0px 55px!important;
-  border: solid 1px #FF0000;
+  border: solid 1px #00FF00;
   font-size: 14px;
 	height: 48px;
 }

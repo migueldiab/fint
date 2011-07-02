@@ -22,6 +22,6 @@ public interface GenericProveedorParser {
   @Asynchronous
   void leerFacturasPasadas() throws MalformedURLException;
 
-  public List<Servicio> listarCuentas(String id, String password);
+  public List<Servicio> listarCuentas(String id, String password) throws MalformedURLException;
 
 }

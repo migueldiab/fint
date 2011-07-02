@@ -23,7 +23,6 @@ import javax.ejb.Asynchronous;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.xml.namespace.QName;
-import javax.xml.ws.WebServiceRef;
 
 /**
  *
@@ -31,8 +30,7 @@ import javax.xml.ws.WebServiceRef;
  */
 @Stateless
 public class UTEParser implements GenericProveedorParser {
-  @WebServiceRef(wsdlLocation = "http://localhost:8080/ConsultasWSService/ConsultasWS?wsdl")
-  private ConsultasWSService service = getService();
+  private ConsultasWSService service;
 
   private static String WS_URL;
 
@@ -136,35 +134,33 @@ public class UTEParser implements GenericProveedorParser {
   }
 
   @Override
-  public List<Servicio> listarCuentas(String id, String password) {
+  public List<Servicio> listarCuentas(String id, String password) throws MalformedURLException {
+    logger.info("List<Servicio> listarCuentas(id "+id+", password"+password+")");
     Long ciCliente = Long.parseLong(id);
     List<Cuenta> cuentas = null;
     List<Servicio> result = null;
-    try {
-      cuentas = getProxy().obtenerCuentasPorCliente(ciCliente, password);
-      result = importarCuentas(cuentas);
-    } catch (MalformedURLException ex) {
-      
-    }
+    ConsultasWS proxy = getProxy();
+    cuentas = proxy.obtenerCuentasPorCliente(ciCliente, password);
+    result = importarCuentas(cuentas);
     return result;
   }
 
   private List<Servicio> importarCuentas(List<Cuenta> cuentas) {
+    logger.info("List<Servicio> importarCuentas(cuentas "+cuentas+")");
     List<Servicio> result = new ArrayList<Servicio>();
     for (Cuenta cuenta : cuentas) {
       Servicio nuevoServicio = new Servicio();
       //nuevoServicio.setCategoria();
-      nuevoServicio.setNombre(cuenta.getId().toString() + proveedorAsociado);
+      nuevoServicio.setNombre(PROVEEDOR_ASOCIADO + " - " + cuenta.getId().toString());
       nuevoServicio.setNumero(cuenta.getId());
-      nuevoServicio.setProveedor(proveedorAsociado);
+      nuevoServicio.setProveedor(getProveedorAsociado());
       result.add(nuevoServicio);
     }
     return result;
   }
 
   private ConsultasWS getProxy() throws MalformedURLException {
-    ConsultasWS consultaWS = service.getConsultasWSPort();
-    return consultaWS;
+    return getService().getConsultasWSPort();
   }
 
   private URL getWSURL() throws MalformedURLException {
@@ -174,13 +170,10 @@ public class UTEParser implements GenericProveedorParser {
     return new URL(WS_URL);
   }
 
-  private ConsultasWSService getService() {
-    final QName serviceName = new QName("http://ws.ute.dcomp.ort.edu/", "ConsultasWSService");
-    ConsultasWSService service = null;
-    try {
+  private ConsultasWSService getService() throws MalformedURLException {
+    if (null == service) {
+      final QName serviceName = new QName("http://ws.ute.dcomp.ort.edu/", "ConsultasWSService");
       service = new ConsultasWSService(getWSURL(), serviceName);
-    } catch (MalformedURLException ex) {
-      logger.error("No se pudo conectar al Web Service", ex.toString());
     }
     return service;
   }
