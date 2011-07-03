@@ -3,6 +3,7 @@ package edu.ort.dcomp.fint.actions;
 import edu.ort.dcomp.fint.engine.CuentaFacade;
 import edu.ort.dcomp.fint.engine.UsuarioFacade;
 import edu.ort.dcomp.fint.engine.Engine;
+import edu.ort.dcomp.fint.engine.TransaccionFacade;
 import edu.ort.dcomp.fint.jsf.JsfUtil;
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.EntidadFinanciera;
@@ -35,6 +36,9 @@ public class CuentaActions {
   private CuentaFacade cuentaController;
 
   @EJB
+  private TransaccionFacade transaccionFacade;
+
+  @EJB
   Engine engine;
 
   public Cuenta getCuenta() {
@@ -44,9 +48,8 @@ public class CuentaActions {
     return cuenta;
   }
 
-  public Transaccion[] getTransacciones() {
-    cuenta = cuentaController.merge(cuenta);
-    return cuenta.getTransacciones().toArray(new Transaccion[0]);
+  public List<Transaccion> getTransacciones() {
+    return transaccionFacade.obtenerPorCuentaOrdenadoPorFecha(cuenta);
   }
 
   public String guardar() {

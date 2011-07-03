@@ -1,6 +1,9 @@
 package edu.ort.dcomp.fint.engine;
 
+import edu.ort.dcomp.fint.modelo.Cuenta;
+import edu.ort.dcomp.fint.modelo.Transaccion;
 import edu.ort.dcomp.fint.modelo.managers.TransaccionManagerLocal;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -14,6 +17,10 @@ import javax.ejb.LocalBean;
 public class TransaccionFacade {
 
   @EJB
-  TransaccionManagerLocal transaccionManagerLocal;
+  private TransaccionManagerLocal ejbTransaccion;
+
+  public List<Transaccion> obtenerPorCuentaOrdenadoPorFecha(Cuenta cuenta) {
+    return ejbTransaccion.obtenerPorCuentaOrdenadoPorFecha(cuenta);
+  }
 
 }
