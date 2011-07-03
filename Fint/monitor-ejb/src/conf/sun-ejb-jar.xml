@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD GlassFish Application Server 3.0 EJB 3.1//EN" "http://www.sun.com/software/appserver/dtds/sun-ejb-jar_3_1-0.dtd">
+<sun-ejb-jar>
+  <enterprise-beans>
+    <ejb>
+      <ejb-name>AgendaProcessor</ejb-name>
+      <resource-ref>
+        <res-ref-name>jms/colaAgendaFactory</res-ref-name>
+        <jndi-name>jms/colaAgendaFactory</jndi-name>
+      </resource-ref>
+      <message-destination-ref>
+        <message-destination-ref-name>jms/colaAgenda</message-destination-ref-name>
+        <jndi-name>jms/colaAgenda</jndi-name>
+      </message-destination-ref>
+    </ejb>
+  </enterprise-beans>
+</sun-ejb-jar>
