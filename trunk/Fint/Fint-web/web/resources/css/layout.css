@@ -12,6 +12,8 @@ th {font-size:16px; padding:5px 10px 5px 5px; color:#2a2aa0; height:25px; border
 .hide { display: none; }
 .clear {clear:both;}
 
+.logo { margin: 5px 15px 15px 5px; }
+
 #header {background:url(../resources/images/header.jpg) no-repeat; height:273px; }
 #contents {background:url(../resources/images/contentbg.jpg) repeat-y; padding:1px 5px 0 5px;}
 

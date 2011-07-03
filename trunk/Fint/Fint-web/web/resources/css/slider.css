@@ -34,7 +34,9 @@
 	width: 501px;
 	overflow: hidden;
 }
-.stripNavL, .stripNavR, .stripNav			{ display: none; }
+.stripNavL    { display: none; }
+.stripNavR    { float: right; display: inline; }
+.stripNav			{ display: none; }
 .nav-thumb 									{ border: 1px solid black; margin-right: 5px; }
 #movers-row									{ margin: -43px 0 0 62px; }
 #movers-row div								{ width: 20%; float: left; }

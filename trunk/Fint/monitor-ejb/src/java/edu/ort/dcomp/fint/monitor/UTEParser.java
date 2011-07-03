@@ -10,10 +10,10 @@ import edu.ort.dcomp.fint.modelo.Usuario;
 import edu.ort.dcomp.fint.modelo.managers.ProveedorManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.TransaccionManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.UsuarioManagerLocal;
-import edu.ort.dcomp.fint.monitor.client.ConsultasWS;
-import edu.ort.dcomp.fint.monitor.client.ConsultasWSService;
-import edu.ort.dcomp.fint.monitor.client.Cuenta;
-import edu.ort.dcomp.fint.monitor.client.Factura;
+import edu.ort.dcomp.fint.ws.servicio.Cuenta;
+import edu.ort.dcomp.fint.ws.servicio.Factura;
+import edu.ort.dcomp.fint.ws.servicio.WsUTE;
+import edu.ort.dcomp.fint.ws.servicio.WsUTEService;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ import javax.xml.namespace.QName;
  */
 @Stateless
 public class UTEParser implements GenericProveedorParser {
-  private ConsultasWSService service;
+  private WsUTEService service;
 
   private static String WS_URL;
 
@@ -69,7 +69,7 @@ public class UTEParser implements GenericProveedorParser {
     return proveedorAsociado;
   }
 
-  private Estado parseEstado(edu.ort.dcomp.fint.monitor.client.Estado estado) {
+  private Estado parseEstado(edu.ort.dcomp.fint.ws.servicio.Estado estado) {
     Estado result = null;
     switch (estado) {
       case ANULADA:
@@ -139,7 +139,7 @@ public class UTEParser implements GenericProveedorParser {
     Long ciCliente = Long.parseLong(id);
     List<Cuenta> cuentas = null;
     List<Servicio> result = null;
-    ConsultasWS proxy = getProxy();
+    WsUTE proxy = getProxy();
     cuentas = proxy.obtenerCuentasPorCliente(ciCliente, password);
     result = importarCuentas(cuentas);
     return result;
@@ -159,21 +159,21 @@ public class UTEParser implements GenericProveedorParser {
     return result;
   }
 
-  private ConsultasWS getProxy() throws MalformedURLException {
-    return getService().getConsultasWSPort();
+  private WsUTE getProxy() throws MalformedURLException {
+    return getService().getWsUTEPort();
   }
 
   private URL getWSURL() throws MalformedURLException {
     if (null == WS_URL) {
-      WS_URL = "http://localhost:8080/ConsultasWSService/ConsultasWS?wsdl";
+      WS_URL = "http://localhost:8080/wsUTEService/wsUTE?wsdl";
     }
     return new URL(WS_URL);
   }
 
-  private ConsultasWSService getService() throws MalformedURLException {
+  private WsUTEService getService() throws MalformedURLException {
     if (null == service) {
-      final QName serviceName = new QName("http://ws.ute.dcomp.ort.edu/", "ConsultasWSService");
-      service = new ConsultasWSService(getWSURL(), serviceName);
+      final QName serviceName = new QName("http://ws.ute.dcomp.ort.edu/", "wsUTEService");
+      service = new WsUTEService(getWSURL(), serviceName);
     }
     return service;
   }

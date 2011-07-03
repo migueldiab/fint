@@ -30,11 +30,20 @@
                             <h:outputLabel value="Cuenta :" />
                             <h:outputLabel value="#{cuenta.nombre}" />
                             <h:outputLabel value="Entidad :" />
-                            <h:outputLabel value="#{cuenta.entidadFinanciera}" />                            
+                            <h:outputLabel value="#{cuenta.entidadFinanciera}" />
+                            <h:outputLabel value="Tipo :" />
+                            <h:outputLabel value="#{cuenta.tipo}" />
+                            <h:outputLabel value="Saldo :" />
+                            <h:outputLabel value="#{cuenta.saldo}" />
+                            <h:outputLabel value="Actualizado :" />
+                            <h:outputLabel value="#{cuenta.fechaActualizacion}" >
+                              <f:convertDateTime pattern="dd/MM hh:mm" />
+                            </h:outputLabel>
                           </h:panelGrid>
                           <br/><br/>
                           <h:commandButton value="Ver Movimientos" action="#{cuentaActions.estadoRealCuenta(cuenta)}" />
                           <h:commandButton value="Estado Proyectado" action="#{cuentaActions.estadoProyectadoCuenta(cuenta)}"/>
+                          <h:commandButton value="Actualizar Saldo" action="#{cuentaActions.actualizarSaldo(cuenta)}"/>
                           <br/><br/>
                           <h:button value="Volver" outcome="/inicio" />
                           <h:commandButton value="Borrar" action="#{cuentaActions.borrarCuenta(cuenta)}"/>
