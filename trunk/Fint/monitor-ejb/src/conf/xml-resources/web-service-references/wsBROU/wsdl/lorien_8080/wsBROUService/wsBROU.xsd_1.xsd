@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.1 (branches/2.1-6728; 2011-02-03T14:14:58+0000) JAXWS-RI/2.2.3 JAXWS/2.2. --><xs:schema xmlns:tns="http://ws.brou.dcomp.ort.edu/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.brou.dcomp.ort.edu/">
+
+<xs:element name="Exception" type="tns:Exception" />
+
+<xs:element name="obtenerCuenta" type="tns:obtenerCuenta" />
+
+<xs:element name="obtenerCuentaResponse" type="tns:obtenerCuentaResponse" />
+
+<xs:element name="retirarDinero" type="tns:retirarDinero" />
+
+<xs:element name="retirarDineroResponse" type="tns:retirarDineroResponse" />
+
+<xs:complexType name="obtenerCuenta">
+<xs:sequence>
+<xs:element name="usuario" type="xs:string" minOccurs="0" />
+<xs:element name="password" type="xs:string" minOccurs="0" />
+<xs:element name="idCuenta" type="xs:long" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obtenerCuentaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:cuenta" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cuenta">
+<xs:sequence>
+<xs:element name="balance" type="xs:decimal" minOccurs="0" />
+<xs:element name="cliente" type="tns:cliente" minOccurs="0" />
+<xs:element name="estado" type="tns:estadoCuenta" minOccurs="0" />
+<xs:element name="fechaApertura" type="xs:dateTime" minOccurs="0" />
+<xs:element name="id" type="xs:long" minOccurs="0" />
+<xs:element name="movimiento" type="tns:movimiento" nillable="true" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cliente">
+<xs:sequence>
+<xs:element name="apellido" type="xs:string" minOccurs="0" />
+<xs:element name="ci" type="xs:long" minOccurs="0" />
+<xs:element name="cuentas" type="tns:cuenta" nillable="true" minOccurs="0" maxOccurs="unbounded" />
+<xs:element name="id" type="xs:long" minOccurs="0" />
+<xs:element name="nombre" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="movimiento">
+<xs:sequence>
+<xs:element name="concepto" type="xs:string" minOccurs="0" />
+<xs:element name="cuenta" type="tns:cuenta" minOccurs="0" />
+<xs:element name="fecha" type="xs:dateTime" minOccurs="0" />
+<xs:element name="id" type="xs:long" minOccurs="0" />
+<xs:element name="importe" type="xs:decimal" minOccurs="0" />
+<xs:element name="tipo" type="tns:tipo" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Exception">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retirarDinero">
+<xs:sequence>
+<xs:element name="usuario" type="xs:string" minOccurs="0" />
+<xs:element name="password" type="xs:string" minOccurs="0" />
+<xs:element name="idCuenta" type="xs:long" minOccurs="0" />
+<xs:element name="importe" type="xs:float" minOccurs="0" />
+<xs:element name="descripcion" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="retirarDineroResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:movimiento" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:simpleType name="estadoCuenta">
+<xs:restriction base="xs:string">
+<xs:enumeration value="ACTIVA" />
+<xs:enumeration value="INACTIVA" />
+<xs:enumeration value="CANCELADA" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="tipo">
+<xs:restriction base="xs:string">
+<xs:enumeration value="DEPOSITO" />
+<xs:enumeration value="RETIRO" />
+<xs:enumeration value="TRANSFERENCIA" />
+<xs:enumeration value="AJUSTE" />
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>
