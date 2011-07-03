@@ -10,8 +10,6 @@ import edu.ort.dcomp.fint.modelo.EntidadFinanciera;
 import edu.ort.dcomp.fint.modelo.Transaccion;
 import edu.ort.dcomp.fint.modelo.Usuario;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
@@ -85,13 +83,13 @@ public class CuentaActions {
     Usuario usuarioActual = usuarioController.getUsuario();
     try {
       cuenta = cuentaController.actualizarSaldo(unaCuenta, usuarioActual);
-      JsfUtil.addSuccessMessage("Updated!");
+      JsfUtil.addSuccessMessage("Saldo actualizado!");
     } catch (Exception ex) {
       String msg = "No se pudo actualizar en este momento.";
       JsfUtil.addErrorMessage(msg);
       engine.errorLog(msg, ex.toString());
     }
-    return PATH + "estado";
+    return PATH + "lista";
   }
   
   public String estadoProyectadoCuenta(Cuenta unaCuenta) {

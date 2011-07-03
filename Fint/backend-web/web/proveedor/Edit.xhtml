@@ -9,20 +9,20 @@
         <ui:define name="title">
             <h:outputText value="#{bundle.EditProveedorTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="content">
+        <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditProveedorLabel_id}" for="id" />
-                    <h:outputLabel id="id" value="#{proveedorController.selected.id}" title="#{bundle.EditProveedorTitle_id}" />
+                    <h:outputText id="id" value="#{proveedorController.selected.id}" title="#{bundle.EditProveedorTitle_id}" />
                     <h:outputLabel value="#{bundle.EditProveedorLabel_nombre}" for="nombre" />
                     <h:inputText id="nombre" value="#{proveedorController.selected.nombre}" title="#{bundle.EditProveedorTitle_nombre}" />
-                    <h:selectOneMenu id="parser" value="#{proveedorController.selected.parser}" title="Conector de Web Service" >
-                      <f:selectItems value="#{proveedorController.parsers}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
+                    <h:outputLabel value="#{bundle.EditProveedorLabel_parser}" for="parser" />
+                    <h:selectOneMenu id="parser" value="#{proveedorController.selected.parser}" title="#{bundle.CreateProveedorTitle_parser}" >
+                        <f:selectItems value="#{proveedorController.parsers}"/>
+                    </h:selectOneMenu>                </h:panelGrid>
                 <h:commandLink action="#{proveedorController.update}" value="#{bundle.EditProveedorSaveLink}"/>
                 <br />
                 <br />

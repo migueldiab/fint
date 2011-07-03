@@ -9,7 +9,7 @@
         <ui:define name="title">
             <h:outputText value="#{bundle.ViewAgendaTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="content">
+        <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
@@ -27,10 +27,12 @@
                     </h:outputText>
                     <h:outputText value="#{bundle.ViewAgendaLabel_numero}"/>
                     <h:outputText value="#{agendaController.selected.numero}" title="#{bundle.ViewAgendaTitle_numero}"/>
-                    <h:outputText value="#{bundle.ViewAgendaLabel_recurrencia}"/>
-                    <h:outputText value="#{agendaController.selected.recurrencia}" title="#{bundle.ViewAgendaTitle_recurrencia}"/>
                     <h:outputText value="#{bundle.ViewAgendaLabel_tipo}"/>
                     <h:outputText value="#{agendaController.selected.tipo}" title="#{bundle.ViewAgendaTitle_tipo}"/>
+                    <h:outputText value="#{bundle.ViewAgendaLabel_cuenta}"/>
+                    <h:outputText value="#{agendaController.selected.cuenta}" title="#{bundle.ViewAgendaTitle_cuenta}"/>
+                    <h:outputText value="#{bundle.ViewAgendaLabel_servicio}"/>
+                    <h:outputText value="#{agendaController.selected.servicio}" title="#{bundle.ViewAgendaTitle_servicio}"/>
                     <h:outputText value="#{bundle.ViewAgendaLabel_usuario}"/>
                     <h:outputText value="#{agendaController.selected.usuario}" title="#{bundle.ViewAgendaTitle_usuario}"/>
                 </h:panelGrid>

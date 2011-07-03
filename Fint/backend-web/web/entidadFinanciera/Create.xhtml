@@ -9,16 +9,18 @@
         <ui:define name="title">
             <h:outputText value="#{bundle.CreateEntidadFinancieraTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="content">
+        <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateEntidadFinancieraLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{entidadFinancieraController.selected.id}" title="#{bundle.CreateEntidadFinancieraTitle_id}" />
                     <h:outputLabel value="#{bundle.CreateEntidadFinancieraLabel_nombre}" for="nombre" />
                     <h:inputText id="nombre" value="#{entidadFinancieraController.selected.nombre}" title="#{bundle.CreateEntidadFinancieraTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.CreateEntidadFinancieraLabel_parser}" for="parser" />
+                    <h:selectOneMenu id="parser" value="#{entidadFinancieraController.selected.parser}" title="#{bundle.CreateEntidadFinancieraTitle_parser}" >
+                        <f:selectItems value="#{entidadFinancieraController.parsers}"/>
+                    </h:selectOneMenu>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{entidadFinancieraController.create}" value="#{bundle.CreateEntidadFinancieraSaveLink}" />

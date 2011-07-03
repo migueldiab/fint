@@ -9,7 +9,7 @@
         <ui:define name="title">
             <h:outputText value="#{bundle.ViewTransaccionTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="content">
+        <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
@@ -23,6 +23,38 @@
                     <h:outputText value="#{transaccionController.selected.destinatario}" title="#{bundle.ViewTransaccionTitle_destinatario}"/>
                     <h:outputText value="#{bundle.ViewTransaccionLabel_numero}"/>
                     <h:outputText value="#{transaccionController.selected.numero}" title="#{bundle.ViewTransaccionTitle_numero}"/>
+                    <h:outputText value="#{bundle.ViewTransaccionLabel_cuenta}"/>
+                    <h:outputText value="#{transaccionController.selected.cuenta}" title="#{bundle.ViewTransaccionTitle_cuenta}"/>
+                    <h:outputText value="#{bundle.ViewTransaccionLabel_servicio}"/>
+                    <h:outputText value="#{transaccionController.selected.servicio}" title="#{bundle.ViewTransaccionTitle_servicio}"/>
+                    <h:outputText value="#{bundle.ViewTransaccionLabel_tipo}"/>
+                    <h:outputText value="#{transaccionController.selected.tipo}" title="#{bundle.ViewTransaccionTitle_tipo}"/>
+                    <h:outputText value="#{bundle.ViewTransaccionLabel_usuario}"/>
+                    <h:outputText value="#{transaccionController.selected.usuario}" title="#{bundle.ViewTransaccionTitle_usuario}"/>
+                    <h:outputText value="#{bundle.ViewTransaccionLabel_fechaEmision}"/>
+                    <h:outputText value="#{transaccionController.selected.fechaEmision}" title="#{bundle.ViewTransaccionTitle_fechaEmision}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTransaccionLabel_fechaIngreso}"/>
+                    <h:outputText value="#{transaccionController.selected.fechaIngreso}" title="#{bundle.ViewTransaccionTitle_fechaIngreso}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTransaccionLabel_fechaPago}"/>
+                    <h:outputText value="#{transaccionController.selected.fechaPago}" title="#{bundle.ViewTransaccionTitle_fechaPago}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTransaccionLabel_fechaVencimiento}"/>
+                    <h:outputText value="#{transaccionController.selected.fechaVencimiento}" title="#{bundle.ViewTransaccionTitle_fechaVencimiento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTransaccionLabel_concepto}"/>
+                    <h:outputText value="#{transaccionController.selected.concepto}" title="#{bundle.ViewTransaccionTitle_concepto}"/>
+                    <h:outputText value="#{bundle.ViewTransaccionLabel_estado}"/>
+                    <h:outputText value="#{transaccionController.selected.estado}" title="#{bundle.ViewTransaccionTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewTransaccionLabel_fechaActualizacion}"/>
+                    <h:outputText value="#{transaccionController.selected.fechaActualizacion}" title="#{bundle.ViewTransaccionTitle_fechaActualizacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{transaccionController.destroyAndView}" value="#{bundle.ViewTransaccionDestroyLink}"/>

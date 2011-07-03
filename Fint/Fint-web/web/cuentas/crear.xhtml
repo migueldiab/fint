@@ -23,9 +23,13 @@
               <div class="panel" title="Panel 1">
                 <div class="wrapper">
                   <h:form id="cuenta">
-                    <h:panelGrid columns="2">
+                    <h:panelGrid columns="3">
                       <h:outputLabel for="nombre" value="Nombre" />
                       <h:inputText id="nombre" value="#{cuentaActions.cuenta.nombre}" />
+                      <br/>
+                      <h:outputLabel for="numeroCuenta" value="Numero Cuenta" />
+                      <h:inputText id="numeroCuenta" value="#{cuentaActions.cuenta.numeroCuenta}" />
+                      <i>* Requerido para consultas de saldo</i><br/>
                       <h:outputLabel for="entidadFinanciera" value="Entidad Financiera" />
                       <h:selectOneMenu id="entidadFinanciera" value="#{cuentaActions.cuenta.entidadFinanciera}" >
                         <f:converter converterId="entidadFinancieraConverter" />
@@ -36,12 +40,15 @@
                           itemValue="#{ef}"
                         />
                       </h:selectOneMenu>
+                      <br/>
                       <h:outputLabel for="tipo" value="Tipo de Cuenta" />
                       <h:selectOneMenu id="tipo" value="#{cuentaActions.cuenta.tipo}" title="Tipo Cuenta">
                         <f:selectItems value="#{cuentaActions.tiposCuenta}"/>
                       </h:selectOneMenu>
+                      <br/>
                       <h:commandButton action="#{cuentaActions.guardar}" value="Guardar" />
                       <h:button value="Volver" outcome="/cuentas/lista" />
+                      <br/>
                     </h:panelGrid>
                   </h:form>
                 </div>

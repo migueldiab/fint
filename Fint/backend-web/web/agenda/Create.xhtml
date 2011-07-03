@@ -9,15 +9,12 @@
         <ui:define name="title">
             <h:outputText value="#{bundle.CreateAgendaTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="content">
-          <legend>#{bundle.CreateAgendaTitle}</legend>
+        <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateAgendaLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{agendaController.selected.id}" title="#{bundle.CreateAgendaTitle_id}" />
                     <h:outputLabel value="#{bundle.CreateAgendaLabel_categoria}" for="categoria" />
                     <h:selectOneMenu id="categoria" value="#{agendaController.selected.categoria}" title="#{bundle.CreateAgendaTitle_categoria}" >
                         <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"/>
@@ -30,21 +27,29 @@
                     </h:inputText>
                     <h:outputLabel value="#{bundle.CreateAgendaLabel_numero}" for="numero" />
                     <h:inputText id="numero" value="#{agendaController.selected.numero}" title="#{bundle.CreateAgendaTitle_numero}" />
-                    <h:outputLabel value="#{bundle.CreateAgendaLabel_recurrencia}" for="recurrencia" />
-                    <h:inputText id="recurrencia" value="#{agendaController.selected.recurrencia}" title="#{bundle.CreateAgendaTitle_recurrencia}" />
                     <h:outputLabel value="#{bundle.CreateAgendaLabel_tipo}" for="tipo" />
                     <h:inputText id="tipo" value="#{agendaController.selected.tipo}" title="#{bundle.CreateAgendaTitle_tipo}" />
+                    <h:outputLabel value="#{bundle.CreateAgendaLabel_cuenta}" for="cuenta" />
+                    <h:selectOneMenu id="cuenta" value="#{agendaController.selected.cuenta}" title="#{bundle.CreateAgendaTitle_cuenta}" >
+                        <f:selectItems value="#{cuentaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateAgendaLabel_servicio}" for="servicio" />
+                    <h:selectOneMenu id="servicio" value="#{agendaController.selected.servicio}" title="#{bundle.CreateAgendaTitle_servicio}" >
+                        <f:selectItems value="#{servicioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreateAgendaLabel_usuario}" for="usuario" />
-                    <h:inputText id="usuario" value="#{agendaController.selected.usuario}" title="#{bundle.CreateAgendaTitle_usuario}" />
+                    <h:selectOneMenu id="usuario" value="#{agendaController.selected.usuario}" title="#{bundle.CreateAgendaTitle_usuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
                 </h:panelGrid>
                 <br />
-                <h:commandButton action="#{agendaController.create}" value="#{bundle.CreateAgendaSaveLink}" />
+                <h:commandLink action="#{agendaController.create}" value="#{bundle.CreateAgendaSaveLink}" />
                 <br />
                 <br />
-                <h:commandButton action="#{agendaController.prepareList}" value="#{bundle.CreateAgendaShowAllLink}" immediate="true"/>
+                <h:commandLink action="#{agendaController.prepareList}" value="#{bundle.CreateAgendaShowAllLink}" immediate="true"/>
                 <br />
                 <br />
-                <h:commandButton value="#{bundle.CreateAgendaIndexLink}" action="/index" immediate="true" />
+                <h:commandLink value="#{bundle.CreateAgendaIndexLink}" action="/index" immediate="true" />
             </h:form>
         </ui:define>
     </ui:composition>
