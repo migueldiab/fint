@@ -9,20 +9,58 @@
         <ui:define name="title">
             <h:outputText value="#{bundle.EditTransaccionTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="content">
+        <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditTransaccionLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{transaccionController.selected.id}" title="#{bundle.EditTransaccionTitle_id}" />
+                    <h:outputText id="id" value="#{transaccionController.selected.id}" title="#{bundle.EditTransaccionTitle_id}" />
                     <h:outputLabel value="#{bundle.EditTransaccionLabel_importe}" for="importe" />
                     <h:inputText id="importe" value="#{transaccionController.selected.importe}" title="#{bundle.EditTransaccionTitle_importe}" />
                     <h:outputLabel value="#{bundle.EditTransaccionLabel_destinatario}" for="destinatario" />
                     <h:inputText id="destinatario" value="#{transaccionController.selected.destinatario}" title="#{bundle.EditTransaccionTitle_destinatario}" />
                     <h:outputLabel value="#{bundle.EditTransaccionLabel_numero}" for="numero" />
                     <h:inputText id="numero" value="#{transaccionController.selected.numero}" title="#{bundle.EditTransaccionTitle_numero}" />
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_cuenta}" for="cuenta" />
+                    <h:selectOneMenu id="cuenta" value="#{transaccionController.selected.cuenta}" title="#{bundle.EditTransaccionTitle_cuenta}" >
+                        <f:selectItems value="#{cuentaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_servicio}" for="servicio" />
+                    <h:selectOneMenu id="servicio" value="#{transaccionController.selected.servicio}" title="#{bundle.EditTransaccionTitle_servicio}" >
+                        <f:selectItems value="#{servicioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_tipo}" for="tipo" />
+                    <h:inputText id="tipo" value="#{transaccionController.selected.tipo}" title="#{bundle.EditTransaccionTitle_tipo}" />
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_usuario}" for="usuario" />
+                    <h:selectOneMenu id="usuario" value="#{transaccionController.selected.usuario}" title="#{bundle.EditTransaccionTitle_usuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_fechaEmision}" for="fechaEmision" />
+                    <h:inputText id="fechaEmision" value="#{transaccionController.selected.fechaEmision}" title="#{bundle.EditTransaccionTitle_fechaEmision}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_fechaIngreso}" for="fechaIngreso" />
+                    <h:inputText id="fechaIngreso" value="#{transaccionController.selected.fechaIngreso}" title="#{bundle.EditTransaccionTitle_fechaIngreso}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_fechaPago}" for="fechaPago" />
+                    <h:inputText id="fechaPago" value="#{transaccionController.selected.fechaPago}" title="#{bundle.EditTransaccionTitle_fechaPago}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_fechaVencimiento}" for="fechaVencimiento" />
+                    <h:inputText id="fechaVencimiento" value="#{transaccionController.selected.fechaVencimiento}" title="#{bundle.EditTransaccionTitle_fechaVencimiento}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_concepto}" for="concepto" />
+                    <h:inputText id="concepto" value="#{transaccionController.selected.concepto}" title="#{bundle.EditTransaccionTitle_concepto}" />
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{transaccionController.selected.estado}" title="#{bundle.EditTransaccionTitle_estado}" />
+                    <h:outputLabel value="#{bundle.EditTransaccionLabel_fechaActualizacion}" for="fechaActualizacion" />
+                    <h:inputText id="fechaActualizacion" value="#{transaccionController.selected.fechaActualizacion}" title="#{bundle.EditTransaccionTitle_fechaActualizacion}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
                 </h:panelGrid>
                 <h:commandLink action="#{transaccionController.update}" value="#{bundle.EditTransaccionSaveLink}"/>
                 <br />

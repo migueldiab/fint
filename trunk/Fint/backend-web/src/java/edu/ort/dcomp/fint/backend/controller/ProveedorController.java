@@ -33,7 +33,7 @@ public class ProveedorController {
     public Proveedor.wsParser[] getParsers() {
       return Proveedor.wsParser.values();
     }
-    
+        
     public Proveedor getSelected() {
         if (current == null) {
             current = new Proveedor();

@@ -67,6 +67,7 @@ public class CuentaFacade {
     InitialContext ic = new InitialContext();
     gep = (GenericEntidadParser) ic.lookup(jndi);
     result = gep.actualizarCuenta(unaCuenta, usuarioActual);
+    ejbCuenta.merge(result);
     return result;
   }
 

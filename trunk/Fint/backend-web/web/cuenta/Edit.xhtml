@@ -9,14 +9,14 @@
         <ui:define name="title">
             <h:outputText value="#{bundle.EditCuentaTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="content">
+        <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditCuentaLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{cuentaController.selected.id}" title="#{bundle.EditCuentaTitle_id}" />
+                    <h:outputText id="id" value="#{cuentaController.selected.id}" title="#{bundle.EditCuentaTitle_id}" />
                     <h:outputLabel value="#{bundle.EditCuentaLabel_nombre}" for="nombre" />
                     <h:inputText id="nombre" value="#{cuentaController.selected.nombre}" title="#{bundle.EditCuentaTitle_nombre}" />
                     <h:outputLabel value="#{bundle.EditCuentaLabel_entidadFinanciera}" for="entidadFinanciera" />
@@ -25,6 +25,14 @@
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditCuentaLabel_tipo}" for="tipo" />
                     <h:inputText id="tipo" value="#{cuentaController.selected.tipo}" title="#{bundle.EditCuentaTitle_tipo}" />
+                    <h:outputLabel value="#{bundle.EditCuentaLabel_fechaActualizacion}" for="fechaActualizacion" />
+                    <h:inputText id="fechaActualizacion" value="#{cuentaController.selected.fechaActualizacion}" title="#{bundle.EditCuentaTitle_fechaActualizacion}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditCuentaLabel_saldo}" for="saldo" />
+                    <h:inputText id="saldo" value="#{cuentaController.selected.saldo}" title="#{bundle.EditCuentaTitle_saldo}" />
+                    <h:outputLabel value="#{bundle.EditCuentaLabel_numeroCuenta}" for="numeroCuenta" />
+                    <h:inputText id="numeroCuenta" value="#{cuentaController.selected.numeroCuenta}" title="#{bundle.EditCuentaTitle_numeroCuenta}" />
                 </h:panelGrid>
                 <h:commandLink action="#{cuentaController.update}" value="#{bundle.EditCuentaSaveLink}"/>
                 <br />

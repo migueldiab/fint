@@ -9,7 +9,7 @@
         <ui:define name="title">
             <h:outputText value="#{bundle.ViewProveedorTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="content">
+        <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
@@ -19,8 +19,8 @@
                     <h:outputText value="#{proveedorController.selected.id}" title="#{bundle.ViewProveedorTitle_id}"/>
                     <h:outputText value="#{bundle.ViewProveedorLabel_nombre}"/>
                     <h:outputText value="#{proveedorController.selected.nombre}" title="#{bundle.ViewProveedorTitle_nombre}"/>
-                    <h:outputText value="Web Service"/>
-                    <h:outputText value="#{proveedorController.selected.parser}" title="Web Service"/>
+                    <h:outputText value="#{bundle.ViewProveedorLabel_parser}"/>
+                    <h:outputText value="#{proveedorController.selected.parser}" title="#{bundle.ViewProveedorTitle_parser}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{proveedorController.destroyAndView}" value="#{bundle.ViewProveedorDestroyLink}"/>

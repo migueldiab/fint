@@ -30,6 +30,10 @@ public class EntidadFinancieraController {
     public EntidadFinancieraController() {
     }
 
+    public EntidadFinanciera.wsParser[] getParsers() {
+      return EntidadFinanciera.wsParser.values();
+    }
+
     public EntidadFinanciera getSelected() {
         if (current == null) {
             current = new EntidadFinanciera();

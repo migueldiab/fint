@@ -9,7 +9,7 @@
         <ui:define name="title">
             <h:outputText value="#{bundle.ViewCuentaTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="content">
+        <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
@@ -23,6 +23,14 @@
                     <h:outputText value="#{cuentaController.selected.entidadFinanciera}" title="#{bundle.ViewCuentaTitle_entidadFinanciera}"/>
                     <h:outputText value="#{bundle.ViewCuentaLabel_tipo}"/>
                     <h:outputText value="#{cuentaController.selected.tipo}" title="#{bundle.ViewCuentaTitle_tipo}"/>
+                    <h:outputText value="#{bundle.ViewCuentaLabel_fechaActualizacion}"/>
+                    <h:outputText value="#{cuentaController.selected.fechaActualizacion}" title="#{bundle.ViewCuentaTitle_fechaActualizacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCuentaLabel_saldo}"/>
+                    <h:outputText value="#{cuentaController.selected.saldo}" title="#{bundle.ViewCuentaTitle_saldo}"/>
+                    <h:outputText value="#{bundle.ViewCuentaLabel_numeroCuenta}"/>
+                    <h:outputText value="#{cuentaController.selected.numeroCuenta}" title="#{bundle.ViewCuentaTitle_numeroCuenta}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{cuentaController.destroyAndView}" value="#{bundle.ViewCuentaDestroyLink}"/>

@@ -9,20 +9,22 @@
         <ui:define name="title">
             <h:outputText value="#{bundle.CreateServicioTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="content">
+        <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateServicioLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{servicioController.selected.id}" title="#{bundle.CreateServicioTitle_id}" />
                     <h:outputLabel value="#{bundle.CreateServicioLabel_proveedor}" for="proveedor" />
                     <h:selectOneMenu id="proveedor" value="#{servicioController.selected.proveedor}" title="#{bundle.CreateServicioTitle_proveedor}" >
                         <f:selectItems value="#{proveedorController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreateServicioLabel_nombre}" for="nombre" />
                     <h:inputText id="nombre" value="#{servicioController.selected.nombre}" title="#{bundle.CreateServicioTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.CreateServicioLabel_categoria}" for="categoria" />
+                    <h:inputText id="categoria" value="#{servicioController.selected.categoria}" title="#{bundle.CreateServicioTitle_categoria}" />
+                    <h:outputLabel value="#{bundle.CreateServicioLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{servicioController.selected.numero}" title="#{bundle.CreateServicioTitle_numero}" />
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{servicioController.create}" value="#{bundle.CreateServicioSaveLink}" />
