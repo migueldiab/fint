@@ -1,5 +1,6 @@
 package edu.ort.dcomp.fint.modelo.managers;
 
+import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.Transaccion;
 import java.util.List;
@@ -37,6 +38,14 @@ public class TransaccionManager extends AbstractManager<Transaccion> implements 
     if (1 == lista.size()) {
       result = lista.get(0);
     }
+    return result;
+  }
+
+  @Override
+  public List<Transaccion> obtenerPorCuentaOrdenadoPorFecha(Cuenta cuenta) {
+    Query q = getEntityManager().createQuery("SELECT t FROM Transaccion t WHERE t.cuenta = :cuenta ORDER BY t.fechaIngreso DESC");
+    q.setParameter("cuenta", cuenta);
+    final List<Transaccion> result = q.getResultList();
     return result;
   }
 

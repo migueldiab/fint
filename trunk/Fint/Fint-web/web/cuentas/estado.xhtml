@@ -55,13 +55,17 @@
                     <f:facet name="header">
                       <h:outputLabel value="Debe" />
                     </f:facet>
-                    <h:outputLabel value="#{trans.importe}" rendered="#{transaccionActions.esRetiro(trans)}" />
+                    <h:outputLabel style="float: right;" value="#{trans.importe}" rendered="#{transaccionActions.esRetiro(trans)}" >
+                      <f:convertNumber pattern="#.00" />
+                    </h:outputLabel>
                   </h:column>
                   <h:column>
                     <f:facet name="header">
                       <h:outputLabel value="Haber" />
                     </f:facet>
-                    <h:outputLabel value="#{trans.importe}" rendered="#{!transaccionActions.esRetiro(trans)}"/>
+                    <h:outputLabel style="float: right;" value="#{trans.importe}" rendered="#{!transaccionActions.esRetiro(trans)}">
+                      <f:convertNumber pattern="#.00" />
+                    </h:outputLabel>
                   </h:column>
                 </h:dataTable>
               </div>

@@ -1,5 +1,6 @@
 package edu.ort.dcomp.fint.modelo.managers;
 
+import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.Transaccion;
 import java.util.List;
@@ -29,5 +30,7 @@ public interface TransaccionManagerLocal {
   public boolean existe(Servicio servicioAsociado, String toString);
 
   public Transaccion buscarPorServicioNumero(Servicio servicioAsociado, String numero);
+
+  public List<Transaccion> obtenerPorCuentaOrdenadoPorFecha(Cuenta cuenta);
 
 }
