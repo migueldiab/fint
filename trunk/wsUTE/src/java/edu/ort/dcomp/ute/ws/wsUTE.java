@@ -23,7 +23,7 @@ import javax.ejb.Stateless;
  */
 @WebService()
 @Stateless()
-public class ConsultasWS {
+public class wsUTE {
 
   @EJB
   private FacturaFacade facturaFacade;
