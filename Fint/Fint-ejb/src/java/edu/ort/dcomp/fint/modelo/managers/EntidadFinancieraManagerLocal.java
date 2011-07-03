@@ -25,4 +25,6 @@ public interface EntidadFinancieraManagerLocal {
 
   int count();
 
+  public EntidadFinanciera buscarPorNombre(String nombre);
+
 }

@@ -2,10 +2,10 @@
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services/>
   <clients>
-    <client name="ConsultasWS">
-      <wsdl-url>http://lorien:8080/ConsultasWSService/ConsultasWS?wsdl</wsdl-url>
-      <local-wsdl-file>lorien_8080/ConsultasWSService/ConsultasWS.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">edu.ort.dcomp.fint.monitor.client</package-name>
+    <client name="wsBROU">
+      <wsdl-url>http://lorien:8080/wsBROUService/wsBROU?wsdl</wsdl-url>
+      <local-wsdl-file>lorien_8080/wsBROUService/wsBROU.wsdl</local-wsdl-file>
+      <package-name forceReplace="true">edu.ort.dcomp.fint.ws.entidades</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -18,7 +18,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://lorien:8080/ConsultasWSService/ConsultasWS?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://lorien:8080/wsBROUService/wsBROU?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -30,7 +30,39 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>edu.ort.dcomp.fint.monitor.client</wsimport-option-value>
+          <wsimport-option-value>edu.ort.dcomp.fint.ws.entidades</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+    <client name="wsUTE">
+      <wsdl-url>http://lorien:8080/wsUTEService/wsUTE?wsdl</wsdl-url>
+      <local-wsdl-file>lorien_8080/wsUTEService/wsUTE.wsdl</local-wsdl-file>
+      <package-name forceReplace="true">edu.ort.dcomp.fint.ws.servicio</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://lorien:8080/wsUTEService/wsUTE?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>package</wsimport-option-name>
+          <wsimport-option-value>edu.ort.dcomp.fint.ws.servicio</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>

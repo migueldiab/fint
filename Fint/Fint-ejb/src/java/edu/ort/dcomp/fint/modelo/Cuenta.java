@@ -1,6 +1,8 @@
 package edu.ort.dcomp.fint.modelo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -26,6 +29,7 @@ public class Cuenta implements Serializable {
   private Long id;
   @NotNull
   private String nombre;
+  private Long numeroCuenta;
   @OneToMany
   @JoinColumn(name="id_cuenta")
   private Set<Transaccion> transacciones;
@@ -33,6 +37,9 @@ public class Cuenta implements Serializable {
   @NotNull
   private EntidadFinanciera entidadFinanciera;
   private Tipo tipo;
+  @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+  private Date fechaActualizacion;
+  private BigDecimal saldo;
 
   public Long getId() {
     return id;
@@ -99,6 +106,30 @@ public class Cuenta implements Serializable {
 
   public void setTipo(Tipo tipo) {
     this.tipo = tipo;
+  }
+
+  public Date getFechaActualizacion() {
+    return fechaActualizacion;
+  }
+
+  public void setFechaActualizacion(Date fechaActualizacion) {
+    this.fechaActualizacion = fechaActualizacion;
+  }
+
+  public BigDecimal getSaldo() {
+    return saldo;
+  }
+
+  public void setSaldo(BigDecimal saldo) {
+    this.saldo = saldo;
+  }
+
+  public Long getNumeroCuenta() {
+    return numeroCuenta;
+  }
+
+  public void setNumeroCuenta(Long numeroCuenta) {
+    this.numeroCuenta = numeroCuenta;
   }
 
   

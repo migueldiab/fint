@@ -2,4 +2,8 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://lorien:8080/ConsultasWSService/ConsultasWS?wsdl" uri="wsdl/lorien_8080/ConsultasWSService/ConsultasWS.wsdl"/>
     <system systemId="http://lorien:8080/ConsultasWSService/ConsultasWS?xsd=1" uri="wsdl/lorien_8080/ConsultasWSService/ConsultasWS.xsd_1.xsd"/>
+    <system systemId="http://lorien:8080/wsBROUService/wsBROU?wsdl" uri="wsdl/lorien_8080/wsBROUService/wsBROU.wsdl"/>
+    <system systemId="http://lorien:8080/wsBROUService/wsBROU?xsd=1" uri="wsdl/lorien_8080/wsBROUService/wsBROU.xsd_1.xsd"/>
+    <system systemId="http://lorien:8080/wsUTEService/wsUTE?wsdl" uri="wsdl/lorien_8080/wsUTEService/wsUTE.wsdl"/>
+    <system systemId="http://lorien:8080/wsUTEService/wsUTE?xsd=1" uri="wsdl/lorien_8080/wsUTEService/wsUTE.xsd_1.xsd"/>
 </catalog>

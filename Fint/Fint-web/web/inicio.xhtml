@@ -5,7 +5,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
   <ui:composition template="/resources/template.xhtml">
-    <ui:param name="context_help" value="Esta es la ayuda : #{facade.welcomeMessage}"/>
+    <ui:param name="context_help" value="Este es el menu principal desde donde puede acceder de forma rápida a la información de sus pagos y cuentas"/>
     <ui:define name="content">
       
       <!--
@@ -25,7 +25,7 @@
           </ul>
 				</div>
 				<div class="portfolio_preview">
-          <h2>Cuentas</h2>
+          <h2>Bienvenido #{usuarioActions.usuario.nombre}</h2>
           <div id="from_portfolio">
             <div class="slider-wrap">
                 <div id="main-photo-slider" class="csw">
@@ -33,12 +33,18 @@
 
                     <div class="panel" title="Información de cuentas">
                       <div class="wrapper">
-                          Información de cuentas
+                        <h2>Información de cuentas</h2>
+                        <c:forEach items="#{usuarioActions.cuentas}" var="cuenta">
+                          <h3>#{cuenta.nombre} - #{cuenta.tipo}</h3>
+                        </c:forEach>
                       </div>
                     </div>
                     <div class="panel" title="Información de Servicios">
                       <div class="wrapper">
-                        Información de Servicios
+                        <h2>Información de Servicios</h2>
+                        <c:forEach items="#{usuarioActions.servicios}" var="servicios">
+                          <h3>#{servicios.nombre} - #{servicios.categoria}</h3>
+                        </c:forEach>
                       </div>
                     </div>
                   </div>

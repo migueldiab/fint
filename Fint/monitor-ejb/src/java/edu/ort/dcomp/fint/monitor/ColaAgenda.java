@@ -1,9 +1,9 @@
 package edu.ort.dcomp.fint.monitor;
 
+import edu.ort.common.log.Logger;
 import edu.ort.dcomp.fint.modelo.Agenda;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.ActivationConfigProperty;
+import javax.ejb.EJB;
 import javax.ejb.MessageDriven;
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -19,22 +19,25 @@ import javax.jms.ObjectMessage;
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
     })
 public class ColaAgenda implements MessageListener {
-    
+
+  @EJB
+  private Logger logger;
+
   public ColaAgenda() {
   }
 
   @Override
   public void onMessage(Message message) {
-    System.out.println("onMessage");
+    logger.info("Procesando cola de mensaje de agenda");
     if (message instanceof ObjectMessage) {
       ObjectMessage om = (ObjectMessage) message;
-      Agenda agenda = null;
       try {
-        agenda = (Agenda) om.getObject();
+        final Agenda agenda = (Agenda) om.getObject();
+        logger.info("Recibido agenda : " + agenda.toString());
       } catch (JMSException ex) {
-        Logger.getLogger(ColaAgenda.class.getName()).log(Level.SEVERE, null, ex);
+        logger.error("Error al leer agenda.", ex.toString());
       }
-      System.out.println("Recibido una agenda : " + agenda.getCuenta().getNombre());
+      
     }
   }
     

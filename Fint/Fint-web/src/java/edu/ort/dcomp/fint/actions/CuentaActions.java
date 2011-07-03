@@ -8,8 +8,10 @@ import edu.ort.dcomp.fint.jsf.JsfUtil;
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.EntidadFinanciera;
 import edu.ort.dcomp.fint.modelo.Transaccion;
+import edu.ort.dcomp.fint.modelo.Usuario;
 import java.util.List;
-import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
@@ -78,12 +80,25 @@ public class CuentaActions {
     return PATH + "estado";
   }
 
+  public String actualizarSaldo(Cuenta unaCuenta) {
+    System.out.println("Actualizar Saldo");
+    Usuario usuarioActual = usuarioController.getUsuario();
+    try {
+      cuenta = cuentaController.actualizarSaldo(unaCuenta, usuarioActual);
+      JsfUtil.addSuccessMessage("Updated!");
+    } catch (Exception ex) {
+      String msg = "No se pudo actualizar en este momento.";
+      JsfUtil.addErrorMessage(msg);
+      engine.errorLog(msg, ex.toString());
+    }
+    return PATH + "estado";
+  }
+  
   public String estadoProyectadoCuenta(Cuenta unaCuenta) {
     System.out.println("Estado Proyectado");
     cuentaController.estadoProyectadoCuenta(unaCuenta);
     return PATH + "estado";
   }
-
 
   public List<EntidadFinanciera> getEntidadesFinancieras() {
     return cuentaController.getEntidadesFinancieras();
