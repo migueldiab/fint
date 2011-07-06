@@ -43,7 +43,6 @@ public class Transaccion implements Serializable {
   private String destinatario;
   @ManyToOne
   @JoinColumn(name="id_cuenta")
-  @NotNull
   private Cuenta cuenta;
   @ManyToOne
   @JoinColumn(name="id_servicio")

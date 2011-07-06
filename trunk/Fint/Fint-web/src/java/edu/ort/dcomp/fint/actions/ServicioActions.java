@@ -4,9 +4,11 @@ import edu.ort.dcomp.fint.engine.ServicioFacade;
 import edu.ort.dcomp.fint.engine.UsuarioFacade;
 import edu.ort.dcomp.fint.converter.ProveedorConverter;
 import edu.ort.dcomp.fint.engine.Engine;
+import edu.ort.dcomp.fint.engine.TransaccionFacade;
 import edu.ort.dcomp.fint.jsf.JsfUtil;
 import edu.ort.dcomp.fint.modelo.Proveedor;
 import edu.ort.dcomp.fint.modelo.Servicio;
+import edu.ort.dcomp.fint.modelo.Transaccion;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -26,6 +28,9 @@ public class ServicioActions {
   @EJB
   private Engine engine;
 
+  @EJB
+  private TransaccionFacade transaccionFacade;
+  
   private Servicio servicio;
 
   private List<Servicio> listaServicios;
@@ -108,7 +113,18 @@ public class ServicioActions {
     }
     return response;
   }
-  
+
+  public String movimientosServicios(Servicio unServicio) {
+    System.out.println("Facturas");
+    servicio = unServicio;
+    return PATH + "estado";
+  }
+
+
+  public List<Transaccion> getTransacciones() {
+    return transaccionFacade.obtenerPorServicioOrdenadoPorFecha(servicio);
+  }
+
   public String borrarServicio(Servicio unServicio) {
     System.out.println("Borrando");
     usuarioController.borrarServicio(unServicio);

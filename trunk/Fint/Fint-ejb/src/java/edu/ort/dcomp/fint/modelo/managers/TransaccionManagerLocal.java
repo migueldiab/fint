@@ -36,4 +36,6 @@ public interface TransaccionManagerLocal {
 
   public List<Transaccion> buscarFacturasPendientes(Agenda agenda);
 
+  public List<Transaccion> obtenerPorServicioOrdenadoPorFecha(Servicio servicio);
+
 }
