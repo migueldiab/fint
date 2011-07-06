@@ -80,7 +80,25 @@ public class BROUParser implements GenericEntidadParser {
 
   @Override
   public Movimiento retirarDinero(Cuenta cuenta, Usuario usuario, BigDecimal importe) {
-    throw new UnsupportedOperationException("Not supported yet.");
+    String ciUsuario = usuario.getCi().toString();
+    String password = usuario.getCi().toString();
+    Movimiento movimiento;
+    try {
+      movimiento = getProxy().retirarDinero(ciUsuario, password, cuenta.getNumeroCuenta(), importe.floatValue(), "Retiro automático fint");
+    } catch (MalformedURLException ex) {
+      logger.error("MalformedURLException", ex.toString());
+      throw new WebServiceCommunicationException("Error en la configuración. Contacte al administrador", ex);
+    } catch (IOException ex) {
+      logger.error("IOException", ex.toString());
+      throw new WebServiceCommunicationException("Error en la configuración. Contacte al administrador", ex);
+    } catch (EmptyPropertyException ex) {
+      logger.error("EmptyPropertyException", ex.toString());
+      throw new WebServiceCommunicationException("Error en la configuración. Contacte al administrador", ex);
+    } catch (Exception ex) {
+      logger.error("Exception", ex.toString());
+      throw new WebServiceCommunicationException("Error en la configuración. Contacte al administrador", ex);
+    }
+    return movimiento;
   }
     
 

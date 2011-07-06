@@ -10,8 +10,11 @@ import edu.ort.dcomp.fint.modelo.managers.ServicioManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.TransaccionManagerLocal;
 import edu.ort.dcomp.fint.ws.entidades.Movimiento;
 import edu.ort.dcomp.fint.ws.servicio.Recibo;
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.EJB;
 import javax.ejb.MessageDriven;
@@ -47,10 +50,16 @@ public class ColaAgenda implements MessageListener {
 
   @Override
   public void onMessage(Message message) {
-    logger.info("Procesando cola de mensaje de agenda");
+    logger.info("Procesando cola de mensaje");
     if (message instanceof ObjectMessage) {
       ObjectMessage om = (ObjectMessage) message;
-      if (om instanceof Agenda) {
+      Serializable omContent = null;
+      try {
+        omContent = om.getObject();
+      } catch (JMSException ex) {
+        logger.error("No se pudo obtener el objeto del mensaje.", ex.toString());
+      }
+      if (omContent instanceof Agenda) {
         try {
           final Agenda agenda = (Agenda) om.getObject();
           procesarAgenda(agenda);
@@ -59,7 +68,7 @@ public class ColaAgenda implements MessageListener {
         } catch (JMSException ex) {
           logger.error("Error al leer la agenda.", ex.toString());
         }
-      } else if (om instanceof Servicio) {
+      } else if (omContent instanceof Servicio) {
         try {
           final Servicio servicio = (Servicio) om.getObject();
           procesarServicio(servicio);
@@ -135,20 +144,32 @@ public class ColaAgenda implements MessageListener {
     List<Transaccion> listaPendientes = ejbTransaccion.buscarFacturasPendientes(agenda);
     if (!listaPendientes.isEmpty()) {
       GenericProveedorParser parserPr = getParserProveedor(agenda.getServicio().getProveedor());
-      for (Transaccion transaccion : listaPendientes) {
-        GenericEntidadParser parserEF = getParserEntidad(agenda.getCuenta().getEntidadFinanciera());
-        Movimiento retiro = parserEF.retirarDinero(transaccion.getCuenta(), transaccion.getUsuario(), transaccion.getImporte());
-        Recibo recibo = parserPr.pagarCuenta(transaccion, obtenerClave(retiro));
-        transaccion.setEstado(Transaccion.Estado.PAGA);
-        transaccion.setFechaPago(new Date());
-        transaccion.setDestinatario(recibo.getClaveEntidad());
-        ejbTransaccion.merge(transaccion);
+      GenericEntidadParser parserEF = getParserEntidad(agenda.getCuenta().getEntidadFinanciera());
+      for (Transaccion trPago : listaPendientes) {
+        Movimiento retiro = parserEF.retirarDinero(agenda.getCuenta(), trPago.getUsuario(), trPago.getImporte());
+        Transaccion trRetiro = new Transaccion();
+        trRetiro.setCuenta(agenda.getCuenta());
+        trRetiro.setConcepto(retiro.getConcepto());
+        trRetiro.setDestinatario(trPago.getServicio().getNombre());
+        trRetiro.setEstado(Transaccion.Estado.PAGA);
+        trRetiro.setFechaActualizacion(new Date());
+        trRetiro.setFechaEmision(new Date());
+        trRetiro.setImporte(retiro.getImporte());
+        trRetiro.setNumero(retiro.getId().toString());
+        trRetiro.setTipo(Transaccion.Tipo.CUENTA);
+        trRetiro.setUsuario(trPago.getUsuario());
+        Recibo recibo = parserPr.pagarCuenta(trPago, obtenerClave(retiro));
+        trPago.setEstado(Transaccion.Estado.PAGA);
+        trPago.setFechaPago(new Date());
+        trPago.setDestinatario(recibo.getClaveEntidad());
+        trPago.setTipo(Transaccion.Tipo.CUENTA);
+        ejbTransaccion.merge(trPago);
       }
     }
   }
 
   private void procesarServicio(Servicio servicio) throws NamingException {
-    logger.info("Recibido agenda : " + servicio.toString());
+    logger.info("Recibido Factura : " + servicio.toString());
     GenericProveedorParser parserPr = getParserProveedor(servicio.getProveedor());
     parserPr.leerFacturasPendientes(servicio);
   }

@@ -51,6 +51,14 @@ public class TransaccionManager extends AbstractManager<Transaccion> implements 
   }
 
   @Override
+  public List<Transaccion> obtenerPorServicioOrdenadoPorFecha(Servicio servicio) {
+    Query q = getEntityManager().createQuery("SELECT t FROM Transaccion t WHERE t.servicio = :servicio ORDER BY t.fechaIngreso DESC");
+    q.setParameter("servicio", servicio);
+    final List<Transaccion> result = q.getResultList();
+    return result;
+  }
+
+  @Override
   public List<Transaccion> buscarFacturasPendientes(Agenda agenda) {
     Query q = getEntityManager().createQuery("SELECT t FROM Transaccion t "
             + "WHERE t.servicio = :servicio "
