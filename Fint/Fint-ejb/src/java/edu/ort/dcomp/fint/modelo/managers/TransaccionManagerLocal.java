@@ -4,6 +4,7 @@ import edu.ort.dcomp.fint.modelo.Agenda;
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.Transaccion;
+import edu.ort.dcomp.fint.modelo.Usuario;
 import java.util.List;
 import javax.ejb.LocalBean;
 
@@ -37,5 +38,7 @@ public interface TransaccionManagerLocal {
   public List<Transaccion> buscarFacturasPendientes(Agenda agenda);
 
   public List<Transaccion> obtenerPorServicioOrdenadoPorFecha(Servicio servicio);
+
+  public List<Transaccion> obtenerPendientesPorUsuario(Usuario usuario);
 
 }

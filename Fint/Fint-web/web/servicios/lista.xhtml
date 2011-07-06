@@ -25,14 +25,18 @@
                     <c:forEach items="#{usuarioActions.servicios}" var="servicio">
                       <div class="panel" title="#{servicio.nombre}">
                         <div class="wrapper">
-                          <h:panelGrid columns="2">
+                          <h:panelGrid columns="3">
                             <h:outputLabel value="Servicio :" />
                             <h:outputLabel value="#{servicio.nombre}" />
+                            <br/>
                             <h:outputLabel value="Proveedor :" />
                             <h:outputLabel value="#{servicio.proveedor.nombre}" />
+                            <br/>
                             <h:outputLabel value="Conectado :" />
                             <h:outputLabel value="#{servicio.conectado}" />
+                            <br/>
                             <h:commandButton value="Ver Movimientos" action="#{servicioActions.movimientosServicios(servicio)}" />
+                            <h:commandButton value="Ver Vencimientos" action="#{servicioActions.proximosVencimientos()}" />
                             <br/>
                             <h:button value="Volver" outcome="/inicio" />
                             <h:commandButton value="Borrar" action="#{servicioActions.borrarServicio(servicio)}"/>

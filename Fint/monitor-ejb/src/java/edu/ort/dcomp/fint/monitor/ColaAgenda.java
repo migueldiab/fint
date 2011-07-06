@@ -158,6 +158,7 @@ public class ColaAgenda implements MessageListener {
         trRetiro.setNumero(retiro.getId().toString());
         trRetiro.setTipo(Transaccion.Tipo.CUENTA);
         trRetiro.setUsuario(trPago.getUsuario());
+        ejbTransaccion.persist(trRetiro);
         Recibo recibo = parserPr.pagarCuenta(trPago, obtenerClave(retiro));
         trPago.setEstado(Transaccion.Estado.PAGA);
         trPago.setFechaPago(new Date());
