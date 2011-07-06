@@ -22,14 +22,19 @@ public class Servicio implements Serializable {
   private Long id;
   @NotNull
   private String nombre;
-  @NotNull
   private Long numero;
   @OneToMany
   @JoinColumn(name="id_servicio")
   private Set<Transaccion> transacciones;
   @ManyToOne
   @NotNull
+  @JoinColumn(name="id_usuario")
+  private Usuario usuario;
+  @ManyToOne
+  @NotNull
   private Proveedor proveedor;
+  @ManyToOne
+  @JoinColumn(name="id_categoria")
   private Categoria categoria;
   private Boolean conectado;
   private String usuarioWs;
@@ -132,6 +137,14 @@ public class Servicio implements Serializable {
 
   public void setUsuarioWs(String usuarioWs) {
     this.usuarioWs = usuarioWs;
+  }
+
+  public Usuario getUsuario() {
+    return usuario;
+  }
+
+  public void setUsuario(Usuario usuario) {
+    this.usuario = usuario;
   }
 
 

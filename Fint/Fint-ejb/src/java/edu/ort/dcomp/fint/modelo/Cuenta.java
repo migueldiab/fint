@@ -35,6 +35,7 @@ public class Cuenta implements Serializable {
   private Set<Transaccion> transacciones;
   @ManyToOne
   @NotNull
+  @JoinColumn(name="id_entidad")
   private EntidadFinanciera entidadFinanciera;
   private Tipo tipo;
   @Temporal(javax.persistence.TemporalType.TIMESTAMP)

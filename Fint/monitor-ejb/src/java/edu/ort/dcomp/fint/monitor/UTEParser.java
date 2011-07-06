@@ -14,6 +14,7 @@ import edu.ort.dcomp.fint.modelo.managers.TransaccionManagerLocal;
 import edu.ort.dcomp.fint.modelo.managers.UsuarioManagerLocal;
 import edu.ort.dcomp.fint.ws.servicio.Cuenta;
 import edu.ort.dcomp.fint.ws.servicio.Factura;
+import edu.ort.dcomp.fint.ws.servicio.Recibo;
 import edu.ort.dcomp.fint.ws.servicio.WsUTE;
 import edu.ort.dcomp.fint.ws.servicio.WsUTEService;
 import java.io.IOException;
@@ -22,7 +23,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
 import javax.ejb.Asynchronous;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -52,8 +52,7 @@ public class UTEParser implements GenericProveedorParser {
 
   @Asynchronous
   @Override
-  public void leerFacturasPendientes() throws WebServiceCommunicationException {
-    final List<Usuario> lista = ejbUsuario.findAll();
+  public void leerFacturasPendientes(Servicio servicio) throws WebServiceCommunicationException {
     WsUTE proxy;
     try {
       proxy = getProxy();
@@ -64,16 +63,12 @@ public class UTEParser implements GenericProveedorParser {
     } catch (EmptyPropertyException ex) {
       throw new WebServiceCommunicationException("Error en la configuración. Contacte al administrador", ex);
     }
-
-    for (Usuario usuario : lista) {
-      List<Factura> result = proxy.
-              obtenerFacturasPendientes(usuario.getCi(), "", "");
-      for (Factura factura : result) {
-//        if (!ejbTransaccion.existe(proveedorAsociado, factura.getId().toString())) {
-//          importarTransaccion(factura, usuario, proveedorAsociado);
-//        }
+    List<Factura> result = proxy.obtenerFacturasPendientes(servicio.getNumero(), servicio.getUsuarioWs(), servicio.getPassWs());
+    for (Factura factura : result) {
+      if (!ejbTransaccion.existe(servicio, factura.getId().toString())) {
+        importarTransaccion(factura, servicio);
       }
-    } 
+    }
   }
   
   @Override
@@ -132,7 +127,7 @@ public class UTEParser implements GenericProveedorParser {
     }
   }
 
-  private void importarTransaccion(Factura factura, Usuario usuario, Servicio servicioAsociado) {
+  private void importarTransaccion(Factura factura, Servicio servicio) {
     final Transaccion unaT = new Transaccion();
     unaT.setConcepto(factura.getConcepto());
     unaT.setDestinatario(PROVEEDOR_ASOCIADO);
@@ -143,10 +138,10 @@ public class UTEParser implements GenericProveedorParser {
     unaT.setFechaPago(DateTime.asDate(factura.getFechaPago()));
     unaT.setFechaVencimiento(DateTime.asDate(factura.getFechaVencimiento()));
     unaT.setNumero(factura.getId().toString());
-    unaT.setServicio(servicioAsociado);
+    unaT.setServicio(servicio);
     unaT.setTipo(Transaccion.Tipo.CUENTA);
     unaT.setEstado(parseEstado(factura.getEstado()));
-    unaT.setUsuario(usuario);
+    unaT.setUsuario(servicio.getUsuario());
     ejbTransaccion.persist(unaT);
   }
 
@@ -189,6 +184,27 @@ public class UTEParser implements GenericProveedorParser {
       nuevoServicio.setUsuarioWs(id);
       nuevoServicio.setPassWs(password);
       result.add(nuevoServicio);
+    }
+    return result;
+  }
+
+
+  @Override
+  public Recibo pagarCuenta(Transaccion factura, String clavePago) {
+    logger.info("pagarCuenta(Transaccion factura, String clavePago)");
+    Recibo result = null;
+    String usuarioWs = factura.getServicio().getUsuarioWs();
+    String passWs = factura.getServicio().getPassWs();
+    Long idCuenta = factura.getServicio().getNumero();
+    Long idFactura = Long.parseLong(factura.getNumero());
+    WsUTE proxy = null;
+    try {
+      proxy = getProxy();
+      result = proxy.pagarCuenta(usuarioWs, passWs, idCuenta, idFactura, clavePago);
+    } catch (EmptyPropertyException propEx) {
+      throw new WebServiceCommunicationException("Error en la configuración. Contacte al administrador", propEx);
+    } catch (IOException ioEx) {
+      throw new WebServiceCommunicationException("Error en la comunicación. Intente mas tarde", ioEx);
     }
     return result;
   }

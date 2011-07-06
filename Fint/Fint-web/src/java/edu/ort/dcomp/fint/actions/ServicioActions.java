@@ -45,6 +45,10 @@ public class ServicioActions {
     return servicio;
   }
 
+  public void nuevoServicio() {
+    servicio = new Servicio();
+  }
+
   public List<Servicio> getListaServicios() {
     return listaServicios;
   }
@@ -72,11 +76,12 @@ public class ServicioActions {
     return response;
   }
   
-  public String guardar() {
+  public String guardar(Servicio unServicio) {
     String response;
     try {
-      servicio.setConectado(Boolean.FALSE);
-      usuarioController.guardarServicio(servicio);
+      unServicio.setConectado(Boolean.FALSE);
+      unServicio.setUsuario(usuarioController.getUsuario());
+      usuarioController.guardarServicio(unServicio);
       response = PATH + "lista";
     } catch (Exception e) {
       String msg = "No se pudo crear el servicio";
@@ -91,6 +96,7 @@ public class ServicioActions {
   public String conectarServicio(Servicio unServicio) {
     String response;
     try {
+      servicio.setConectado(Boolean.TRUE);
       usuarioController.guardarServicio(unServicio);
       JsfUtil.addSuccessMessage("Se agregó el servicio!");
       response = PATH + "lista";
