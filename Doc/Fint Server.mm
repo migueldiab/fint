@@ -1,7 +1,7 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1305070417421" ID="ID_1904056498" MODIFIED="1309734185727" STYLE="bubble" TEXT="Fint Engine EJB">
-<node CREATED="1305070938262" HGAP="13" ID="ID_1737644454" MODIFIED="1309734177158" POSITION="left" TEXT="GenericEntidadParser" VSHIFT="-64">
+<node CREATED="1305070938262" HGAP="10" ID="ID_1737644454" MODIFIED="1309734224423" POSITION="left" TEXT="GenericEntidadParser" VSHIFT="-58">
 <icon BUILTIN="broken-line"/>
 </node>
 <node CREATED="1305070944968" HGAP="28" ID="ID_698141434" MODIFIED="1309734165767" POSITION="right" TEXT="GenericProveedorParser" VSHIFT="-54">
