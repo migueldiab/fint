@@ -1,4 +1,4 @@
-package edu.ort.dcomp.fint.jsf.exceptions;
+package edu.ort.common.exceptions;
 
 public class NonexistentEntityException extends Exception {
     public NonexistentEntityException(String message, Throwable cause) {

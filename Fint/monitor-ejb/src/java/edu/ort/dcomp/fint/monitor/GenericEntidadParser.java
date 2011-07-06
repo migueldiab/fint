@@ -1,5 +1,6 @@
 package edu.ort.dcomp.fint.monitor;
 
+import edu.ort.common.exceptions.WebServiceCommunicationException;
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.EntidadFinanciera;
 import edu.ort.dcomp.fint.modelo.Usuario;
@@ -16,7 +17,7 @@ public interface GenericEntidadParser {
   
   EntidadFinanciera getEntidadAsociada();
 
-  Cuenta actualizarCuenta(Cuenta cuenta, Usuario usuario) throws Exception;
+  Cuenta actualizarCuenta(Cuenta cuenta, Usuario usuario) throws WebServiceCommunicationException;
 
-  Movimiento retirarDinero(Cuenta cuenta, Usuario usuario, BigDecimal importe) throws Exception;
+  Movimiento retirarDinero(Cuenta cuenta, Usuario usuario, BigDecimal importe) throws WebServiceCommunicationException;
 }

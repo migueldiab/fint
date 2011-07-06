@@ -18,7 +18,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://lorien:8080/wsBROUService/wsBROU?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/wsBROUService/wsBROU?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -50,7 +50,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://lorien:8080/wsUTEService/wsUTE?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/wsUTEService/wsUTE?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>

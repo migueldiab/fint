@@ -31,6 +31,9 @@ public class Servicio implements Serializable {
   @NotNull
   private Proveedor proveedor;
   private Categoria categoria;
+  private Boolean conectado;
+  private String usuarioWs;
+  private String passWs;
 
   public Long getId() {
     return id;
@@ -105,6 +108,30 @@ public class Servicio implements Serializable {
 
   public void setNumero(Long numero) {
     this.numero = numero;
+  }
+
+  public Boolean getConectado() {
+    return conectado;
+  }
+
+  public void setConectado(Boolean conectado) {
+    this.conectado = conectado;
+  }
+
+  public String getPassWs() {
+    return passWs;
+  }
+
+  public void setPassWs(String passWs) {
+    this.passWs = passWs;
+  }
+
+  public String getUsuarioWs() {
+    return usuarioWs;
+  }
+
+  public void setUsuarioWs(String usuarioWs) {
+    this.usuarioWs = usuarioWs;
   }
 
 

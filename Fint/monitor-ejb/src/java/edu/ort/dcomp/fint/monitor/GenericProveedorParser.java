@@ -1,8 +1,8 @@
 package edu.ort.dcomp.fint.monitor;
 
+import edu.ort.common.exceptions.WebServiceCommunicationException;
 import edu.ort.dcomp.fint.modelo.Proveedor;
 import edu.ort.dcomp.fint.modelo.Servicio;
-import java.net.MalformedURLException;
 import java.util.List;
 import javax.ejb.Asynchronous;
 import javax.ejb.LocalBean;
@@ -17,11 +17,11 @@ public interface GenericProveedorParser {
   Proveedor getProveedorAsociado();
 
   @Asynchronous
-  void leerFacturasPendientes() throws MalformedURLException;
+  void leerFacturasPendientes() throws WebServiceCommunicationException;
 
   @Asynchronous
-  void leerFacturasPasadas() throws MalformedURLException;
+  void leerFacturasPasadas() throws WebServiceCommunicationException;
 
-  public List<Servicio> listarCuentas(String id, String password) throws MalformedURLException;
+  public List<Servicio> listarCuentas(String id, String password) throws WebServiceCommunicationException;
 
 }

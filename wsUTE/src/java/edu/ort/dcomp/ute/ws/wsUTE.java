@@ -9,7 +9,6 @@ import edu.ort.dcomp.ute.modelo.Cliente;
 import edu.ort.dcomp.ute.modelo.Cuenta;
 import edu.ort.dcomp.ute.modelo.Factura;
 import edu.ort.dcomp.ute.modelo.Factura.Estado;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.jws.WebMethod;

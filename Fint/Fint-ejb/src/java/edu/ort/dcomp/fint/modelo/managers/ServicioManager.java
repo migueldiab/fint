@@ -29,4 +29,11 @@ public class ServicioManager extends AbstractManager<Servicio> implements Servic
     return result;
   }
 
+  @Override
+  public List<Servicio> buscarServiciosConectados() {
+    Query q = getEntityManager().createQuery("SELECT s FROM Servicio s");
+    final List<Servicio> result = q.getResultList();
+    return result;
+  }
+
 }
