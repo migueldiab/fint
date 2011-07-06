@@ -73,6 +73,7 @@ public class AgendaProcessor {
       if (connection != null) {
         connection.close();
       }
+      
     }
   }
 

@@ -36,8 +36,8 @@ public class ProveedorMon {
      timerConfig.setPersistent(false);
      timerConfig.setInfo("parserProveedorAgendado");
      ScheduleExpression sched = new ScheduleExpression();
-     sched.second("0");
-     sched.minute("*/1");
+     sched.second("*/15");
+     sched.minute("*");
      sched.hour("*");
      Timer timer = timerService.createCalendarTimer(sched, timerConfig);
   }
