@@ -17,11 +17,11 @@
           </ul>
         </div>
         <div class="portfolio_preview">
-          <h2>Próximos Vencimientos</h2>
+          <h2>#{servicioActions.servicio.nombre}</h2>
           <div id="from_portfolio">
             <div class="panelContainer">
-              <div class="panel" title='Vencimientos'>
-                <h:dataTable value="#{servicioActions.transacciones}" var="trans">
+              <div class="panel" title='Estado de cuenta #{servicioActions.servicio.nombre}'>
+                <h:dataTable value="#{servicioActions.vencimientos}" var="trans">
                   <h:column>
                     <f:facet name="header">
                       <h:outputLabel value="Ingreso" />

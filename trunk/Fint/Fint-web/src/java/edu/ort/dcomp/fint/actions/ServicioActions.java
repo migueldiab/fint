@@ -115,14 +115,23 @@ public class ServicioActions {
   }
 
   public String movimientosServicios(Servicio unServicio) {
-    System.out.println("Facturas");
+    System.out.println("movimientosServicios");
     servicio = unServicio;
     return PATH + "estado";
+  }
+
+  public String proximosVencimientos() {
+    System.out.println("proximosVencimientos");
+    return PATH + "venicmientos";
   }
 
 
   public List<Transaccion> getTransacciones() {
     return transaccionFacade.obtenerPorServicioOrdenadoPorFecha(servicio);
+  }
+
+  public List<Transaccion> getVencimientos() {
+    return transaccionFacade.obtenerPendientesPorUsuario(usuarioController.getUsuario());
   }
 
   public String borrarServicio(Servicio unServicio) {

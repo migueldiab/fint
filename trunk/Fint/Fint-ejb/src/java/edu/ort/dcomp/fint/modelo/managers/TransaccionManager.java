@@ -4,6 +4,7 @@ import edu.ort.dcomp.fint.modelo.Agenda;
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.Transaccion;
+import edu.ort.dcomp.fint.modelo.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
@@ -54,6 +55,18 @@ public class TransaccionManager extends AbstractManager<Transaccion> implements 
   public List<Transaccion> obtenerPorServicioOrdenadoPorFecha(Servicio servicio) {
     Query q = getEntityManager().createQuery("SELECT t FROM Transaccion t WHERE t.servicio = :servicio ORDER BY t.fechaIngreso DESC");
     q.setParameter("servicio", servicio);
+    final List<Transaccion> result = q.getResultList();
+    return result;
+  }
+
+  @Override
+  public List<Transaccion> obtenerPendientesPorUsuario(Usuario usuario) {
+    Query q = getEntityManager().createQuery("SELECT t FROM Transaccion t "
+            + "WHERE t.usuario = :usuario "
+            + "AND t.estado = :estado "
+            + "ORDER BY t.fechaVencimiento");
+    q.setParameter("usuario", usuario);
+    q.setParameter("estado", Transaccion.Estado.PENDIENTE);
     final List<Transaccion> result = q.getResultList();
     return result;
   }

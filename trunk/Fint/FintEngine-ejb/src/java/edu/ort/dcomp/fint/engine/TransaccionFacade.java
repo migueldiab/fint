@@ -3,6 +3,7 @@ package edu.ort.dcomp.fint.engine;
 import edu.ort.dcomp.fint.modelo.Cuenta;
 import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.Transaccion;
+import edu.ort.dcomp.fint.modelo.Usuario;
 import edu.ort.dcomp.fint.modelo.managers.TransaccionManagerLocal;
 import java.util.List;
 import javax.ejb.EJB;
@@ -26,6 +27,10 @@ public class TransaccionFacade {
 
   public List<Transaccion> obtenerPorServicioOrdenadoPorFecha(Servicio servicio) {
     return ejbTransaccion.obtenerPorServicioOrdenadoPorFecha(servicio);
+  }
+
+  public List<Transaccion> obtenerPendientesPorUsuario(Usuario usuario) {
+    return ejbTransaccion.obtenerPendientesPorUsuario(usuario);
   }
 
 }
