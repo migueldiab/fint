@@ -1,5 +1,7 @@
 package edu.ort.dcomp.fint.monitor;
 
+import edu.ort.common.exceptions.EmptyPropertyException;
+import edu.ort.common.exceptions.WebServiceCommunicationException;
 import edu.ort.common.log.Logger;
 import edu.ort.common.utils.DateTime;
 import edu.ort.dcomp.fint.modelo.Proveedor;
@@ -14,11 +16,13 @@ import edu.ort.dcomp.fint.ws.servicio.Cuenta;
 import edu.ort.dcomp.fint.ws.servicio.Factura;
 import edu.ort.dcomp.fint.ws.servicio.WsUTE;
 import edu.ort.dcomp.fint.ws.servicio.WsUTEService;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import javax.ejb.Asynchronous;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -48,10 +52,21 @@ public class UTEParser implements GenericProveedorParser {
 
   @Asynchronous
   @Override
-  public void leerFacturasPendientes() throws MalformedURLException {
+  public void leerFacturasPendientes() throws WebServiceCommunicationException {
     final List<Usuario> lista = ejbUsuario.findAll();
+    WsUTE proxy;
+    try {
+      proxy = getProxy();
+    } catch (MalformedURLException ex) {
+      throw new WebServiceCommunicationException("Error en la configuración. Contacte al administrador", ex);
+    } catch (IOException ex) {
+      throw new WebServiceCommunicationException("Error en la conección. Intente mas tarde", ex);
+    } catch (EmptyPropertyException ex) {
+      throw new WebServiceCommunicationException("Error en la configuración. Contacte al administrador", ex);
+    }
+
     for (Usuario usuario : lista) {
-      List<Factura> result = getProxy().
+      List<Factura> result = proxy.
               obtenerFacturasPendientes(usuario.getCi(), "", "");
       for (Factura factura : result) {
 //        if (!ejbTransaccion.existe(proveedorAsociado, factura.getId().toString())) {
@@ -92,11 +107,20 @@ public class UTEParser implements GenericProveedorParser {
 
   @Asynchronous
   @Override
-  public void leerFacturasPasadas() throws MalformedURLException {
+  public void leerFacturasPasadas() throws WebServiceCommunicationException {
     final List<Usuario> lista = ejbUsuario.findAll();
+    WsUTE proxy;
+    try {
+      proxy = getProxy();
+    } catch (MalformedURLException ex) {
+      throw new WebServiceCommunicationException("Error en la configuración. Contacte al administrador", ex);
+    } catch (IOException ex) {
+      throw new WebServiceCommunicationException("Error en la conección. Intente mas tarde", ex);
+    } catch (EmptyPropertyException ex) {
+      throw new WebServiceCommunicationException("Error en la configuración. Contacte al administrador", ex);
+    }
     for (Usuario usuario : lista) {
-      List<Factura> result = getProxy().
-              obtenerFacturasPasadas(usuario.getCi(), 15, "", "");
+      List<Factura> result = proxy.obtenerFacturasPasadas(usuario.getCi(), 15, "", "");
       for (Factura factura : result) {
 //        Transaccion trans = ejbTransaccion.buscarPorServicioNumero(proveedorAsociado, factura.getId().toString());
 //        if (null == trans) {
@@ -134,18 +158,25 @@ public class UTEParser implements GenericProveedorParser {
   }
 
   @Override
-  public List<Servicio> listarCuentas(String id, String password) throws MalformedURLException {
+  public List<Servicio> listarCuentas(String id, String password) throws WebServiceCommunicationException {
     logger.info("List<Servicio> listarCuentas(id "+id+", password"+password+")");
     Long ciCliente = Long.parseLong(id);
     List<Cuenta> cuentas = null;
     List<Servicio> result = null;
-    WsUTE proxy = getProxy();
-    cuentas = proxy.obtenerCuentasPorCliente(ciCliente, password);
-    result = importarCuentas(cuentas);
+    WsUTE proxy = null;
+    try {
+      proxy = getProxy();
+      cuentas = proxy.obtenerCuentasPorCliente(ciCliente, password);
+      result = importarCuentas(cuentas, id, password);
+    } catch (EmptyPropertyException propEx) {
+      throw new WebServiceCommunicationException("Error en la configuración. Contacte al administrador", propEx);
+    } catch (IOException ioEx) {
+      throw new WebServiceCommunicationException("Error en la comunicación. Intente mas tarde", ioEx);
+    }
     return result;
   }
 
-  private List<Servicio> importarCuentas(List<Cuenta> cuentas) {
+  private List<Servicio> importarCuentas(List<Cuenta> cuentas, String id, String password) {
     logger.info("List<Servicio> importarCuentas(cuentas "+cuentas+")");
     List<Servicio> result = new ArrayList<Servicio>();
     for (Cuenta cuenta : cuentas) {
@@ -154,27 +185,31 @@ public class UTEParser implements GenericProveedorParser {
       nuevoServicio.setNombre(PROVEEDOR_ASOCIADO + " - " + cuenta.getId().toString());
       nuevoServicio.setNumero(cuenta.getId());
       nuevoServicio.setProveedor(getProveedorAsociado());
+      nuevoServicio.setConectado(Boolean.TRUE);
+      nuevoServicio.setUsuarioWs(id);
+      nuevoServicio.setPassWs(password);
       result.add(nuevoServicio);
     }
     return result;
   }
 
-  private WsUTE getProxy() throws MalformedURLException {
+  private WsUTE getProxy() throws MalformedURLException, IOException, EmptyPropertyException {
     return getService().getWsUTEPort();
   }
 
-  private URL getWSURL() throws MalformedURLException {
+  private URL getWSURL() throws MalformedURLException, IOException, EmptyPropertyException {
     if (null == WS_URL) {
-      WS_URL = "http://localhost:8080/wsUTEService/wsUTE?wsdl";
+      WS_URL = Monitor.getInstance().getProperty("WS_UTE");
     }
     return new URL(WS_URL);
   }
 
-  private WsUTEService getService() throws MalformedURLException {
+  private WsUTEService getService() throws MalformedURLException, IOException, EmptyPropertyException {
     if (null == service) {
       final QName serviceName = new QName("http://ws.ute.dcomp.ort.edu/", "wsUTEService");
       service = new WsUTEService(getWSURL(), serviceName);
     }
     return service;
   }
+
 }

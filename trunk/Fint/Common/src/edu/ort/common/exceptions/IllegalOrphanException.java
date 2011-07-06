@@ -1,4 +1,4 @@
-package edu.ort.dcomp.fint.jsf.exceptions;
+package edu.ort.common.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;

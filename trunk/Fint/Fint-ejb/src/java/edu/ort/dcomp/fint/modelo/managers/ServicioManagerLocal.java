@@ -27,4 +27,6 @@ public interface ServicioManagerLocal {
 
   public Servicio buscarPorNombre(String SERVICIO_ASOCIADO);
 
+  public List<Servicio> buscarServiciosConectados();
+
 }

@@ -1,4 +1,4 @@
-package edu.ort.dcomp.fint.jsf.exceptions;
+package edu.ort.common.exceptions;
 
 public class RollbackFailureException extends Exception {
     public RollbackFailureException(String message, Throwable cause) {

@@ -1,4 +1,4 @@
-package edu.ort.dcomp.fint.jsf.exceptions;
+package edu.ort.common.exceptions;
 
 public class PreexistingEntityException extends Exception {
     public PreexistingEntityException(String message, Throwable cause) {

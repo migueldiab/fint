@@ -27,7 +27,7 @@
     <target name="wsimport-client-wsBROU" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/wsBROU"/>
         <property name="wsdl-wsBROU" location="${meta.inf}/xml-resources/web-service-references/wsBROU/wsdl/lorien_8080/wsBROUService/wsBROU.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/wsBROU" destdir="${build.generated.dir}/jax-wsCache/wsBROU" wsdl="${wsdl-wsBROU}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://lorien:8080/wsBROUService/wsBROU?wsdl" xnocompile="true" xendorsed="true" package="edu.ort.dcomp.fint.ws.entidades">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/wsBROU" destdir="${build.generated.dir}/jax-wsCache/wsBROU" wsdl="${wsdl-wsBROU}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:8080/wsBROUService/wsBROU?wsdl" xnocompile="true" xendorsed="true" package="edu.ort.dcomp.fint.ws.entidades">
             <depends file="${wsdl-wsBROU}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/wsBROU"/>
         </wsimport>
@@ -44,7 +44,7 @@
     <target name="wsimport-client-wsUTE" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/wsUTE"/>
         <property name="wsdl-wsUTE" location="${meta.inf}/xml-resources/web-service-references/wsUTE/wsdl/lorien_8080/wsUTEService/wsUTE.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/wsUTE" destdir="${build.generated.dir}/jax-wsCache/wsUTE" wsdl="${wsdl-wsUTE}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://lorien:8080/wsUTEService/wsUTE?wsdl" xnocompile="true" xendorsed="true" package="edu.ort.dcomp.fint.ws.servicio">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/wsUTE" destdir="${build.generated.dir}/jax-wsCache/wsUTE" wsdl="${wsdl-wsUTE}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:8080/wsUTEService/wsUTE?wsdl" xnocompile="true" xendorsed="true" package="edu.ort.dcomp.fint.ws.servicio">
             <depends file="${wsdl-wsUTE}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/wsUTE"/>
         </wsimport>

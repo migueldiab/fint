@@ -75,6 +75,7 @@ public class ServicioActions {
   public String guardar() {
     String response;
     try {
+      servicio.setConectado(Boolean.FALSE);
       usuarioController.guardarServicio(servicio);
       response = PATH + "lista";
     } catch (Exception e) {

@@ -1,11 +1,12 @@
 package edu.ort.dcomp.fint.monitor;
 
+import edu.ort.common.log.Logger;
 import edu.ort.dcomp.fint.modelo.Agenda;
+import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.managers.AgendaManagerLocal;
+import edu.ort.dcomp.fint.modelo.managers.ServicioManagerLocal;
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.Asynchronous;
 import javax.ejb.EJB;
@@ -35,15 +36,34 @@ public class AgendaProcessor {
   @EJB
   AgendaManagerLocal ejbAgenda;
 
+  @EJB
+  ServicioManagerLocal ejbServicio;
+
+  @EJB
+  Logger logger;
+
   @Asynchronous
   public void procesarPagosPendientes() {
-    System.out.println("Pagos Pendientes");
-    List<Agenda> agendas = ejbAgenda.findAll();
+    logger.info("Pagos Pendientes");
+    List<Agenda> agendas = ejbAgenda.buscarAgendasDelDia();
     for (Agenda agenda : agendas) {
       try {
         sendJMSMessageToColaAgenda(agenda);
       } catch (JMSException ex) {
-        Logger.getLogger(AgendaProcessor.class.getName()).log(Level.SEVERE, null, ex);
+        logger.error("Error procesando Pagos Pendientes", ex.toString());
+      }
+    }
+  }
+
+  @Asynchronous
+  public void procesarFacturasNuevas() {
+    logger.info("Facturas Nuevas");
+    List<Servicio> servicios = ejbServicio.buscarServiciosConectados();
+    for (Servicio servicio : servicios) {
+      try {
+        sendJMSMessageToColaAgenda(servicio);
+      } catch (JMSException ex) {
+        logger.error("Error procesando Pagos Pendientes", ex.toString());
       }
     }
   }
@@ -67,7 +87,7 @@ public class AgendaProcessor {
         try {
           session.close();
         } catch (JMSException e) {
-          Logger.getLogger(this.getClass().getName()).log(Level.WARNING, "Cannot close session", e);
+          logger.error("Error enviando mensaje a la cola", e.toString());
         }
       }
       if (connection != null) {
