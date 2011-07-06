@@ -8,9 +8,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -30,12 +32,19 @@ public class Agenda implements Serializable {
   private Date fecha;
   private String destinatario;
   @ManyToOne
+  @JoinColumn(name="id_categoria")
   private Categoria categoria;
   @OneToOne
+  @NotNull
+  @JoinColumn(name="id_servicio")
   private Servicio servicio;
   @OneToOne
+  @NotNull
+  @JoinColumn(name="id_cuenta")
   private Cuenta cuenta;
   @ManyToOne
+  @NotNull
+  @JoinColumn(name="id_usuario")
   private Usuario usuario;
   @Enumerated(EnumType.STRING)
   private Tipo tipo;

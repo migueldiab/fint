@@ -18,6 +18,7 @@
         </div>
         <div class="portfolio_preview">
           <h2>Crear nuevo servicio</h2>
+          #{servicioActions.nuevoServicio()}
           <div id="from_portfolio">
             <div class="panelContainer">
               <div class="panel" title="Crear un nuevo servicio para administrar las cuentas ocasionadas por los mismos">
@@ -36,7 +37,7 @@
                           itemValue="#{proveedor}"
                         />
                       </h:selectOneMenu>
-                      <h:commandButton action="#{servicioActions.guardar}" value="Guardar" />
+                      <h:commandButton action="#{servicioActions.guardar(servicioActions.servicio)}" value="Guardar" />
                       <h:button value="Volver" outcome="/servicios/lista" />
                     </h:panelGrid>
                   </h:form>

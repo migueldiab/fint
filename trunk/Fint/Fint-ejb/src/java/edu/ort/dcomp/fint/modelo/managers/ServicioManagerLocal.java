@@ -1,6 +1,8 @@
 package edu.ort.dcomp.fint.modelo.managers;
 
+import edu.ort.dcomp.fint.modelo.Agenda;
 import edu.ort.dcomp.fint.modelo.Servicio;
+import edu.ort.dcomp.fint.modelo.Transaccion;
 import java.util.List;
 import javax.ejb.LocalBean;
 

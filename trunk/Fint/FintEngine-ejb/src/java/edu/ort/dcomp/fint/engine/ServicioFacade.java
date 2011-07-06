@@ -3,6 +3,7 @@ package edu.ort.dcomp.fint.engine;
 import edu.ort.dcomp.fint.modelo.Proveedor;
 import edu.ort.dcomp.fint.modelo.Servicio;
 import edu.ort.dcomp.fint.modelo.managers.ProveedorManagerLocal;
+import edu.ort.dcomp.fint.modelo.managers.ServicioManagerLocal;
 import edu.ort.dcomp.fint.monitor.GenericProveedorParser;
 import java.net.MalformedURLException;
 import java.util.List;
@@ -28,6 +29,8 @@ public class ServicioFacade {
 
   @EJB
   private ProveedorManagerLocal ejbProveedor;
+  @EJB
+  private ServicioManagerLocal ejbServicio;
   
   public List<Servicio> listarCuentasProveedor(String id, String password, Proveedor proveedor) throws MalformedURLException {
     engine.infoLog("List<Servicio> listarCuentasProveedor(id "+id+", password "+password+", Proveedor "+proveedor+")");
@@ -69,6 +72,10 @@ public class ServicioFacade {
 
   public Proveedor getProveedorById(Integer idProveedor) {
     return ejbProveedor.find(idProveedor);
+  }
+
+  public void guardarServicio(Servicio servicio) {
+    ejbServicio.persist(servicio);
   }
 
   

@@ -158,6 +158,7 @@ public class Usuario implements Serializable {
     if (null == servicios) {
       servicios = new HashSet<Servicio>();
     }
+    servicio.setUsuario(this);
     servicios.add(servicio);
   }
 
