@@ -1,0 +1,1 @@
+An Open Source Mint Clone for academic purposes
